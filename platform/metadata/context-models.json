@@ -1,0 +1,132 @@
+{
+  "$comment": "Value models for the registered context dimensions (Phase 007 §6: valueModel, resolutionPolicy, conflictPolicy). Field names paraphrase each dimension's 'holds' list in registries/context-registry.json. mergeKind: 'precedence' (conflict resolved by authorityRank → specificity → recency; tie ⇒ UNRESOLVED), 'union' (set-like), 'intersection' (interval-like; empty ⇒ UNRESOLVED), 'min' / 'max' (ordinal, used so a low-trust contribution cannot elevate the security context it helped compose, CX-S-02), 'strict' (any disagreement ⇒ UNRESOLVED; the simulation/operation firewall of CX-S-04).",
+  "dimensions": {
+    "Identity": {
+      "fields": {
+        "principal": { "mergeKind": "precedence" },
+        "actingAs": { "mergeKind": "precedence" },
+        "onBehalfOf": { "mergeKind": "precedence" },
+        "roles": { "mergeKind": "union" },
+        "authenticationStrength": { "mergeKind": "min" },
+        "delegationChain": { "mergeKind": "union" },
+        "sessionScope": { "mergeKind": "precedence" }
+      },
+      "defaults": { "principal": "$actor.principal", "actingAs": "$actor.authority", "onBehalfOf": "$actor.onBehalfOf" }
+    },
+    "Temporal": {
+      "fields": {
+        "instant": { "mergeKind": "precedence" },
+        "timezone": { "mergeKind": "precedence" },
+        "calendar": { "mergeKind": "precedence" },
+        "validity": { "mergeKind": "intersection" },
+        "businessCalendar": { "mergeKind": "precedence" },
+        "season": { "mergeKind": "precedence" },
+        "recurrencePosition": { "mergeKind": "precedence" }
+      },
+      "defaults": { "instant": "$now", "calendar": "gregorian", "timezone": "UTC" }
+    },
+    "Spatial": {
+      "fields": {
+        "position": { "mergeKind": "precedence" },
+        "regions": { "mergeKind": "union" },
+        "jurisdiction": { "mergeKind": "precedence" },
+        "deliveryReach": { "mergeKind": "union" },
+        "origin": { "mergeKind": "precedence" },
+        "transitPath": { "mergeKind": "union" }
+      },
+      "defaults": {}
+    },
+    "Regulatory": {
+      "fields": {
+        "regimes": { "mergeKind": "union" },
+        "requiredConsents": { "mergeKind": "union" },
+        "disclosures": { "mergeKind": "union" },
+        "prohibitedActions": { "mergeKind": "union" },
+        "licensingPrerequisites": { "mergeKind": "union" },
+        "dataResidency": { "mergeKind": "union" }
+      },
+      "defaults": {}
+    },
+    "Security": {
+      "fields": {
+        "trustLevel": { "mergeKind": "min" },
+        "assuranceLevel": { "mergeKind": "min" },
+        "channelPosture": { "mergeKind": "precedence" },
+        "devicePosture": { "mergeKind": "precedence" },
+        "riskIndicators": { "mergeKind": "union" },
+        "consentState": { "mergeKind": "precedence" },
+        "dataClassification": { "mergeKind": "max" }
+      },
+      "defaults": {}
+    },
+    "Economic": {
+      "fields": {
+        "currency": { "mergeKind": "precedence" },
+        "priceBasis": { "mergeKind": "precedence" },
+        "taxTreatment": { "mergeKind": "precedence" },
+        "tariffRegime": { "mergeKind": "precedence" },
+        "settlementExpectation": { "mergeKind": "precedence" },
+        "accountStanding": { "mergeKind": "precedence" },
+        "creditPosture": { "mergeKind": "precedence" },
+        "economicPolicies": { "mergeKind": "union" }
+      },
+      "defaults": {}
+    },
+    "Governance": {
+      "fields": {
+        "authorityChain": { "mergeKind": "union" },
+        "policies": { "mergeKind": "union" },
+        "precedenceScope": { "mergeKind": "precedence" },
+        "ratifyingBodies": { "mergeKind": "union" },
+        "openDisputes": { "mergeKind": "union" },
+        "delegationLimits": { "mergeKind": "union" }
+      },
+      "defaults": {}
+    },
+    "Linguistic": {
+      "fields": {
+        "locale": { "mergeKind": "precedence" },
+        "language": { "mergeKind": "precedence" },
+        "script": { "mergeKind": "precedence" },
+        "measurementSystem": { "mergeKind": "precedence" },
+        "namingConvention": { "mergeKind": "precedence" },
+        "semanticFrame": { "mergeKind": "precedence" },
+        "formats": { "mergeKind": "precedence" }
+      },
+      "defaults": { "locale": "$config.defaultLocale" }
+    },
+    "Reality": {
+      "fields": {
+        "mode": { "mergeKind": "strict", "allowedFrom": "holds" }
+      },
+      "defaults": { "mode": "actual" }
+    },
+    "Computational": {
+      "fields": {
+        "fabric": { "mergeKind": "precedence" },
+        "region": { "mergeKind": "precedence" },
+        "latencyBudget": { "mergeKind": "min" },
+        "offlinePosture": { "mergeKind": "precedence" }
+      },
+      "defaults": {}
+    }
+  },
+  "purposes": {
+    "$comment": "Context = Situation filtered by Purpose (Phase 007 §3.1). Each registered purpose names the dimensions relevant to it and those that must be bound (V-CX-01). A purpose not listed here is evaluated over every dimension.",
+    "pricing": { "relevant": ["Economic", "Temporal", "Regulatory", "Spatial", "Identity", "Reality", "Linguistic"], "required": ["Temporal", "Reality"] },
+    "access": { "relevant": ["Identity", "Security", "Governance", "Reality", "Temporal", "Regulatory"], "required": ["Identity", "Reality"] },
+    "entitlement-check": { "relevant": ["Identity", "Temporal", "Spatial", "Regulatory", "Security", "Reality"], "required": ["Identity", "Temporal", "Reality"] },
+    "classification": { "relevant": ["Regulatory", "Temporal", "Spatial", "Governance", "Linguistic", "Reality", "Identity"], "required": ["Reality"] },
+    "policy-evaluation": { "relevant": ["Identity", "Temporal", "Spatial", "Regulatory", "Security", "Economic", "Governance", "Reality"], "required": ["Identity", "Temporal", "Reality"] },
+    "composition": { "relevant": ["Computational", "Regulatory", "Governance", "Spatial", "Reality", "Temporal", "Identity"], "required": ["Reality"] },
+    "generation": { "relevant": ["Linguistic", "Reality", "Identity", "Governance", "Computational", "Temporal"], "required": ["Reality", "Linguistic"] },
+    "recommendation": { "relevant": ["Identity", "Economic", "Temporal", "Spatial", "Linguistic", "Reality"], "required": ["Reality"] },
+    "optimization": { "relevant": ["Economic", "Temporal", "Spatial", "Computational", "Reality", "Regulatory"], "required": ["Reality"] },
+    "governance": { "relevant": ["Governance", "Identity", "Security", "Regulatory", "Temporal", "Reality"], "required": ["Governance", "Temporal", "Reality"] },
+    "discovery": { "relevant": ["Identity", "Linguistic", "Governance", "Reality", "Temporal"], "required": ["Reality"] },
+    "settlement": { "relevant": ["Economic", "Temporal", "Identity", "Regulatory", "Reality"], "required": ["Temporal", "Reality"] },
+    "measurement": { "relevant": ["Temporal", "Spatial", "Linguistic", "Reality", "Identity"], "required": ["Temporal", "Reality"] },
+    "allocation": { "relevant": ["Temporal", "Spatial", "Identity", "Economic", "Reality"], "required": ["Temporal", "Reality"] },
+    "workflow": { "relevant": ["Identity", "Temporal", "Governance", "Security", "Regulatory", "Reality"], "required": ["Identity", "Temporal", "Reality"] }
+  }
+}

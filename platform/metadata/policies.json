@@ -1,0 +1,474 @@
+{
+  "$comment": "Base platform policies (C-16). Every protected action is evaluated against registered policy before it executes (UCL-G01); trust is never implicit (UCL-G02), so an action no policy permits is denied. Precedence is computed from issuer authority rank, scope specificity and recency — never stored. Issuers are governance bodies registered in the Governance Body Registry.",
+  "policies": [
+    {
+      "name": "Public Registry Discovery",
+      "statement": "Registry content is public by default; secrecy attaches to instances (RG-P7).",
+      "issuer": "Foundation Council",
+      "purpose": "Make every registered artifact discoverable (D-FR-01)",
+      "scope": {
+        "actions": [
+          "registry.read",
+          "discovery.search",
+          "intelligence.discover"
+        ]
+      },
+      "rules": [
+        {
+          "id": "PUB-01",
+          "modality": "permit",
+          "action": "registry.read",
+          "antecedent": "subject = NULL OR subject.posture IN ['PUBLIC', 'MAXIMAL-PUBLIC', 'INTEGRITY-FIRST'] OR actor.principal = subject.owner OR actor.bodies CONTAINS subject.owner"
+        },
+        {
+          "id": "PUB-02",
+          "modality": "permit",
+          "action": "discovery.search"
+        },
+        {
+          "id": "PUB-03",
+          "modality": "permit",
+          "action": "intelligence.discover"
+        },
+        {
+          "id": "PUB-04",
+          "modality": "permit",
+          "action": "registry.read",
+          "antecedent": "exists(Identity.principal) AND subject.posture = 'PROTECTED' AND actor.kind <> 'unknown'"
+        }
+      ]
+    },
+    {
+      "name": "Constitutional Authoring",
+      "statement": "Artifacts are submitted by the Registry Office or a ratifying body, ratified by the competent body and certified only by the Certification Body.",
+      "issuer": "Constitutional Assembly",
+      "purpose": "Enforce the separation of ratification, recording and certification (GI-1..GI-3)",
+      "scope": {
+        "actions": [
+          "registry.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "AUTH-01",
+          "modality": "permit",
+          "action": "registry.submit",
+          "antecedent": "intersects(actor.bodies, ['Registry Office', 'Foundation Council', 'Constitutional Assembly', 'Domain Authorities']) OR actor.authority MATCHES 'Domain Authority$|Operating Authority$'"
+        },
+        {
+          "id": "AUTH-02",
+          "modality": "permit",
+          "action": "registry.propose",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-03",
+          "modality": "permit",
+          "action": "registry.ratify",
+          "antecedent": "NOT (actor.bodies CONTAINS 'Registry Office') AND NOT (actor.bodies CONTAINS 'Certification Body') AND count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-04",
+          "modality": "permit",
+          "action": "registry.certify",
+          "antecedent": "actor.bodies CONTAINS 'Certification Body'"
+        },
+        {
+          "id": "AUTH-05",
+          "modality": "permit",
+          "action": "registry.revoke",
+          "antecedent": "actor.bodies CONTAINS 'Certification Body'"
+        },
+        {
+          "id": "AUTH-06",
+          "modality": "permit",
+          "action": "registry.supersede",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-07",
+          "modality": "permit",
+          "action": "registry.deprecate",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-08",
+          "modality": "permit",
+          "action": "registry.retire",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-09",
+          "modality": "permit",
+          "action": "registry.relate",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-10",
+          "modality": "permit",
+          "action": "registry.federate",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "AUTH-11",
+          "modality": "prohibit",
+          "action": "registry.certify",
+          "antecedent": "actor.autonomous = true"
+        },
+        {
+          "id": "AUTH-12",
+          "modality": "prohibit",
+          "action": "registry.ratify",
+          "antecedent": "actor.autonomous = true"
+        }
+      ]
+    },
+    {
+      "name": "Operational Exchange",
+      "statement": "Accountable principals acting under an operating authority may define exchangeable entities, issue offers and accept them within their context.",
+      "issuer": "Domain Authorities",
+      "purpose": "Permit governed commerce within operational namespaces (Phase 006)",
+      "scope": {
+        "actions": [
+          "commerce.*",
+          "settlement.*",
+          "allocation.*",
+          "measurement.*",
+          "contract.*",
+          "dispute.*",
+          "notification.*",
+          "workflow.*",
+          "trust.*",
+          "entity.*",
+          "capability.invoke",
+          "valuation.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "OPS-01",
+          "modality": "permit",
+          "action": "*",
+          "antecedent": "exists(Identity.principal) AND actor.kind <> 'unknown'"
+        },
+        {
+          "id": "OPS-02",
+          "modality": "prohibit",
+          "action": "commerce.accept",
+          "antecedent": "Regulatory.prohibitedActions CONTAINS 'commerce.accept'"
+        },
+        {
+          "id": "OPS-03",
+          "modality": "oblige",
+          "action": "commerce.accept",
+          "obligation": "record-consideration-evidence"
+        },
+        {
+          "id": "OPS-04",
+          "modality": "prohibit",
+          "action": "settlement.post",
+          "antecedent": "Reality.mode <> 'actual' AND NOT (simulated = true)"
+        }
+      ]
+    },
+    {
+      "name": "Classification Authority",
+      "statement": "Classification is a governance act requiring an accountable authority (TX-G1).",
+      "issuer": "Foundation Council",
+      "purpose": "Govern classification assertions and withdrawals",
+      "scope": {
+        "actions": [
+          "taxonomy.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "TAX-01",
+          "modality": "permit",
+          "action": "taxonomy.classify",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "TAX-02",
+          "modality": "permit",
+          "action": "taxonomy.confirm",
+          "antecedent": "count(actor.bodies) > 0 AND actor.autonomous = false"
+        },
+        {
+          "id": "TAX-03",
+          "modality": "permit",
+          "action": "taxonomy.withdraw",
+          "antecedent": "count(actor.bodies) > 0"
+        }
+      ]
+    },
+    {
+      "name": "Composition And Generation",
+      "statement": "Compositions are registered by domain authorities, certified by the Certification Body and materialised by authorised generation requests (GN-P6).",
+      "issuer": "Foundation Council",
+      "purpose": "Govern assembly and materialisation of systems (Phase 008, Phase 009)",
+      "scope": {
+        "actions": [
+          "composition.*",
+          "generation.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "CMP-01",
+          "modality": "permit",
+          "action": "composition.compose",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "CMP-02",
+          "modality": "permit",
+          "action": "composition.validate",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "CMP-03",
+          "modality": "permit",
+          "action": "composition.certify",
+          "antecedent": "actor.bodies CONTAINS 'Certification Body'"
+        },
+        {
+          "id": "CMP-04",
+          "modality": "permit",
+          "action": "composition.instantiate",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "CMP-05",
+          "modality": "permit",
+          "action": "composition.suspend",
+          "antecedent": "count(actor.bodies) > 0 OR (actor.autonomous = true AND exists(actor.purpose))"
+        },
+        {
+          "id": "GEN-01",
+          "modality": "permit",
+          "action": "generation.generate",
+          "antecedent": "count(actor.bodies) > 0"
+        },
+        {
+          "id": "GEN-02",
+          "modality": "permit",
+          "action": "generation.verify",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "GEN-03",
+          "modality": "permit",
+          "action": "generation.regenerate",
+          "antecedent": "count(actor.bodies) > 0 OR (actor.autonomous = true AND exists(actor.purpose))"
+        }
+      ]
+    },
+    {
+      "name": "Intelligence Envelope",
+      "statement": "Intelligent actors act only inside an envelope they do not own, with a registered purpose, and may never amend it, ratify or certify (IN-A1..IN-A6).",
+      "issuer": "Constitutional Assembly",
+      "purpose": "Bound every intelligence capability by an envelope owned by another authority (Phase 010 §6.1)",
+      "scope": {
+        "actions": [
+          "intelligence.*",
+          "policy.*",
+          "governance.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "INT-01",
+          "modality": "permit",
+          "action": "intelligence.assert",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "INT-02",
+          "modality": "permit",
+          "action": "intelligence.infer",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "INT-03",
+          "modality": "permit",
+          "action": "intelligence.classify",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "INT-04",
+          "modality": "permit",
+          "action": "intelligence.recommend",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "INT-05",
+          "modality": "permit",
+          "action": "intelligence.optimize",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "INT-06",
+          "modality": "permit",
+          "action": "governance.*",
+          "antecedent": "actor.autonomous = false OR exists(actor.purpose)"
+        },
+        {
+          "id": "INT-07",
+          "modality": "prohibit",
+          "action": "policy.amend",
+          "antecedent": "actor.autonomous = true"
+        },
+        {
+          "id": "INT-08",
+          "modality": "permit",
+          "action": "policy.propose-amendment",
+          "antecedent": "exists(actor.purpose) OR actor.autonomous = false"
+        },
+        {
+          "id": "INT-09",
+          "modality": "permit",
+          "action": "intelligence.request-autonomy",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "INT-10",
+          "modality": "permit",
+          "action": "policy.amend",
+          "antecedent": "actor.autonomous = false AND intersects(actor.bodies, ['Constitutional Assembly', 'Foundation Council', 'Domain Authorities'])"
+        }
+      ]
+    },
+    {
+      "name": "Identity Administration",
+      "statement": "Principals and operating namespaces are registered by the Registry Office on the authority of a ratifying body.",
+      "issuer": "Foundation Council",
+      "purpose": "Govern who may act on the platform (UCI-006)",
+      "scope": {
+        "actions": [
+          "principal.*",
+          "namespace.*",
+          "context.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "IDA-01",
+          "modality": "permit",
+          "action": "principal.register",
+          "antecedent": "intersects(actor.bodies, ['Registry Office', 'Foundation Council'])"
+        },
+        {
+          "id": "IDA-02",
+          "modality": "permit",
+          "action": "principal.suspend",
+          "antecedent": "intersects(actor.bodies, ['Registry Office', 'Foundation Council'])"
+        },
+        {
+          "id": "IDA-03",
+          "modality": "permit",
+          "action": "namespace.register",
+          "antecedent": "intersects(actor.bodies, ['Registry Office', 'Foundation Council'])"
+        },
+        {
+          "id": "IDA-04",
+          "modality": "permit",
+          "action": "context.resolve",
+          "antecedent": "exists(Identity.principal)"
+        },
+        {
+          "id": "IDA-05",
+          "modality": "permit",
+          "action": "context.register",
+          "antecedent": "count(actor.bodies) > 0"
+        }
+      ]
+    },
+    {
+      "name": "Validation And Audit",
+      "statement": "Constitutional validation, audit and coverage reports may be run by any accountable principal.",
+      "issuer": "Certification Body",
+      "purpose": "Make compliance demonstrable by evidence (C-FR-01, C-FR-02)",
+      "scope": {
+        "actions": [
+          "validation.*",
+          "audit.*",
+          "coverage.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "VAL-01",
+          "modality": "permit",
+          "action": "*",
+          "antecedent": "exists(Identity.principal)"
+        }
+      ]
+    },
+    {
+      "name": "Autonomous Governance Rules",
+      "statement": "Ratified conditions under which the Autonomous Governance Engine acts, escalates or proposes, and the context-relative autonomy it may exercise (Phase 010 §5.7, §6.2).",
+      "issuer": "Constitutional Assembly",
+      "purpose": "Apply ratified governance continuously and accountably",
+      "scope": {
+        "actions": [
+          "governance.*"
+        ]
+      },
+      "rules": [
+        {
+          "id": "GOVR-01",
+          "modality": "permit",
+          "action": "governance.*",
+          "antecedent": "actor.autonomous = false OR exists(actor.purpose)"
+        }
+      ],
+      "governance": [
+        {
+          "on": "gen.artifact.stale",
+          "action": "regenerate-stale",
+          "target": "subject",
+          "message": "a derivative no longer matches its canonical metadata (Phase 009 §7 step 8)"
+        },
+        {
+          "on": "gen.artifact.tampered",
+          "action": "escalate",
+          "escalateTo": "Certification Body",
+          "message": "a generated artifact was edited by hand (C-GN-02)"
+        },
+        {
+          "on": "int.contradiction.detected",
+          "action": "escalate",
+          "escalateTo": "Foundation Council",
+          "message": "a contradiction against an invariant is a constitutional failure (Phase 010 §5.2)"
+        },
+        {
+          "on": "int.alignment.evidence.failed",
+          "action": "escalate",
+          "escalateTo": "Constitutional Assembly",
+          "message": "alignment evidence failed verification (X-IN-03)"
+        },
+        {
+          "on": "compliance.entitlement.outside-bounds",
+          "action": "alert",
+          "message": "an entitlement was exercised outside its bounds (C-US-03)"
+        },
+        {
+          "on": "cmp.suspended.invocation.refused",
+          "action": "alert",
+          "message": "a capability was invoked under a suspended composition (C-CM-03)"
+        }
+      ],
+      "autonomy": [
+        {
+          "when": "Reality.mode <> 'actual'",
+          "level": "advisory"
+        },
+        {
+          "when": "count(Governance.openDisputes) > 0",
+          "level": "escalation-only"
+        }
+      ]
+    }
+  ]
+}

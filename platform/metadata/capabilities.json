@@ -1,0 +1,1150 @@
+{
+ "$comment": "Capability contracts (Phase 008 §5.2) for the capabilities registered in registries/capability-registry.json (ids and names are read from the seed). Ports are typed by registered constructs (concept aliases C-nn, or the entry model of a registered registry) — never by storage type (V-CB-03). A consumed port not produced inside a composition must be 'contextProvided' or 'optional' (V-CM-04); a produced port not consumed must be 'terminal' (V-CM-05). 'handler' names the platform runtime operation family that exercises the capability; operations name the governed actions evaluated before execution (UCL-G01). serviceLevels are Measurements with units (Phase 008 §10). Ports marked optional are resolved by canonical identity when no capability in the composition produces them (for example an offer over an exchangeable registered elsewhere).",
+ "defaults": {
+  "serviceLevels": [
+   {
+    "metric": "latency-p95",
+    "magnitude": 0.25,
+    "unit": "s",
+    "uncertainty": 0.025
+   }
+  ]
+ },
+ "capabilities": {
+  "identity": {
+   "purpose": "Mint, bind and resolve the identity of every accountable principal.",
+   "inputs": [
+    {
+     "name": "principal",
+     "type": "C-17",
+     "contextProvided": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "identity",
+     "type": "C-02"
+    }
+   ],
+   "handler": "identity",
+   "operations": [
+    "resolve",
+    "register-principal",
+    "principals"
+   ],
+   "events": [
+    "reg.entry.admitted"
+   ]
+  },
+  "participant-registry": {
+   "purpose": "Register the parties that take part in an exchange and hold their attributes.",
+   "inputs": [
+    {
+     "name": "identity",
+     "type": "C-02"
+    }
+   ],
+   "outputs": [
+    {
+     "name": "participant",
+     "type": "C-01"
+    }
+   ],
+   "handler": "participants",
+   "operations": [
+    "register",
+    "list",
+    "set-attributes"
+   ],
+   "events": [
+    "ent.entity.activated"
+   ]
+  },
+  "catalog-classification": {
+   "purpose": "Define exchangeable forms of entities and place them under registered taxa.",
+   "inputs": [
+    {
+     "name": "subject",
+     "type": "C-01",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "exchangeable",
+     "type": "ExchangeableEntity",
+     "terminal": true
+    },
+    {
+     "name": "classification",
+     "type": "C-10",
+     "terminal": true
+    }
+   ],
+   "handler": "catalog",
+   "operations": [
+    "define",
+    "classify",
+    "paths",
+    "list",
+    "bundle",
+    "tree"
+   ],
+   "events": [
+    "us.exchangeable.classified",
+    "tax.assertion.effective"
+   ]
+  },
+  "discovery": {
+   "purpose": "Find registered artifacts by intent, ranked by authority, specificity and context fit.",
+   "inputs": [
+    {
+     "name": "exchangeable",
+     "type": "ExchangeableEntity",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "candidates",
+     "type": "C-22"
+    }
+   ],
+   "handler": "discovery",
+   "operations": [
+    "search",
+    "suggest"
+   ],
+   "events": [
+    "int.discovery.resolved"
+   ]
+  },
+  "matching": {
+   "purpose": "Pair a stated need with the offers whose facets, roles and consideration satisfy it.",
+   "inputs": [
+    {
+     "name": "candidates",
+     "type": "C-22"
+    },
+    {
+     "name": "offer",
+     "type": "Offer",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "match",
+     "type": "C-20"
+    }
+   ],
+   "handler": "matching",
+   "operations": [
+    "match"
+   ],
+   "events": [
+    "int.recommendation.issued"
+   ]
+  },
+  "offer": {
+   "purpose": "Issue proposals to create entitlements in exchange for context-conditioned consideration.",
+   "inputs": [
+    {
+     "name": "exchangeable",
+     "type": "ExchangeableEntity",
+     "optional": true
+    },
+    {
+     "name": "context",
+     "type": "C-17",
+     "contextProvided": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "offer",
+     "type": "Offer"
+    }
+   ],
+   "handler": "offers",
+   "operations": [
+    "publish",
+    "quote",
+    "withdraw"
+   ],
+   "events": [
+    "us.offer.published",
+    "us.consideration.quoted",
+    "us.offer.withdrawn"
+   ]
+  },
+  "entitlement": {
+   "purpose": "Grant, check, exercise, transfer, renew and revoke bounded rights created by accepted offers.",
+   "inputs": [
+    {
+     "name": "offer",
+     "type": "Offer",
+     "optional": true
+    },
+    {
+     "name": "participant",
+     "type": "C-01",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "entitlement",
+     "type": "Entitlement"
+    }
+   ],
+   "handler": "entitlements",
+   "operations": [
+    "accept",
+    "check",
+    "consume",
+    "transfer",
+    "renew",
+    "revoke",
+    "suspend",
+    "reinstate"
+   ],
+   "events": [
+    "us.offer.accepted",
+    "us.entitlement.granted",
+    "us.entitlement.checked"
+   ]
+  },
+  "settlement": {
+   "purpose": "Record balanced, immutable transfers of value between accounts in registered units.",
+   "inputs": [
+    {
+     "name": "entitlement",
+     "type": "Entitlement",
+     "optional": true
+    },
+    {
+     "name": "value",
+     "type": "C-20",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "posting",
+     "type": "LedgerPosting",
+     "terminal": true
+    }
+   ],
+   "handler": "settlement",
+   "operations": [
+    "transfer",
+    "reverse",
+    "balance"
+   ],
+   "events": [
+    "settlement.transfer.posted"
+   ]
+  },
+  "trust": {
+   "purpose": "Assess the justified expectation that a participant will act within a stated constraint, from evidence.",
+   "inputs": [
+    {
+     "name": "participant",
+     "type": "C-01",
+     "optional": true
+    },
+    {
+     "name": "evidence",
+     "type": "C-31",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "trust",
+     "type": "C-26"
+    }
+   ],
+   "handler": "trust",
+   "operations": [
+    "assess",
+    "score"
+   ],
+   "events": [
+    "trust.assessed"
+   ]
+  },
+  "reputation": {
+   "purpose": "Aggregate evidenced ratings of participants into purpose-relative standing.",
+   "inputs": [
+    {
+     "name": "trust",
+     "type": "C-26",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "rating",
+     "type": "C-20",
+     "terminal": true
+    }
+   ],
+   "handler": "reputation",
+   "operations": [
+    "rate",
+    "standing"
+   ],
+   "events": [
+    "trust.rated"
+   ]
+  },
+  "dispute-resolution": {
+   "purpose": "Open, review, escalate and resolve disputes over governed artifacts with recorded decisions.",
+   "inputs": [
+    {
+     "name": "entitlement",
+     "type": "Entitlement",
+     "optional": true
+    },
+    {
+     "name": "trust",
+     "type": "C-26",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "decision",
+     "type": "C-24",
+     "terminal": true
+    }
+   ],
+   "handler": "disputes",
+   "operations": [
+    "open",
+    "review",
+    "escalate",
+    "resolve",
+    "dismiss"
+   ],
+   "events": [
+    "dispute.opened",
+    "dispute.resolved"
+   ]
+  },
+  "resource": {
+   "purpose": "Allocate, commit, consume and release capacity that is scarce relative to a purpose.",
+   "inputs": [
+    {
+     "name": "subject",
+     "type": "C-01",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "resource",
+     "type": "C-19"
+    }
+   ],
+   "handler": "resources",
+   "operations": [
+    "allocate",
+    "commit",
+    "consume",
+    "release",
+    "capacity"
+   ],
+   "events": [
+    "res.allocated",
+    "res.released"
+   ]
+  },
+  "value-and-consideration": {
+   "purpose": "Register purpose-relative valuations with valuer, unit and context, including exchange rates.",
+   "inputs": [
+    {
+     "name": "resource",
+     "type": "C-19",
+     "optional": true
+    },
+    {
+     "name": "offer",
+     "type": "Offer",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "value",
+     "type": "C-20"
+    }
+   ],
+   "handler": "valuation",
+   "operations": [
+    "value",
+    "exchange-rate",
+    "convert"
+   ],
+   "events": [
+    "reg.entry.admitted"
+   ]
+  },
+  "measurement": {
+   "purpose": "Record magnitudes against registered units under registered methods, with uncertainty.",
+   "inputs": [
+    {
+     "name": "subject",
+     "type": "C-01",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "measurement",
+     "type": "C-21",
+     "terminal": true
+    }
+   ],
+   "handler": "measurement",
+   "operations": [
+    "record",
+    "convert",
+    "units"
+   ],
+   "events": [
+    "reg.entry.admitted"
+   ]
+  },
+  "workflow": {
+   "purpose": "Execute ordered, governed actions along a registered lifecycle or flow with compensation.",
+   "inputs": [
+    {
+     "name": "policy",
+     "type": "C-16",
+     "optional": true
+    },
+    {
+     "name": "entitlement",
+     "type": "Entitlement",
+     "optional": true
+    },
+    {
+     "name": "value",
+     "type": "C-20",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "action",
+     "type": "C-13"
+    }
+   ],
+   "handler": "workflow",
+   "operations": [
+    "start",
+    "advance",
+    "complete",
+    "fail",
+    "definitions"
+   ],
+   "events": [
+    "wf.started",
+    "wf.advanced",
+    "wf.completed"
+   ]
+  },
+  "policy-evaluation": {
+   "purpose": "Evaluate registered policy in a resolved context before any protected action.",
+   "inputs": [
+    {
+     "name": "context",
+     "type": "C-17",
+     "contextProvided": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "policy",
+     "type": "C-16",
+     "terminal": true
+    }
+   ],
+   "handler": "policy",
+   "operations": [
+    "evaluate"
+   ],
+   "events": [
+    "pol.evaluated"
+   ]
+  },
+  "event-sourcing": {
+   "purpose": "Record transitions as immutable events and reconstruct state from them.",
+   "inputs": [
+    {
+     "name": "action",
+     "type": "C-13",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "event",
+     "type": "C-07",
+     "terminal": true
+    }
+   ],
+   "handler": "events",
+   "operations": [
+    "query",
+    "state-at"
+   ],
+   "events": []
+  },
+  "reporting": {
+   "purpose": "Aggregate registered artifacts and valuations into evidenced summaries.",
+   "inputs": [
+    {
+     "name": "event",
+     "type": "C-07",
+     "optional": true
+    },
+    {
+     "name": "measurement",
+     "type": "C-21",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "report",
+     "type": "C-22",
+     "terminal": true
+    }
+   ],
+   "handler": "reporting",
+   "operations": [
+    "summary",
+    "values"
+   ],
+   "events": []
+  },
+  "audit": {
+   "purpose": "Demonstrate lineage, certification evidence and constitutional compliance of any artifact.",
+   "inputs": [
+    {
+     "name": "event",
+     "type": "C-07",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "evidence",
+     "type": "C-31",
+     "terminal": true
+    }
+   ],
+   "handler": "audit",
+   "operations": [
+    "lineage",
+    "attest",
+    "invariants"
+   ],
+   "events": []
+  },
+  "relationship-graph": {
+   "purpose": "Assert and traverse typed, registered relationships between entities.",
+   "inputs": [
+    {
+     "name": "participant",
+     "type": "C-01",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "relationship",
+     "type": "C-04"
+    }
+   ],
+   "handler": "graph",
+   "operations": [
+    "relate",
+    "traverse",
+    "relationships"
+   ],
+   "events": [
+    "rel.asserted"
+   ]
+  },
+  "interaction-event-history": {
+   "purpose": "Present the ordered history of interactions involving a subject.",
+   "inputs": [
+    {
+     "name": "relationship",
+     "type": "C-04",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "event",
+     "type": "C-07"
+    }
+   ],
+   "handler": "history",
+   "operations": [
+    "history"
+   ],
+   "events": []
+  },
+  "notification": {
+   "purpose": "Record and dispatch governed messages to principals through the deployment's channels.",
+   "inputs": [
+    {
+     "name": "event",
+     "type": "C-07",
+     "optional": true
+    },
+    {
+     "name": "action",
+     "type": "C-13",
+     "optional": true
+    },
+    {
+     "name": "entitlement",
+     "type": "Entitlement",
+     "optional": true
+    },
+    {
+     "name": "resource",
+     "type": "C-19",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "notification",
+     "type": "C-07",
+     "terminal": true
+    }
+   ],
+   "handler": "notification",
+   "operations": [
+    "notify",
+    "dispatch",
+    "outbox"
+   ],
+   "events": [
+    "ntf.queued",
+    "ntf.dispatched"
+   ]
+  },
+  "segmentation": {
+   "purpose": "Partition entities by registered taxonomy or rule into governed segments.",
+   "inputs": [
+    {
+     "name": "participant",
+     "type": "C-01",
+     "optional": true
+    },
+    {
+     "name": "event",
+     "type": "C-07",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "segment",
+     "type": "C-10",
+     "terminal": true
+    }
+   ],
+   "handler": "segmentation",
+   "operations": [
+    "segment",
+    "members"
+   ],
+   "events": [
+    "tax.assertion.effective"
+   ]
+  },
+  "temporal-ordering": {
+   "purpose": "Arrange positions and intervals on the temporal reading of the ordering primitive.",
+   "inputs": [
+    {
+     "name": "resource",
+     "type": "C-19",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "interval",
+     "type": "C-08"
+    }
+   ],
+   "handler": "temporal",
+   "operations": [
+    "compare",
+    "intersect",
+    "shift"
+   ],
+   "events": []
+  },
+  "recurrence": {
+   "purpose": "Expand registered recurrence schemes into bounded sequences of intervals.",
+   "inputs": [
+    {
+     "name": "interval",
+     "type": "C-08"
+    }
+   ],
+   "outputs": [
+    {
+     "name": "occurrences",
+     "type": "C-08",
+     "terminal": true
+    }
+   ],
+   "handler": "recurrence",
+   "operations": [
+    "expand"
+   ],
+   "events": []
+  },
+  "availability": {
+   "purpose": "Compute the free windows of a resource from its capacity and allocations.",
+   "inputs": [
+    {
+     "name": "resource",
+     "type": "C-19",
+     "optional": true
+    },
+    {
+     "name": "interval",
+     "type": "C-08",
+     "optional": true
+    },
+    {
+     "name": "occurrences",
+     "type": "C-08",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "availability",
+     "type": "C-06"
+    }
+   ],
+   "handler": "availability",
+   "operations": [
+    "windows"
+   ],
+   "events": []
+  },
+  "allocation-policy": {
+   "purpose": "Resolve contention for scarce capacity under a declared first-come, priority, auction or lottery policy.",
+   "inputs": [
+    {
+     "name": "availability",
+     "type": "C-06",
+     "optional": true
+    },
+    {
+     "name": "offer",
+     "type": "Offer",
+     "optional": true
+    },
+    {
+     "name": "value",
+     "type": "C-20",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "allocation",
+     "type": "C-24",
+     "terminal": true
+    }
+   ],
+   "handler": "allocation",
+   "operations": [
+    "allocate"
+   ],
+   "events": [
+    "res.allocated"
+   ]
+  },
+  "spatial-ordering": {
+   "purpose": "Compute distance, containment and coverage on the spatial reading of the ordering primitive.",
+   "inputs": [
+    {
+     "name": "resource",
+     "type": "C-19",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "position",
+     "type": "C-09",
+     "terminal": true
+    }
+   ],
+   "handler": "spatial",
+   "operations": [
+    "distance",
+    "contains",
+    "regions"
+   ],
+   "events": []
+  },
+  "contract": {
+   "purpose": "Bind authorities to mutually specified obligations and track their discharge or breach.",
+   "inputs": [
+    {
+     "name": "offer",
+     "type": "Offer",
+     "optional": true
+    },
+    {
+     "name": "resource",
+     "type": "C-19",
+     "optional": true
+    },
+    {
+     "name": "value",
+     "type": "C-20",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "contract",
+     "type": "C-30",
+     "terminal": true
+    }
+   ],
+   "handler": "contracts",
+   "operations": [
+    "draft",
+    "propose",
+    "accept",
+    "fulfil",
+    "breach",
+    "remedy",
+    "terminate"
+   ],
+   "events": [
+    "contract.activated"
+   ]
+  },
+  "risk-policy": {
+   "purpose": "Evaluate registered risk policies over exposures and report risk with uncertainty.",
+   "inputs": [
+    {
+     "name": "value",
+     "type": "C-20",
+     "optional": true
+    },
+    {
+     "name": "contract",
+     "type": "C-30",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "risk",
+     "type": "C-24",
+     "terminal": true
+    }
+   ],
+   "handler": "risk",
+   "operations": [
+    "assess"
+   ],
+   "events": [
+    "risk.assessed"
+   ]
+  },
+  "knowledge": {
+   "purpose": "Assert, justify, reconcile, refine and refute canonical knowledge objects.",
+   "inputs": [
+    {
+     "name": "evidence",
+     "type": "C-31",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "knowledge",
+     "type": "C-22"
+    }
+   ],
+   "handler": "knowledge",
+   "operations": [
+    "assert",
+    "refute",
+    "refine",
+    "query"
+   ],
+   "events": [
+    "int.knowledge.asserted"
+   ]
+  },
+  "model-registry": {
+   "purpose": "Register mathematical and learned models owned by their universe, with assumptions.",
+   "inputs": [
+    {
+     "name": "knowledge",
+     "type": "C-22",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "model",
+     "type": "DecisionModel"
+    }
+   ],
+   "handler": "models",
+   "operations": [
+    "register",
+    "list"
+   ],
+   "events": [
+    "reg.entry.admitted"
+   ]
+  },
+  "inference-capability": {
+   "purpose": "Derive knowledge from knowledge with confidence and an explained derivation chain.",
+   "inputs": [
+    {
+     "name": "knowledge",
+     "type": "C-22"
+    },
+    {
+     "name": "model",
+     "type": "DecisionModel",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "inference",
+     "type": "Inference"
+    }
+   ],
+   "handler": "inference",
+   "operations": [
+    "infer",
+    "contradictions"
+   ],
+   "events": [
+    "int.inference.certified"
+   ]
+  },
+  "planning": {
+   "purpose": "Select configurations that best satisfy a ratified objective under every registered constraint.",
+   "inputs": [
+    {
+     "name": "inference",
+     "type": "Inference",
+     "optional": true
+    },
+    {
+     "name": "model",
+     "type": "DecisionModel",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "plan",
+     "type": "C-24"
+    }
+   ],
+   "handler": "planning",
+   "operations": [
+    "optimize"
+   ],
+   "events": [
+    "int.decision.recorded"
+   ]
+  },
+  "alignment-evidence": {
+   "purpose": "Record and verify the evidence that an intelligent capability acts inside its envelope.",
+   "inputs": [
+    {
+     "name": "plan",
+     "type": "C-24",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "evidence",
+     "type": "C-31",
+     "terminal": true
+    }
+   ],
+   "handler": "alignment",
+   "operations": [
+    "record",
+    "verify"
+   ],
+   "events": [
+    "int.alignment.recorded"
+   ]
+  },
+  "rendering": {
+   "purpose": "Materialise registered metadata into derivative artifacts through certified generators.",
+   "inputs": [
+    {
+     "name": "knowledge",
+     "type": "C-22",
+     "optional": true
+    },
+    {
+     "name": "classification",
+     "type": "C-10",
+     "optional": true
+    },
+    {
+     "name": "relationship",
+     "type": "C-04",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "artifact",
+     "type": "GeneratedArtifact",
+     "terminal": true
+    }
+   ],
+   "handler": "rendering",
+   "operations": [
+    "generate",
+    "verify"
+   ],
+   "events": [
+    "gen.artifact.generated"
+   ]
+  },
+  "localization": {
+   "purpose": "Resolve per-locale labels of registered artifacts in the linguistic context.",
+   "inputs": [
+    {
+     "name": "knowledge",
+     "type": "C-22",
+     "optional": true
+    },
+    {
+     "name": "context",
+     "type": "C-17",
+     "contextProvided": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "label",
+     "type": "C-23",
+     "terminal": true
+    }
+   ],
+   "handler": "localization",
+   "operations": [
+    "label",
+    "set-label"
+   ],
+   "events": []
+  },
+  "compensation": {
+   "purpose": "Execute the compensating action registered alongside a failed or reversed action.",
+   "inputs": [
+    {
+     "name": "action",
+     "type": "C-13"
+    }
+   ],
+   "outputs": [
+    {
+     "name": "event",
+     "type": "C-07",
+     "terminal": true
+    }
+   ],
+   "handler": "compensation",
+   "operations": [
+    "compensate"
+   ],
+   "events": [
+    "wf.compensated"
+   ]
+  },
+  "escalation": {
+   "purpose": "Escalate a matter to the authority that owns its scope when the acting authority is insufficient.",
+   "inputs": [
+    {
+     "name": "action",
+     "type": "C-13",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "escalation",
+     "type": "C-24",
+     "terminal": true
+    }
+   ],
+   "handler": "escalation",
+   "operations": [
+    "escalate"
+   ],
+   "events": [
+    "int.autonomy.escalated"
+   ]
+  },
+  "dunning-policy": {
+   "purpose": "Apply registered recovery policies to rights whose ongoing obligations are unmet.",
+   "inputs": [
+    {
+     "name": "entitlement",
+     "type": "Entitlement",
+     "optional": true
+    },
+    {
+     "name": "action",
+     "type": "C-13",
+     "optional": true
+    }
+   ],
+   "outputs": [
+    {
+     "name": "event",
+     "type": "C-07",
+     "terminal": true
+    }
+   ],
+   "handler": "dunning",
+   "operations": [
+    "sweep"
+   ],
+   "events": [
+    "us.entitlement.suspended"
+   ]
+  }
+ }
+}

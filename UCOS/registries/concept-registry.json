@@ -1,0 +1,69 @@
+{
+  "registry": "CONCEPT REGISTRY",
+  "registryId": "UCOS-REG-CPT-0000000001",
+  "document": "UCOS-ONT-DOC-001 / UCOS-META-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 1,
+  "entryModel": "Concept",
+  "sizeNote": "31 entries. Every entry carries a derivation chain terminating at Tier-0 (UCL-D01). A concept whose chain cannot be stated cannot be registered as canonical (UCL-D03).",
+  "governance": {
+    "canonicalOwner": "Foundation Council",
+    "ratifyingBody": "Foundation Council",
+    "certifyingBody": "Certification Body"
+  },
+  "concepts": [
+    { "id": "UCOS-CPT-META-0000000001",  "alias": "C-01", "name": "Entity",        "statement": "An existent apprehensible as one thing.",                                              "derivesFrom": ["FR-01", "FR-02"] },
+    { "id": "UCOS-CPT-META-0000000002",  "alias": "C-02", "name": "Identity",      "statement": "A distinction of an entity preserved across change.",                                  "derivesFrom": ["FR-02", "FR-04"] },
+    { "id": "UCOS-CPT-META-0000000003",  "alias": "C-03", "name": "Reality",       "statement": "The class of existents whose distinction does not depend on any particular model.",    "derivesFrom": ["FR-02", "FR-06"] },
+    { "id": "UCOS-CPT-META-0000000004",  "alias": "C-04", "name": "Relationship",  "statement": "An identifiable relation between two or more entities.",                               "derivesFrom": ["FR-03", "C-02"] },
+    { "id": "UCOS-CPT-META-0000000005",  "alias": "C-05", "name": "Attribute",     "statement": "A typed, named axis along which entities are distinguished.",                          "derivesFrom": ["FR-02", "C-02"] },
+    { "id": "UCOS-CPT-META-0000000006",  "alias": "C-06", "name": "State",         "statement": "The complete set of an entity's attribute-values at one position in an ordering.",     "derivesFrom": ["C-05", "FR-04"] },
+    { "id": "UCOS-CPT-META-0000000007",  "alias": "C-07", "name": "Event",         "statement": "A transition between states, apprehended as one occurrence.",                          "derivesFrom": ["FR-04", "C-06", "FR-06"] },
+    { "id": "UCOS-CPT-META-0000000008",  "alias": "C-08", "name": "Time",          "statement": "The ordering induced by change.",                                                      "derivesFrom": ["FR-04"] },
+    { "id": "UCOS-CPT-META-0000000009",  "alias": "C-09", "name": "Space",         "statement": "The ordering induced by co-existent distinction — the manifold of alongside.",         "derivesFrom": ["FR-02", "FR-04"] },
+    { "id": "UCOS-CPT-META-0000000010",  "alias": "C-10", "name": "Classification","statement": "The act or result of grouping entities by shared attribute-values.",                   "derivesFrom": ["C-05", "C-04"] },
+    { "id": "UCOS-CPT-META-0000000011",  "alias": "C-11", "name": "Taxonomy",      "statement": "A connected system of classifications ordered by distinction-refinement.",             "derivesFrom": ["C-10", "C-04"] },
+    { "id": "UCOS-CPT-META-0000000012",  "alias": "C-12", "name": "Capability",    "statement": "An entity's power to cause change in a specified way.",                                "derivesFrom": ["FR-03", "FR-04"] },
+    { "id": "UCOS-CPT-META-0000000013",  "alias": "C-13", "name": "Action",        "statement": "An exercised capability of a purposeful entity.",                                      "derivesFrom": ["C-12", "FR-07", "FR-04"] },
+    { "id": "UCOS-CPT-META-0000000014",  "alias": "C-14", "name": "Constraint",    "statement": "The exclusion of possibilities. (Tier-0 primitive FR-05 restated for reference.)",     "derivesFrom": ["FR-05"] },
+    { "id": "UCOS-CPT-META-0000000015",  "alias": "C-15", "name": "Rule",          "statement": "A constraint expressed as a conditional over states and actions.",                     "derivesFrom": ["FR-05", "FR-04"] },
+    { "id": "UCOS-CPT-META-0000000016",  "alias": "C-16", "name": "Policy",        "statement": "A purpose-bearing, context-relative, authority-issued body of rules and objectives.",  "derivesFrom": ["C-15", "FR-07", "C-17"] },
+    { "id": "UCOS-CPT-META-0000000017",  "alias": "C-17", "name": "Context",       "statement": "The relevant situation within which an evaluation is made; relevance is purpose-relative.", "derivesFrom": ["C-06", "C-04", "FR-07"] },
+    { "id": "UCOS-CPT-META-0000000018",  "alias": "C-18", "name": "Lifecycle",     "statement": "The policy-governed set of states an entity may traverse, and the admissible transitions among them.", "derivesFrom": ["C-06", "FR-04", "C-16"] },
+    { "id": "UCOS-CPT-META-0000000019",  "alias": "C-19", "name": "Resource",      "statement": "An entity whose capability is scarce relative to a purpose.",                          "derivesFrom": ["C-01", "C-12", "FR-05", "FR-07"] },
+    { "id": "UCOS-CPT-META-0000000020",  "alias": "C-20", "name": "Value",         "statement": "A purpose-relative magnitude of preference attributed to an entity or state in a context.", "derivesFrom": ["FR-07", "C-21", "C-17"] },
+    { "id": "UCOS-CPT-META-0000000021",  "alias": "C-21", "name": "Measurement",   "statement": "The assignment of a symbolic magnitude to a distinction-axis by comparison to a unit under a stated method.", "derivesFrom": ["FR-02", "FR-06", "FR-05"] },
+    { "id": "UCOS-CPT-META-0000000022",  "alias": "C-22", "name": "Knowledge",     "statement": "A justified, contextualised apprehension of existents, held such that it can ground action.", "derivesFrom": ["FR-06", "C-04", "C-17"] },
+    { "id": "UCOS-CPT-META-0000000023",  "alias": "C-23", "name": "Meaning",       "statement": "The relation between a representation and that which it is about, as established in a context.", "derivesFrom": ["FR-06", "C-04", "C-17"] },
+    { "id": "UCOS-CPT-META-0000000024",  "alias": "C-24", "name": "Decision",      "statement": "The selection of one alternative over others by a purposeful authority.",               "derivesFrom": ["FR-07", "FR-05", "C-22"] },
+    { "id": "UCOS-CPT-META-0000000025",  "alias": "C-25", "name": "Intelligence",  "statement": "The purposeful application of knowledge to select and execute actions that move states toward objectives.", "derivesFrom": ["C-22", "FR-07", "C-13"] },
+    { "id": "UCOS-CPT-META-0000000026",  "alias": "C-26", "name": "Trust",         "statement": "A justified expectation that another entity will act within a stated constraint.",     "derivesFrom": ["FR-05", "C-22"] },
+    { "id": "UCOS-CPT-META-0000000027",  "alias": "C-27", "name": "Certification", "statement": "A registered, verifiable claim that an artifact satisfies a stated standard, issued by an authority separate from its owner.", "derivesFrom": ["C-26", "C-02", "C-29"] },
+    { "id": "UCOS-CPT-META-0000000028",  "alias": "C-28", "name": "Evolution",     "statement": "Change applied to the descriptive layer, preserving referential integrity.",            "derivesFrom": ["FR-04", "C-02", "C-04"] },
+    { "id": "UCOS-CPT-META-0000000029",  "alias": "C-29", "name": "Governance",    "statement": "The system of authorities, constraints, and decisions that governs action within a scope.", "derivesFrom": ["FR-05", "FR-07", "C-24", "C-17"] },
+    { "id": "UCOS-CPT-META-0000000030",  "alias": "C-30", "name": "Contract",      "statement": "A mutually binding specification of expected behaviour between two authorities.",      "derivesFrom": ["FR-05", "C-26", "C-04"] },
+    { "id": "UCOS-CPT-META-0000000031",  "alias": "C-31", "name": "Evidence",      "statement": "An artifact that justifies a claim, sufficient to ground trust or certification.",      "derivesFrom": ["C-22", "C-02"] }
+  ],
+  "unifications": {
+    "ORDERING": {
+      "members": ["C-08 Time", "C-09 Space"],
+      "statement": "Time is the ordering along which a single entity's distinctions differ; Space is the ordering along which distinct entities are simultaneously present. One primitive, two readings. Interval and region are the same structure; a schedule and a capacity plan are the same structure; a booking and a spatial reservation are the same object (Phase 006)."
+    }
+  },
+  "weightBearers": {
+    "note": "Three derivations carry disproportionate architectural weight.",
+    "spaceTime": "Derived from Distinction + Change jointly — removes an entire duplicated subsystem most platforms build twice.",
+    "value": "Value = Purpose + Measurement + Context. No entity has a value; an entity has a value for a purpose in a context. This is why pricing is a relationship, never a field (Phase 006).",
+    "resource": "Requires scarcity relative to a purpose. Air is not a resource until a purpose makes its scarcity relevant. Resource is a role, not a type (Phase 003)."
+  },
+  "oneQuestionAudit": {
+    "instructions": "Pick any construct. Ask: from what more fundamental concept is this derived? Recurse. Termination at a Tier-0 primitive = sound. 'It just is' = violation. A domain noun (order, invoice, patient, listing) = the construct has escaped the ontology and must be re-derived.",
+    "maxDepthObserved": 3
+  },
+  "validationRules": ["V-ON-01", "V-ON-02", "V-ON-03", "V-ON-04", "V-ON-05", "V-ON-06", "V-MM-00", "V-MM-01", "V-MM-02", "V-MM-03"],
+  "evolutionRules": ["E-MM-00", "E-MM-01", "E-MM-02", "E-MM-03", "E-MM-04"],
+  "complianceRules": ["C-ON-01", "C-ON-02", "C-ON-03", "C-MM-00", "C-MM-01"],
+  "discoveryRules": ["D-ON-01", "D-ON-02", "D-ON-03", "D-MM-00", "D-MM-01"],
+  "certificationRules": ["X-ON-01", "X-ON-02", "X-ON-03", "X-MM-00", "X-MM-01"]
+}

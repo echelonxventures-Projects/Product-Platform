@@ -1,0 +1,81 @@
+{
+  "registry": "TAXONOMY REGISTRY (schemes + taxa + commerce roles)",
+  "registryId": "UCOS-REG-TAX-0000000001",
+  "document": "UCOS-TAX-DOC-001 / UCOS-USPT-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 2,
+  "entryModel": "TaxonomyScheme | Taxon",
+  "constitutionalNote": "The taxa below are REGISTERED CONTENT, not architecture. They are owned by their universes, replaceable and extendable without code change, and any of them may be replaced by a domain-specific scheme without touching the engine. The engine defines NO category — only three mechanisms: taxon, facet, tag.",
+  "mechanisms": {
+    "Taxon": "hierarchical, governed, admits instances",
+    "Facet": "non-hierarchical, attribute-borne, admits values",
+    "Tag": "free-form assertion, governed by policy, never canonical alone"
+  },
+  "principles": [
+    "TX-P1 no category is hard-coded; category literals in code are defects",
+    "TX-P2 classification is asserted, never stored as a property",
+    "TX-P3 an entity may be classified under any number of taxa simultaneously",
+    "TX-P4 every assertion is owned, evidenced, and context-qualified",
+    "TX-P5 every taxonomy is a registered, versioned, certifiable artifact",
+    "TX-P6 conflict is resolved by declared precedence, never evaluation order",
+    "TX-P7 no taxonomy is privileged as the taxonomy",
+    "TX-P8 a taxon's admission rule is expressed over registered attributes only"
+  ],
+  "schemes": [
+    { "id": "UCOS-TAX-SCH-0000000001", "name": "Commerce Role Scheme", "scope": "exchangeable entities", "owner": "Commerce Universe", "multiParentAllowed": true },
+    { "id": "UCOS-TAX-SCH-0000000002", "name": "Service Scheme", "scope": "exchangeable entities", "owner": "Service Universe", "multiParentAllowed": true },
+    { "id": "UCOS-TAX-SCH-0000000003", "name": "Industry Scheme", "scope": "organizations", "owner": "Governance Universe", "multiParentAllowed": true },
+    { "id": "UCOS-TAX-SCH-0000000004", "name": "Organization Scheme", "scope": "organizations", "owner": "Organization Universe", "multiParentAllowed": true },
+    { "id": "UCOS-TAX-SCH-0000000005", "name": "Asset Scheme", "scope": "exchangeable entities", "owner": "Financial Universe", "multiParentAllowed": true },
+    { "id": "UCOS-TAX-SCH-0000000006", "name": "Capability Scheme", "scope": "capabilities", "owner": "Composition Universe", "multiParentAllowed": true },
+    { "id": "UCOS-TAX-SCH-0000000007", "name": "Product Scheme", "scope": "exchangeable entities", "owner": "Product Universe", "multiParentAllowed": true }
+  ],
+  "commerceRoles": [
+    { "taxon": "product",       "admissionRule": "F2=durable AND F7=ownership",                          "source": "Phase 006 section 5" },
+    { "taxon": "service",       "admissionRule": "F5=performance AND F2=instantaneous",                  "source": "Phase 006 section 5" },
+    { "taxon": "subscription",  "admissionRule": "F2=periodic AND F7=subscription",                      "source": "Phase 006 section 5" },
+    { "taxon": "event",         "admissionRule": "F2=windowed AND F5=instantiation",                     "source": "Phase 006 section 5" },
+    { "taxon": "experience",    "admissionRule": "F5=participation AND F2=episodic",                     "source": "Phase 006 section 5" },
+    { "taxon": "asset",         "admissionRule": "F7=ownership AND F6!=unbounded",                       "source": "Phase 006 section 5" },
+    { "taxon": "license",       "admissionRule": "F7=license",                                           "source": "Phase 006 section 5" },
+    { "taxon": "booking",       "admissionRule": "F7=booking AND F2=windowed",                           "source": "Phase 006 section 5" },
+    { "taxon": "offer",         "admissionRule": "is-a Proposal (distinct role; not a facet binding)",    "source": "Phase 006 section 5" },
+    { "taxon": "bundle",        "admissionRule": "has PART-OF composition of >=2 exchangeable entities",  "source": "Phase 006 section 4.5" },
+    { "taxon": "membership",    "admissionRule": "F7=membership AND F2=periodic",                        "source": "Phase 006 section 5" },
+    { "taxon": "rental",        "admissionRule": "F7=rental AND F2=windowed",                             "source": "Phase 006 section 10" },
+    { "taxon": "promotion",     "admissionRule": "Offer with consideration modified by a Policy",         "source": "Phase 006 section 5" },
+    { "taxon": "option",        "admissionRule": "F7=option AND F2=windowed",                             "source": "Phase 006 section 5" }
+  ],
+  "illustrativeTaxa": {
+    "note": "Registered content for comprehension only. In the platform these are registry entries, replaceable without code change.",
+    "product": ["durable-good", "consumable-good", "digital-good", "instrument", "model", "dataset"],
+    "service": ["performed-labour", "access-grant", "processing", "advisory", "custodial"],
+    "industry": ["extraction", "transformation", "distribution", "care", "instruction", "mediation"],
+    "organization": ["sole-operator", "collective", "institution", "network", "federation"],
+    "asset": ["productive", "financial", "informational", "rights-bearing", "ephemeral"],
+    "capability": ["computational", "informational", "physical", "cognitive", "governance"]
+  },
+  "classificationPipeline": ["INTENT", "SCHEME SELECT", "CANDIDATE RANK (specificity first)", "VALIDATE (registered Rule)", "CONTEXT FILTER", "ASSERT or REJECT (reasons recorded as audited Decision)"],
+  "policyAttachment": {
+    "example": "Taxon: regulated-medical-device",
+    "mandates": ["sterilityMethod", "regulatoryClass", "conformityEvidence"],
+    "attaches": ["medical-data-handling", "traceability", "adverse-event-reporting"],
+    "requires": ["conformity certificate from a registered authority"],
+    "consequence": "Classification is a governance act with regulatory consequence, not a tagging exercise. Withdrawal of a classification re-evaluates every policy attached through it — computed and cascaded, never requested manually (TX-G3)."
+  },
+  "multiDimensional": ["Commercial", "Technical", "Regulatory", "Tax", "Logistics", "Sustainability", "Risk", "Industry"],
+  "lifecycle": {
+    "scheme": ["DRAFT", "PROPOSED", "PUBLISHED", "CERTIFIED", "SUPERSEDED", "DEPRECATED"],
+    "taxon": ["PROPOSED", "CERTIFIED", "ADOPTED", "DEPRECATED", "RETIRED", "REJECTED"],
+    "assertion": ["ASSERTED", "VALIDATED", "EFFECTIVE", "WITHDRAWN", "SUPERSEDED"],
+    "retirementGate": "A taxon with live classifications cannot be retired silently; each classification must be migrated to a successor or withdrawn."
+  },
+  "events": ["tax.scheme.published", "tax.taxon.certified", "tax.taxon.deprecated", "tax.taxon.retired", "tax.assertion.effective", "tax.assertion.withdrawn", "tax.assertion.conflict.detected", "tax.policy.cascade.triggered"],
+  "apis": ["CLASSIFY", "RESOLVE-TAXON", "PATHS", "POLICIES-FOR", "WITHDRAW", "SUGGEST-TAXA"],
+  "validationRules": ["V-TX-01", "V-TX-02", "V-TX-03", "V-TX-04", "V-TX-05", "V-TX-06", "V-TX-07", "V-TX-08", "V-US-01", "V-US-02", "V-US-03"],
+  "evolutionRules": ["E-TX-01", "E-TX-02", "E-TX-03", "E-TX-04", "E-TX-05", "E-TX-06"],
+  "complianceRules": ["C-TX-01", "C-TX-02", "C-TX-03"],
+  "discoveryRules": ["D-TX-01", "D-TX-02", "D-TX-03", "D-TX-04"],
+  "certificationRules": ["X-TX-01", "X-TX-02", "X-TX-03"]
+}

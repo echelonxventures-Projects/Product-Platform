@@ -1,0 +1,178 @@
+{
+  "$comment": "How the constitutional corpus is read. The parser contains no domain vocabulary: every recognised structure is named here as a pattern. Patterns are JavaScript regular expressions (case-insensitive unless noted). Changing how a document is read is a configuration change, not a code change.",
+  "rootNamespace": "UCOS",
+  "documentBoundary": [
+    "^PART\\s+\\d+[A-Z]?(\\s+v\\d+(\\.\\d+)*)?$",
+    "^UCOS\\s*Ω∞$"
+  ],
+  "universeCode": "^([A-Z][A-Z0-9]{1,15})\\s*Ω∞$",
+  "universeCodeInline": "\\b([A-Z][A-Z0-9]{2,15})\\s*Ω∞",
+  "universeCodeInTitle": "\\(([A-Z][A-Z0-9]{2,15})\\s*Ω∞\\)",
+  "partLabel": "^PART\\s+(\\d+[A-Z]?)(?:\\s+(v\\d+(?:\\.\\d+)*))?",
+  "versionLine": "^VERSION\\s+(\\d+(?:\\.\\d+)*)$",
+  "supersedesLine": "^SUPERSEDES:?\\s+VERSION\\s+(\\d+(?:\\.\\d+)*)$",
+  "sectionRangeLine": "^SECTION\\s+\\d+",
+  "numberedSection": "^(\\d+)\\.\\s+(.+)$",
+  "articleHeading": "^ARTICLE\\s+(\\d+)$",
+  "ignoreHeadingLines": [
+    "^UNIVERSE$",
+    "^CONSTITUTION$",
+    "^STATUS:.*$",
+    "^CONSTITUTIONAL RECONCILIATION ADDENDUM$"
+  ],
+  "authorityLine": "AUTHORITY$",
+  "identifiedRule": "^\\s*([A-Z][A-Z0-9]{1,14}(?:-[A-Z]{2,10})?-\\d{3})\\s*$",
+  "documentMetadataSection": "^DOCUMENT$",
+  "sectionRoles": [
+    {
+      "match": "AUTHORITY$",
+      "role": "authority"
+    },
+    {
+      "match": "^CONSTITUTIONAL\\s+(LAWS|RULES)$|LAWS$",
+      "role": "laws"
+    },
+    {
+      "match": "INVARIANTS$",
+      "role": "invariants"
+    },
+    {
+      "match": "AXIOMS$",
+      "role": "invariants"
+    },
+    {
+      "match": "DEPENDENC(Y|IES)|DEPENDENCY POSITION|FEDERATION MODEL|CROSS-UNIVERSE",
+      "role": "dependencies"
+    },
+    {
+      "match": "^CONSTITUTIONAL STATUS$",
+      "role": "status"
+    },
+    {
+      "match": "^WHY\\s.+\\sEXISTS$",
+      "role": "rationale"
+    },
+    {
+      "match": "MISSION$|PURPOSE$|DECLARATION$|VISION$",
+      "role": "purpose"
+    },
+    {
+      "match": "ONTOLOGY$|HIERARCHY$",
+      "role": "ontology"
+    },
+    {
+      "match": "CERTIFICATION$|COMPLETION$|MATURITY TARGET$|STATUS$",
+      "role": "certification"
+    },
+    {
+      "match": "^NEXT DOCUMENTS?$",
+      "role": "navigation"
+    },
+    {
+      "match": ".*",
+      "role": "section"
+    }
+  ],
+  "subsectionRoles": [
+    {
+      "match": "^(\\d+\\.\\d+\\s+)?(Canonical\\s+)?Definition$",
+      "role": "definition"
+    },
+    {
+      "match": "Non-Ownership$",
+      "role": "nonOwnership"
+    },
+    {
+      "match": "Ownership$",
+      "role": "ownership"
+    },
+    {
+      "match": "(Categor(y|ies)|Types?|Domains|Classes|Kinds|Classifications?|Taxonomy|Levels|Modes|Forms|Tiers|Families|Varieties|Scales|Stages|Grades|Sources|Forms)$",
+      "role": "taxonomy"
+    },
+    {
+      "match": "(Structure|Structures|Meta[- ]?Model|Model|Components|Objects|Anatomy|Schema|Record)$",
+      "role": "model"
+    },
+    {
+      "match": "Lifecycle$",
+      "role": "lifecycle"
+    },
+    {
+      "match": "(Flow|Pipeline|Process|Sequence|Workflow)$",
+      "role": "flow"
+    },
+    {
+      "match": "^(\\d+\\.\\d+\\s+)?(RULE|Rule|PRINCIPLE|Principle|[A-Za-z ]+ Principle)$",
+      "role": "principle"
+    },
+    {
+      "match": "^([A-Z][A-Z0-9]{1,14}(-[A-Z]{2,10})?-\\d{3}|AXIOM\\s+\\d+|INVARIANT\\s+\\d+|LAW\\s+\\d+)$",
+      "role": "identified"
+    },
+    {
+      "match": ".*",
+      "role": "list"
+    }
+  ],
+  "treeGlyphs": "[├└│┌┐┘┬┴┼─▲▼↑↓]",
+  "flowGlyphs": "^[\\s↓→▼⇩⬇|│▲↑⇧]+$",
+  "dependencyDirection": {
+    "supports": "(Supports|Supported|Serves|Enables|Consumed by)",
+    "consumes": "(Parent Dependencies|Depends|Consumes|Requires|Parent|Inherits)"
+  },
+  "invariantPatterns": {
+    "disjointness": "^(.+?)\\s+is\\s+not\\s+(.+?)\\.?$",
+    "possession": "^Every\\s+(.+?)\\s+(?:shall\\s+|must\\s+)?(?:possess(?:es)?|have|has|includes?|declares?)\\s+(.+?)\\.?$",
+    "nonNegative": "^(.+?)\\s+cannot\\s+be\\s+negative\\.?$"
+  },
+  "attributeSemanticHints": {
+    "$comment": "Attribute names resolve to constructs through the Concept Registry by name (singular form). These additional lexical readings map common plural or compound names onto registered concepts.",
+    "Relationships": "C-04",
+    "Policies": "C-16",
+    "Rules": "C-15",
+    "Constraints": "C-14",
+    "Events": "C-07",
+    "States": "C-06",
+    "Attributes": "C-05",
+    "Capabilities": "C-12",
+    "Actions": "C-13",
+    "Contexts": "C-17",
+    "Values": "C-20",
+    "Measurements": "C-21",
+    "Ownership": "C-29",
+    "Owner": "C-29",
+    "Authority": "C-29",
+    "Evidence": "C-31",
+    "Contracts": "C-30",
+    "Decisions": "C-24",
+    "Location": "C-09",
+    "Position": "C-09",
+    "Region": "C-09",
+    "Duration": "C-08",
+    "Schedule": "C-08",
+    "Timeline": "C-08",
+    "Validity": "C-08",
+    "Identifier": "C-02",
+    "ID": "C-02",
+    "Name": "C-23",
+    "Label": "C-23",
+    "Description": "C-22",
+    "Metadata": "C-22",
+    "Classification": "C-10",
+    "Category": "C-10",
+    "Type": "C-10",
+    "Taxonomy": "C-11",
+    "Price": "C-20",
+    "Cost": "C-20",
+    "Quantity": "C-21",
+    "Capacity": "C-21",
+    "Metrics": "C-21",
+    "Status": "C-18",
+    "Lifecycle": "C-18",
+    "Trust": "C-26",
+    "Certification": "C-27",
+    "Knowledge": "C-22",
+    "Meaning": "C-23"
+  }
+}

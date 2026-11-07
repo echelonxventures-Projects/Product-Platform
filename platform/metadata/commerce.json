@@ -1,0 +1,11 @@
+{
+  "$comment": "USPT supplements (Phase 006). The seed admission rules in registries/taxonomy-registry.json are used verbatim wherever they are already rule expressions; the three stated only in prose are formalised here, each citing its basis. The facet admissibility rule is the one Phase 006 §9 V-US-02 states; others are registered by domain schemes, never compiled.",
+  "facetAdmissibility": [
+    { "name": "booking-not-durable", "statement": "A booking that lasts forever is not a booking: Entitlement Form booking with Temporality durable is inadmissible.", "expression": "NOT (F7 = booking AND F2 = durable)", "source": "UCOS/PHASE-006-USPT-Universal-Service-Product-Taxonomy.md §9 V-US-02" }
+  ],
+  "roleFormalisation": {
+    "offer": { "expression": "kind = 'Offer'", "scopeKinds": ["Offer"], "basis": "Phase 006 §5: offer is-a Proposal — a distinct role carried by the Offer construct, not a facet binding" },
+    "bundle": { "expression": "composite = true AND count(members) >= 2", "scopeKinds": ["ExchangeableEntity"], "basis": "Phase 006 §4.5: an exchangeable entity with PART-OF composition of at least two exchangeable entities" },
+    "promotion": { "expression": "kind = 'Offer' AND count(promotionPolicies) > 0", "scopeKinds": ["Offer"], "basis": "Phase 006 §5: an offer whose consideration is modified by a policy" }
+  }
+}

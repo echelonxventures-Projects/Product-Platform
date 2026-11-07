@@ -1,0 +1,1222 @@
+{
+  "$comment": "Machine envelopes for the registry fabric. Names, owners and prose envelopes for seed registries are read from registries/registry-registry.json (Knowledge Once); this file supplies what the seed states only in prose: the construct kinds each registry may canonically hold, the namespaces it serves, its identity scheme, lifecycle and admission mode. '@operational' and '@universe' match every registered namespace of that kind. Registries marked 'supplement' are required by the phase documents but absent from the seed list; each carries its constitutional basis.",
+  "operationalNamespaces": [
+    {
+      "code": "OPS",
+      "name": "Default Operating Domain",
+      "statement": "The default operational namespace in which runtime instances are owned when no other operating domain is named."
+    }
+  ],
+  "registries": {
+    "UCOS-REG-FND-0000000001": {
+      "kinds": [
+        "FoundationArtifact",
+        "Constitution"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "FoundationArtifact",
+      "construct": "C-02",
+      "identity": {
+        "layer": "FR",
+        "type": "FND"
+      },
+      "tier": 0,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-META-0000000001": {
+      "kinds": [
+        "Registry"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Registry",
+      "construct": "C-11",
+      "identity": {
+        "layer": "REG",
+        "type": "META"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-PRM-0000000001": {
+      "kinds": [
+        "Primitive"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Primitive",
+      "construct": null,
+      "identity": {
+        "layer": "FR",
+        "type": "PRIM"
+      },
+      "tier": 0,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "DEPENDS-ON",
+        "DERIVES-FROM",
+        "GOVERNED-BY",
+        "REFERENCES"
+      ]
+    },
+    "UCOS-REG-CPT-0000000001": {
+      "kinds": [
+        "Concept"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Concept",
+      "construct": null,
+      "identity": {
+        "layer": "CPT",
+        "type": "META"
+      },
+      "tier": 1,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-REL-0000000001": {
+      "kinds": [
+        "RelationshipType"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "RelationshipType",
+      "construct": "C-04",
+      "identity": {
+        "layer": "REL",
+        "type": "TYP"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "IS-A",
+        "DERIVES-FROM",
+        "REFERENCES",
+        "GOVERNED-BY"
+      ]
+    },
+    "UCOS-REG-TPL-0000000001": {
+      "kinds": [
+        "ArtifactTemplate"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "ArtifactTemplate",
+      "construct": "C-05",
+      "identity": {
+        "layer": "FR",
+        "type": "TPL"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-VLD-0000000001": {
+      "kinds": [
+        "ValidationRule"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "ValidationRule",
+      "construct": "C-15",
+      "identity": {
+        "layer": "FR",
+        "type": "VLD"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-CRT-0000000001": {
+      "kinds": [
+        "CertificationScheme"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "CertificationScheme",
+      "construct": "C-27",
+      "identity": {
+        "layer": "FR",
+        "type": "CRT"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-GOV-0000000001": {
+      "kinds": [
+        "GovernanceBody"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "GovernanceBody",
+      "construct": "C-29",
+      "identity": {
+        "layer": "FR",
+        "type": "GOV"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-ENT-0000000001": {
+      "kinds": [
+        "Entity"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Entity",
+      "construct": "C-01",
+      "identity": {
+        "layer": "ENT",
+        "type": "GEN"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-ENTITY",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-IDT-0000000001": {
+      "kinds": [
+        "Principal"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Principal",
+      "construct": "C-02",
+      "identity": {
+        "layer": "ENT",
+        "type": "PRN"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-IDENTITY",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-CLS-0000000001": {
+      "kinds": [
+        "Classification"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@universe",
+        "@operational"
+      ],
+      "entryModel": "Classification",
+      "construct": "C-10",
+      "identity": {
+        "layer": "CLS",
+        "type": "ASR"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-CLASSIFICATION",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-TAX-0000000001": {
+      "kinds": [
+        "TaxonomyScheme"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "TaxonomyScheme",
+      "construct": "C-11",
+      "identity": {
+        "layer": "TAX",
+        "type": "SCH"
+      },
+      "tier": 3,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-TXN-0000000001": {
+      "kinds": [
+        "Taxon"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Taxon",
+      "construct": "C-10",
+      "identity": {
+        "layer": "TAX",
+        "type": "TXN"
+      },
+      "tier": 3,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-ATT-0000000001": {
+      "kinds": [
+        "Attribute"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Attribute",
+      "construct": "C-05",
+      "identity": {
+        "layer": "CPT",
+        "type": "ATT"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-CAP-0000000001": {
+      "kinds": [
+        "Capability",
+        "CapabilityContract"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Capability",
+      "construct": "C-12",
+      "identity": {
+        "layer": "CAP",
+        "type": "REG"
+      },
+      "identityByKind": {
+        "CapabilityContract": {
+          "layer": "CAP",
+          "type": "CTR"
+        }
+      },
+      "tier": 3,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-POL-0000000001": {
+      "kinds": [
+        "Policy"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Policy",
+      "construct": "C-16",
+      "identity": {
+        "layer": "POL",
+        "type": "POL"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-RUL-0000000001": {
+      "kinds": [
+        "Rule"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Rule",
+      "construct": "C-15",
+      "identity": {
+        "layer": "RUL",
+        "type": "RUL"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-CST-0000000001": {
+      "kinds": [],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Constraint",
+      "construct": "C-14",
+      "identity": {
+        "layer": "CST",
+        "type": "CST"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ],
+      "note": "Constraints are embedded in their owning construct (Phase 003 §10); this registry's envelope is intentionally empty."
+    },
+    "UCOS-REG-CXT-0000000001": {
+      "kinds": [
+        "ContextDimension",
+        "RegisteredContext"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "ContextDimension",
+      "construct": "C-17",
+      "identity": {
+        "layer": "CTX",
+        "type": "DIM"
+      },
+      "identityByKind": {
+        "RegisteredContext": {
+          "layer": "CTX",
+          "type": "REG"
+        }
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-LIF-0000000001": {
+      "kinds": [
+        "Lifecycle"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Lifecycle",
+      "construct": "C-18",
+      "identity": {
+        "layer": "LIF",
+        "type": "LIF"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-RES-0000000001": {
+      "kinds": [
+        "Allocation"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Allocation",
+      "construct": "C-19",
+      "identity": {
+        "layer": "RES",
+        "type": "ALC"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-ALLOCATION",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-VAL-0000000001": {
+      "kinds": [
+        "Value"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Value",
+      "construct": "C-20",
+      "identity": {
+        "layer": "VAL",
+        "type": "VAL"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-VALUE",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-MSR-0000000001": {
+      "kinds": [
+        "Measurement"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Measurement",
+      "construct": "C-21",
+      "identity": {
+        "layer": "MSR",
+        "type": "MSR"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-MEASUREMENT",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-UNT-0000000001": {
+      "kinds": [
+        "Unit",
+        "UnitConversion"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Unit",
+      "construct": "C-21",
+      "identity": {
+        "layer": "UNT",
+        "type": "UNT"
+      },
+      "identityByKind": {
+        "UnitConversion": {
+          "layer": "UNT",
+          "type": "CNV"
+        }
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-MTH-0000000001": {
+      "kinds": [
+        "Method"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Method",
+      "construct": "C-21",
+      "identity": {
+        "layer": "MTH",
+        "type": "MTH"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-TMP-0000000001": {
+      "kinds": [
+        "Calendar",
+        "RecurrenceScheme"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Calendar",
+      "construct": "C-08",
+      "identity": {
+        "layer": "TMP",
+        "type": "TMP"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-SPC-0000000001": {
+      "kinds": [
+        "SpatialFrame",
+        "Region"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "SpatialFrame",
+      "construct": "C-09",
+      "identity": {
+        "layer": "SPC",
+        "type": "SPC"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-KNW-0000000001": {
+      "kinds": [
+        "Knowledge",
+        "Inference"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Knowledge",
+      "construct": "C-22",
+      "identity": {
+        "layer": "KNW",
+        "type": "KNW"
+      },
+      "identityByKind": {
+        "Inference": {
+          "layer": "KNW",
+          "type": "INF"
+        }
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-KNOWLEDGE",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-EVT-0000000001": {
+      "kinds": [
+        "EventType"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "EventType",
+      "construct": "C-07",
+      "identity": {
+        "layer": "EVT",
+        "type": "TYP"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-ACT-0000000001": {
+      "kinds": [
+        "ActionType"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "ActionType",
+      "construct": "C-13",
+      "identity": {
+        "layer": "ACT",
+        "type": "TYP"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-INT-0000000001": {
+      "kinds": [
+        "IntelligenceCapability",
+        "DecisionModel",
+        "Objective"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "IntelligenceCapability",
+      "construct": "C-25",
+      "identity": {
+        "layer": "CAP",
+        "type": "INT"
+      },
+      "identityByKind": {
+        "DecisionModel": {
+          "layer": "INT",
+          "type": "MOD"
+        },
+        "Objective": {
+          "layer": "INT",
+          "type": "OBJ"
+        }
+      },
+      "tier": 3,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-CMP-0000000001": {
+      "kinds": [
+        "Composition"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Composition",
+      "construct": "C-12",
+      "identity": {
+        "layer": "CMP",
+        "type": "SYS"
+      },
+      "tier": 5,
+      "lifecycleRef": "LC-COMPOSITION",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-GEN-0000000001": {
+      "kinds": [
+        "Generator"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Generator",
+      "construct": "C-12",
+      "identity": {
+        "layer": "GEN",
+        "type": "TRF"
+      },
+      "tier": 3,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-OFR-0000000001": {
+      "kinds": [
+        "Offer"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Offer",
+      "construct": "C-20",
+      "identity": {
+        "layer": "OFR",
+        "type": "OFR"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-OFFER",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-ENT-0000000002": {
+      "kinds": [
+        "Entitlement"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Entitlement",
+      "construct": "C-30",
+      "identity": {
+        "layer": "ENT",
+        "type": "ENT"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-ENTITLEMENT",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-UNI-0000000001": {
+      "kinds": [
+        "Universe",
+        "Namespace"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Universe",
+      "construct": "C-29",
+      "identity": {
+        "layer": "UNI",
+        "type": "UNI"
+      },
+      "identityByKind": {
+        "Namespace": {
+          "layer": "UNI",
+          "type": "NSP"
+        }
+      },
+      "tier": 3,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    }
+  },
+  "supplements": {
+    "UCOS-REG-OFR-0000000002": {
+      "name": "Offering Facet Registry",
+      "owner": "Foundation Council",
+      "envelopeText": "The seven USPT facets (registered attributes with governed domains)",
+      "basis": "registries/offering-facet-registry.json declares this registryId; V-RG-01 requires it to be registered in the Registry of Registries.",
+      "kinds": [
+        "Facet"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Facet",
+      "construct": "C-05",
+      "identity": {
+        "layer": "USP",
+        "type": "FCT"
+      },
+      "tier": 2,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-REL-0000000002": {
+      "name": "Relationship Instance Graph",
+      "owner": "Registry Office",
+      "envelopeText": "Relationship instances (R-01: every relationship is an identified, versioned entity)",
+      "basis": "Phase 003 §6: relationship instances live in the operational graph; Phase 004 §3.3: every graph node is a registry entry.",
+      "kinds": [
+        "RelationshipInstance"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@universe",
+        "@operational"
+      ],
+      "entryModel": "Relationship",
+      "construct": "C-04",
+      "identity": {
+        "layer": "REL",
+        "type": "INS"
+      },
+      "tier": 5,
+      "lifecycleRef": "LC-RELATIONSHIP",
+      "admissionMode": "operational",
+      "relationshipPolicy": []
+    },
+    "UCOS-REG-LAW-0000000001": {
+      "name": "Law Registry",
+      "owner": "Constitutional Assembly",
+      "envelopeText": "Constitutional laws (UCL-*, domain-prefixed laws)",
+      "basis": "new 6.txt: Constitution → Invariant Registry → Law Registry → Policy Registry → Rule Registry.",
+      "kinds": [
+        "Law"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Law",
+      "construct": "C-16",
+      "identity": {
+        "layer": "LAW",
+        "type": "LAW"
+      },
+      "tier": 1,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-INV-0000000001": {
+      "name": "Invariant Registry",
+      "owner": "Constitutional Assembly",
+      "envelopeText": "Constitutional invariants (UCI-*, domain invariants)",
+      "basis": "new 6.txt: the Invariant Registry sits directly under the Constitution.",
+      "kinds": [
+        "Invariant"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Invariant",
+      "construct": "C-14",
+      "identity": {
+        "layer": "INV",
+        "type": "INV"
+      },
+      "tier": 0,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-DEC-0000000001": {
+      "name": "Decision Registry",
+      "owner": "Certification Body",
+      "envelopeText": "Decisions, refusals and escalations (UCL-G05: every decision is an artifact)",
+      "basis": "UCL-G05; UADS decision universe registry (Phase 004 §6.3 UDS).",
+      "kinds": [
+        "Decision",
+        "Escalation"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Decision",
+      "construct": "C-24",
+      "identity": {
+        "layer": "DEC",
+        "type": "DEC"
+      },
+      "identityByKind": {
+        "Escalation": {
+          "layer": "DEC",
+          "type": "ESC"
+        }
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-DECISION",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-GAR-0000000001": {
+      "name": "Generated Artifact Registry",
+      "owner": "Registry Office",
+      "envelopeText": "Derivative artifacts with provenance attestations (GN-P7)",
+      "basis": "Phase 009 §5.2: generated artifacts carry a derivative identity.",
+      "kinds": [
+        "GeneratedArtifact"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "GeneratedArtifact",
+      "construct": "C-31",
+      "identity": {
+        "layer": "GEN",
+        "type": "ART"
+      },
+      "tier": 5,
+      "lifecycleRef": "LC-GENERATED",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-PRD-0000000001": {
+      "name": "Product Registry (UPR)",
+      "owner": "Domain Authorities",
+      "envelopeText": "Exchangeable entities (Phase 006 §4)",
+      "basis": "Phase 004 §6.3 lists UPR Product Registry among Tier-3 universe registries.",
+      "kinds": [
+        "ExchangeableEntity"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "ExchangeableEntity",
+      "construct": "C-01",
+      "identity": {
+        "layer": "ENT",
+        "type": "PRD"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-EXCHANGEABLE",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-LEG-0000000001": {
+      "name": "Legal Registry (ULA)",
+      "owner": "Domain Authorities",
+      "envelopeText": "Contracts between authorities (C-30)",
+      "basis": "Phase 004 §6.3 ULA Legal Registry; Phase 008 §5.2 contracts.",
+      "kinds": [
+        "Contract"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Contract",
+      "construct": "C-30",
+      "identity": {
+        "layer": "ENT",
+        "type": "CTR"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-CONTRACT",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-DSP-0000000001": {
+      "name": "Governance Registry (UGV)",
+      "owner": "Domain Authorities",
+      "envelopeText": "Disputes and their resolutions",
+      "basis": "Phase 004 §6.3 UGV Governance Registry; Phase 004 §8.3 disputes.",
+      "kinds": [
+        "Dispute"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "Dispute",
+      "construct": "C-29",
+      "identity": {
+        "layer": "ENT",
+        "type": "DSP"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-DISPUTE",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-FIN-0000000001": {
+      "name": "Financial Registry (UFN)",
+      "owner": "Domain Authorities",
+      "envelopeText": "Accounts and immutable settlement postings",
+      "basis": "Phase 004 §6.3 UFN Financial Registry; settlement capability.",
+      "kinds": [
+        "Account",
+        "LedgerPosting"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "LedgerPosting",
+      "construct": "C-20",
+      "identity": {
+        "layer": "ENT",
+        "type": "FIN"
+      },
+      "identityByKind": {
+        "LedgerPosting": {
+          "layer": "ENT",
+          "type": "PST"
+        }
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-LEDGER",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-TRS-0000000001": {
+      "name": "Trust Registry (UST)",
+      "owner": "Domain Authorities",
+      "envelopeText": "Trust assessments and reputation ratings",
+      "basis": "Phase 004 §6.3 UST Trust Registry; trust and reputation capabilities.",
+      "kinds": [
+        "TrustAssessment",
+        "Rating"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "TrustAssessment",
+      "construct": "C-26",
+      "identity": {
+        "layer": "ENT",
+        "type": "TRS"
+      },
+      "identityByKind": {
+        "Rating": {
+          "layer": "ENT",
+          "type": "RTG"
+        }
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-VALUE",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-EXE-0000000001": {
+      "name": "Execution Registry",
+      "owner": "Domain Authorities",
+      "envelopeText": "Workflow instances (Actions, C-13) and notifications",
+      "basis": "Phase 003 §14 Action lifecycle; Phase 008 §7 workflow and notification capabilities.",
+      "kinds": [
+        "WorkflowInstance",
+        "Notification"
+      ],
+      "namespaces": [
+        "UCOS",
+        "@operational"
+      ],
+      "entryModel": "WorkflowInstance",
+      "construct": "C-13",
+      "identity": {
+        "layer": "ENT",
+        "type": "WFI"
+      },
+      "identityByKind": {
+        "Notification": {
+          "layer": "ENT",
+          "type": "NTF"
+        }
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-ACTION",
+      "admissionMode": "operational",
+      "relationshipPolicy": [
+        "*"
+      ]
+    },
+    "UCOS-REG-KNW-0000000002": {
+      "name": "Constitutional Corpus Registry",
+      "owner": "Foundation Council",
+      "envelopeText": "Root-namespace corpus documents, sections, authorities, structures and flows",
+      "basis": "UCI-016: if it exists it is describable; if describable it is registered. The corpus itself is registered knowledge.",
+      "kinds": [
+        "CorpusDocument",
+        "CorpusSection",
+        "Authority",
+        "Model",
+        "Flow"
+      ],
+      "namespaces": [
+        "UCOS"
+      ],
+      "entryModel": "Knowledge",
+      "construct": "C-22",
+      "identity": {
+        "layer": "KNW",
+        "type": "COR"
+      },
+      "tier": 4,
+      "lifecycleRef": "LC-FOUNDATION",
+      "admissionMode": "constitutional",
+      "relationshipPolicy": [
+        "*"
+      ]
+    }
+  },
+  "universeRegistryTemplate": {
+    "nameTemplate": "{code} Universe Registry",
+    "ownerTemplate": "{code} Domain Authority",
+    "envelopeText": "The canonical truth of universe {code} (Phase 004 §6.3: each universe holds exactly one registry)",
+    "kinds": [
+      "CorpusDocument",
+      "CorpusSection",
+      "Authority",
+      "Law",
+      "Invariant",
+      "TaxonomyScheme",
+      "Taxon",
+      "Model",
+      "Attribute",
+      "Lifecycle",
+      "Flow",
+      "Rule"
+    ],
+    "entryModel": "Knowledge",
+    "construct": "C-22",
+    "identity": {
+      "layer": "UNI",
+      "type": "{code}"
+    },
+    "registryIdentity": {
+      "layer": "REG",
+      "type": "{code}"
+    },
+    "tier": 4,
+    "lifecycleRef": "LC-FOUNDATION",
+    "admissionMode": "constitutional",
+    "relationshipPolicy": [
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,1713 @@
+{
+ "$comment": "Unit Registry seed (Phase 003 §18, V-MS-01). Units and their conversions are registered metadata; a conversion not registered here is a fabrication (V-MS-04). Currencies are units of the 'currency' dimension (No Currency Lock-In); conversion between currencies is never a static factor — it is a Value (exchange rate) owned by a valuer and valid in a context, so no UnitConversion is registered between currencies.",
+ "dimensions": [
+  "length",
+  "mass",
+  "time",
+  "electric-current",
+  "temperature",
+  "amount-of-substance",
+  "luminous-intensity",
+  "area",
+  "volume",
+  "velocity",
+  "acceleration",
+  "force",
+  "energy",
+  "power",
+  "pressure",
+  "frequency",
+  "electric-charge",
+  "voltage",
+  "resistance",
+  "information",
+  "dimensionless",
+  "currency",
+  "count",
+  "value-point",
+  "data-rate",
+  "angle"
+ ],
+ "units": [
+  {
+   "symbol": "m",
+   "name": "metre",
+   "dimension": "length",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "kg",
+   "name": "kilogram",
+   "dimension": "mass",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "s",
+   "name": "second",
+   "dimension": "time",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "A",
+   "name": "ampere",
+   "dimension": "electric-current",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "K",
+   "name": "kelvin",
+   "dimension": "temperature",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "mol",
+   "name": "mole",
+   "dimension": "amount-of-substance",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "cd",
+   "name": "candela",
+   "dimension": "luminous-intensity",
+   "system": "SI",
+   "base": true
+  },
+  {
+   "symbol": "km",
+   "name": "kilometre",
+   "dimension": "length",
+   "system": "SI"
+  },
+  {
+   "symbol": "cm",
+   "name": "centimetre",
+   "dimension": "length",
+   "system": "SI"
+  },
+  {
+   "symbol": "mm",
+   "name": "millimetre",
+   "dimension": "length",
+   "system": "SI"
+  },
+  {
+   "symbol": "in",
+   "name": "inch",
+   "dimension": "length",
+   "system": "imperial"
+  },
+  {
+   "symbol": "ft",
+   "name": "foot",
+   "dimension": "length",
+   "system": "imperial"
+  },
+  {
+   "symbol": "mi",
+   "name": "mile",
+   "dimension": "length",
+   "system": "imperial"
+  },
+  {
+   "symbol": "g",
+   "name": "gram",
+   "dimension": "mass",
+   "system": "SI"
+  },
+  {
+   "symbol": "t",
+   "name": "tonne",
+   "dimension": "mass",
+   "system": "SI"
+  },
+  {
+   "symbol": "lb",
+   "name": "pound",
+   "dimension": "mass",
+   "system": "imperial"
+  },
+  {
+   "symbol": "oz",
+   "name": "ounce",
+   "dimension": "mass",
+   "system": "imperial"
+  },
+  {
+   "symbol": "min",
+   "name": "minute",
+   "dimension": "time",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "h",
+   "name": "hour",
+   "dimension": "time",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "d",
+   "name": "day",
+   "dimension": "time",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "wk",
+   "name": "week",
+   "dimension": "time",
+   "system": "calendar"
+  },
+  {
+   "symbol": "degC",
+   "name": "degree Celsius",
+   "dimension": "temperature",
+   "system": "SI"
+  },
+  {
+   "symbol": "degF",
+   "name": "degree Fahrenheit",
+   "dimension": "temperature",
+   "system": "imperial"
+  },
+  {
+   "symbol": "m2",
+   "name": "square metre",
+   "dimension": "area",
+   "system": "SI"
+  },
+  {
+   "symbol": "ha",
+   "name": "hectare",
+   "dimension": "area",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "m3",
+   "name": "cubic metre",
+   "dimension": "volume",
+   "system": "SI"
+  },
+  {
+   "symbol": "L",
+   "name": "litre",
+   "dimension": "volume",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "mL",
+   "name": "millilitre",
+   "dimension": "volume",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "gal",
+   "name": "US gallon",
+   "dimension": "volume",
+   "system": "US-customary"
+  },
+  {
+   "symbol": "m/s",
+   "name": "metre per second",
+   "dimension": "velocity",
+   "system": "SI"
+  },
+  {
+   "symbol": "km/h",
+   "name": "kilometre per hour",
+   "dimension": "velocity",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "m/s2",
+   "name": "metre per second squared",
+   "dimension": "acceleration",
+   "system": "SI"
+  },
+  {
+   "symbol": "N",
+   "name": "newton",
+   "dimension": "force",
+   "system": "SI"
+  },
+  {
+   "symbol": "J",
+   "name": "joule",
+   "dimension": "energy",
+   "system": "SI"
+  },
+  {
+   "symbol": "kWh",
+   "name": "kilowatt-hour",
+   "dimension": "energy",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "W",
+   "name": "watt",
+   "dimension": "power",
+   "system": "SI"
+  },
+  {
+   "symbol": "kW",
+   "name": "kilowatt",
+   "dimension": "power",
+   "system": "SI"
+  },
+  {
+   "symbol": "Pa",
+   "name": "pascal",
+   "dimension": "pressure",
+   "system": "SI"
+  },
+  {
+   "symbol": "bar",
+   "name": "bar",
+   "dimension": "pressure",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "Hz",
+   "name": "hertz",
+   "dimension": "frequency",
+   "system": "SI"
+  },
+  {
+   "symbol": "C",
+   "name": "coulomb",
+   "dimension": "electric-charge",
+   "system": "SI"
+  },
+  {
+   "symbol": "V",
+   "name": "volt",
+   "dimension": "voltage",
+   "system": "SI"
+  },
+  {
+   "symbol": "ohm",
+   "name": "ohm",
+   "dimension": "resistance",
+   "system": "SI"
+  },
+  {
+   "symbol": "rad",
+   "name": "radian",
+   "dimension": "angle",
+   "system": "SI"
+  },
+  {
+   "symbol": "deg",
+   "name": "degree of arc",
+   "dimension": "angle",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "bit",
+   "name": "bit",
+   "dimension": "information",
+   "system": "IEC"
+  },
+  {
+   "symbol": "B",
+   "name": "byte",
+   "dimension": "information",
+   "system": "IEC"
+  },
+  {
+   "symbol": "kB",
+   "name": "kilobyte",
+   "dimension": "information",
+   "system": "SI-prefixed"
+  },
+  {
+   "symbol": "MB",
+   "name": "megabyte",
+   "dimension": "information",
+   "system": "SI-prefixed"
+  },
+  {
+   "symbol": "GB",
+   "name": "gigabyte",
+   "dimension": "information",
+   "system": "SI-prefixed"
+  },
+  {
+   "symbol": "TB",
+   "name": "terabyte",
+   "dimension": "information",
+   "system": "SI-prefixed"
+  },
+  {
+   "symbol": "KiB",
+   "name": "kibibyte",
+   "dimension": "information",
+   "system": "IEC"
+  },
+  {
+   "symbol": "MiB",
+   "name": "mebibyte",
+   "dimension": "information",
+   "system": "IEC"
+  },
+  {
+   "symbol": "GiB",
+   "name": "gibibyte",
+   "dimension": "information",
+   "system": "IEC"
+  },
+  {
+   "symbol": "bit/s",
+   "name": "bit per second",
+   "dimension": "data-rate",
+   "system": "IEC"
+  },
+  {
+   "symbol": "Mbit/s",
+   "name": "megabit per second",
+   "dimension": "data-rate",
+   "system": "SI-prefixed"
+  },
+  {
+   "symbol": "1",
+   "name": "unity",
+   "dimension": "dimensionless",
+   "system": "SI"
+  },
+  {
+   "symbol": "%",
+   "name": "percent",
+   "dimension": "dimensionless",
+   "system": "SI-accepted"
+  },
+  {
+   "symbol": "each",
+   "name": "each",
+   "dimension": "count",
+   "system": "count"
+  },
+  {
+   "symbol": "request",
+   "name": "request",
+   "dimension": "count",
+   "system": "count"
+  },
+  {
+   "symbol": "seat",
+   "name": "seat",
+   "dimension": "count",
+   "system": "count"
+  },
+  {
+   "symbol": "point",
+   "name": "value point",
+   "dimension": "value-point",
+   "system": "issuer-defined"
+  },
+  {
+   "symbol": "AED",
+   "name": "UAE Dirham",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "AFN",
+   "name": "Afghani",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ALL",
+   "name": "Lek",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "AMD",
+   "name": "Armenian Dram",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ANG",
+   "name": "Netherlands Antillean Guilder",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "AOA",
+   "name": "Kwanza",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ARS",
+   "name": "Argentine Peso",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "AUD",
+   "name": "Australian Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "AWG",
+   "name": "Aruban Florin",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "AZN",
+   "name": "Azerbaijan Manat",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BAM",
+   "name": "Convertible Mark",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BBD",
+   "name": "Barbados Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BDT",
+   "name": "Taka",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BGN",
+   "name": "Bulgarian Lev",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BHD",
+   "name": "Bahraini Dinar",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BIF",
+   "name": "Burundi Franc",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BMD",
+   "name": "Bermudian Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BND",
+   "name": "Brunei Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BOB",
+   "name": "Boliviano",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BRL",
+   "name": "Brazilian Real",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BSD",
+   "name": "Bahamian Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BTN",
+   "name": "Ngultrum",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BWP",
+   "name": "Pula",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BYN",
+   "name": "Belarusian Ruble",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "BZD",
+   "name": "Belize Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CAD",
+   "name": "Canadian Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CDF",
+   "name": "Congolese Franc",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CHF",
+   "name": "Swiss Franc",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CLP",
+   "name": "Chilean Peso",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CNY",
+   "name": "Yuan Renminbi",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "COP",
+   "name": "Colombian Peso",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CRC",
+   "name": "Costa Rican Colon",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CUP",
+   "name": "Cuban Peso",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CVE",
+   "name": "Cabo Verde Escudo",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "CZK",
+   "name": "Czech Koruna",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "DJF",
+   "name": "Djibouti Franc",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "DKK",
+   "name": "Danish Krone",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "DOP",
+   "name": "Dominican Peso",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "DZD",
+   "name": "Algerian Dinar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "EGP",
+   "name": "Egyptian Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ERN",
+   "name": "Nakfa",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ETB",
+   "name": "Ethiopian Birr",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "EUR",
+   "name": "Euro",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "FJD",
+   "name": "Fiji Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "FKP",
+   "name": "Falkland Islands Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GBP",
+   "name": "Pound Sterling",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GEL",
+   "name": "Lari",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GHS",
+   "name": "Ghana Cedi",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GIP",
+   "name": "Gibraltar Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GMD",
+   "name": "Dalasi",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GNF",
+   "name": "Guinean Franc",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GTQ",
+   "name": "Quetzal",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "GYD",
+   "name": "Guyana Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "HKD",
+   "name": "Hong Kong Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "HNL",
+   "name": "Lempira",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "HTG",
+   "name": "Gourde",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "HUF",
+   "name": "Forint",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "IDR",
+   "name": "Rupiah",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ILS",
+   "name": "New Israeli Sheqel",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "INR",
+   "name": "Indian Rupee",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "IQD",
+   "name": "Iraqi Dinar",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "IRR",
+   "name": "Iranian Rial",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ISK",
+   "name": "Iceland Krona",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "JMD",
+   "name": "Jamaican Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "JOD",
+   "name": "Jordanian Dinar",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "JPY",
+   "name": "Yen",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KES",
+   "name": "Kenyan Shilling",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KGS",
+   "name": "Som",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KHR",
+   "name": "Riel",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KMF",
+   "name": "Comorian Franc",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KPW",
+   "name": "North Korean Won",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KRW",
+   "name": "Won",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KWD",
+   "name": "Kuwaiti Dinar",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KYD",
+   "name": "Cayman Islands Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "KZT",
+   "name": "Tenge",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "LAK",
+   "name": "Lao Kip",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "LBP",
+   "name": "Lebanese Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "LKR",
+   "name": "Sri Lanka Rupee",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "LRD",
+   "name": "Liberian Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "LSL",
+   "name": "Loti",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "LYD",
+   "name": "Libyan Dinar",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MAD",
+   "name": "Moroccan Dirham",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MDL",
+   "name": "Moldovan Leu",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MGA",
+   "name": "Malagasy Ariary",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MKD",
+   "name": "Denar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MMK",
+   "name": "Kyat",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MNT",
+   "name": "Tugrik",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MOP",
+   "name": "Pataca",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MRU",
+   "name": "Ouguiya",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MUR",
+   "name": "Mauritius Rupee",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MVR",
+   "name": "Rufiyaa",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MWK",
+   "name": "Malawi Kwacha",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MXN",
+   "name": "Mexican Peso",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MYR",
+   "name": "Malaysian Ringgit",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "MZN",
+   "name": "Mozambique Metical",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "NAD",
+   "name": "Namibia Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "NGN",
+   "name": "Naira",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "NIO",
+   "name": "Cordoba Oro",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "NOK",
+   "name": "Norwegian Krone",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "NPR",
+   "name": "Nepalese Rupee",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "NZD",
+   "name": "New Zealand Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "OMR",
+   "name": "Rial Omani",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PAB",
+   "name": "Balboa",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PEN",
+   "name": "Sol",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PGK",
+   "name": "Kina",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PHP",
+   "name": "Philippine Peso",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PKR",
+   "name": "Pakistan Rupee",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PLN",
+   "name": "Zloty",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "PYG",
+   "name": "Guarani",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "QAR",
+   "name": "Qatari Rial",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "RON",
+   "name": "Romanian Leu",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "RSD",
+   "name": "Serbian Dinar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "RUB",
+   "name": "Russian Ruble",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "RWF",
+   "name": "Rwanda Franc",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SAR",
+   "name": "Saudi Riyal",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SBD",
+   "name": "Solomon Islands Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SCR",
+   "name": "Seychelles Rupee",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SDG",
+   "name": "Sudanese Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SEK",
+   "name": "Swedish Krona",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SGD",
+   "name": "Singapore Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SHP",
+   "name": "Saint Helena Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SLE",
+   "name": "Leone",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SOS",
+   "name": "Somali Shilling",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SRD",
+   "name": "Surinam Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SSP",
+   "name": "South Sudanese Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "STN",
+   "name": "Dobra",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SVC",
+   "name": "El Salvador Colon",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SYP",
+   "name": "Syrian Pound",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "SZL",
+   "name": "Lilangeni",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "THB",
+   "name": "Baht",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TJS",
+   "name": "Somoni",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TMT",
+   "name": "Turkmenistan New Manat",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TND",
+   "name": "Tunisian Dinar",
+   "minorUnits": 3,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TOP",
+   "name": "Pa'anga",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TRY",
+   "name": "Turkish Lira",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TTD",
+   "name": "Trinidad and Tobago Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TWD",
+   "name": "New Taiwan Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "TZS",
+   "name": "Tanzanian Shilling",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "UAH",
+   "name": "Hryvnia",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "UGX",
+   "name": "Uganda Shilling",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "USD",
+   "name": "US Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "UYU",
+   "name": "Peso Uruguayo",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "UZS",
+   "name": "Uzbekistan Sum",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "VES",
+   "name": "Bolivar Soberano",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "VND",
+   "name": "Dong",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "VUV",
+   "name": "Vatu",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "WST",
+   "name": "Tala",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "XAF",
+   "name": "CFA Franc BEAC",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "XCD",
+   "name": "East Caribbean Dollar",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "XOF",
+   "name": "CFA Franc BCEAO",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "XPF",
+   "name": "CFP Franc",
+   "minorUnits": 0,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "YER",
+   "name": "Yemeni Rial",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ZAR",
+   "name": "Rand",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ZMW",
+   "name": "Zambian Kwacha",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  },
+  {
+   "symbol": "ZWG",
+   "name": "Zimbabwe Gold",
+   "minorUnits": 2,
+   "dimension": "currency",
+   "system": "ISO-4217"
+  }
+ ],
+ "conversions": [
+  {
+   "from": "km",
+   "to": "m",
+   "factor": 1000
+  },
+  {
+   "from": "cm",
+   "to": "m",
+   "factor": 0.01
+  },
+  {
+   "from": "mm",
+   "to": "m",
+   "factor": 0.001
+  },
+  {
+   "from": "in",
+   "to": "m",
+   "factor": 0.0254
+  },
+  {
+   "from": "ft",
+   "to": "m",
+   "factor": 0.3048
+  },
+  {
+   "from": "mi",
+   "to": "m",
+   "factor": 1609.344
+  },
+  {
+   "from": "g",
+   "to": "kg",
+   "factor": 0.001
+  },
+  {
+   "from": "t",
+   "to": "kg",
+   "factor": 1000
+  },
+  {
+   "from": "lb",
+   "to": "kg",
+   "factor": 0.45359237
+  },
+  {
+   "from": "oz",
+   "to": "kg",
+   "factor": 0.028349523125
+  },
+  {
+   "from": "min",
+   "to": "s",
+   "factor": 60
+  },
+  {
+   "from": "h",
+   "to": "s",
+   "factor": 3600
+  },
+  {
+   "from": "d",
+   "to": "s",
+   "factor": 86400
+  },
+  {
+   "from": "wk",
+   "to": "s",
+   "factor": 604800
+  },
+  {
+   "from": "degC",
+   "to": "K",
+   "factor": 1,
+   "offset": 273.15
+  },
+  {
+   "from": "degF",
+   "to": "K",
+   "factor": 0.5555555555555556,
+   "offset": 255.37222222222223
+  },
+  {
+   "from": "ha",
+   "to": "m2",
+   "factor": 10000
+  },
+  {
+   "from": "L",
+   "to": "m3",
+   "factor": 0.001
+  },
+  {
+   "from": "mL",
+   "to": "m3",
+   "factor": 1e-06
+  },
+  {
+   "from": "gal",
+   "to": "m3",
+   "factor": 0.003785411784
+  },
+  {
+   "from": "km/h",
+   "to": "m/s",
+   "factor": 0.2777777777777778
+  },
+  {
+   "from": "kWh",
+   "to": "J",
+   "factor": 3600000
+  },
+  {
+   "from": "kW",
+   "to": "W",
+   "factor": 1000
+  },
+  {
+   "from": "bar",
+   "to": "Pa",
+   "factor": 100000
+  },
+  {
+   "from": "deg",
+   "to": "rad",
+   "factor": 0.017453292519943295
+  },
+  {
+   "from": "B",
+   "to": "bit",
+   "factor": 8
+  },
+  {
+   "from": "kB",
+   "to": "B",
+   "factor": 1000
+  },
+  {
+   "from": "MB",
+   "to": "B",
+   "factor": 1000000
+  },
+  {
+   "from": "GB",
+   "to": "B",
+   "factor": 1000000000
+  },
+  {
+   "from": "TB",
+   "to": "B",
+   "factor": 1000000000000
+  },
+  {
+   "from": "KiB",
+   "to": "B",
+   "factor": 1024
+  },
+  {
+   "from": "MiB",
+   "to": "B",
+   "factor": 1048576
+  },
+  {
+   "from": "GiB",
+   "to": "B",
+   "factor": 1073741824
+  },
+  {
+   "from": "Mbit/s",
+   "to": "bit/s",
+   "factor": 1000000
+  },
+  {
+   "from": "%",
+   "to": "1",
+   "factor": 0.01
+  }
+ ],
+ "methods": [
+  {
+   "name": "direct",
+   "statement": "A magnitude read by comparison against a unit standard by an instrument.",
+   "admitsUncertainty": true
+  },
+  {
+   "name": "derived",
+   "statement": "A magnitude computed from other measurements under a registered formula.",
+   "admitsUncertainty": true
+  },
+  {
+   "name": "estimated",
+   "statement": "A magnitude inferred from a model rather than observed.",
+   "admitsUncertainty": true
+  },
+  {
+   "name": "observed",
+   "statement": "A magnitude recorded by an observer without an instrument standard.",
+   "admitsUncertainty": true
+  },
+  {
+   "name": "simulated",
+   "statement": "A magnitude produced inside a simulated reality context.",
+   "admitsUncertainty": true
+  },
+  {
+   "name": "reported",
+   "statement": "A magnitude asserted by a reporting authority.",
+   "admitsUncertainty": false
+  },
+  {
+   "name": "counted",
+   "statement": "A magnitude obtained by enumerating discrete members.",
+   "admitsUncertainty": false
+  }
+ ]
+}

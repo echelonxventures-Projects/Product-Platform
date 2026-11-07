@@ -1,0 +1,221 @@
+{
+  "registry": "MASTER FOUNDATION REGISTRY",
+  "registryId": "UCOS-REG-FND-0000000001",
+  "document": "UCOS-FR-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "bootstrapNote": "This registry is its own first entry (UCL-F10). The BOOTSTRAPS edge is the single permitted self-reference in the platform and is the identity relation, not a dependency.",
+  "entryModel": "FoundationArtifact",
+  "governance": {
+    "canonicalOwner": "Foundation Council",
+    "ratifyingBody": "Constitutional Assembly",
+    "certifyingBody": "Certification Body",
+    "changePolicy": "Tier-0/1 change requires Assembly or Council ratification; all change is supersession, never edit"
+  },
+  "sharedSpine": {
+    "note": "Every entry in every registry carries this spine (Phase 003 section B). It is stated once here and referenced, never restated (UCI-003).",
+    "fields": ["identity", "definition", "classification", "ownership", "lifecycle", "relationships", "evidence", "securityPosture", "descriptors"]
+  },
+  "entries": [
+    {
+      "canonicalId": "UCOS-FR-FND-0000000000",
+      "alias": "MFR",
+      "canonicalName": "Master Foundation Registry",
+      "tier": 0,
+      "layer": "FOUNDATIONAL",
+      "canonicalStatement": "The single canonical registry whose entries are the Foundation Artifacts, and the root node of the registry lattice.",
+      "derivationChain": ["FR-01 Existence", "FR-02 Distinction", "C-04 Relationship", "C-02 Identity"],
+      "dependencies": [],
+      "dependencyType": {},
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [
+        { "type": "BOOTSTRAPS", "target": "UCOS-FR-FND-0000000000", "note": "fixed point; identity relation, not a dependency" },
+        { "type": "GOVERNED-BY", "target": "Constitutional Assembly" },
+        { "type": "REGISTERS", "target": "all entries below" }
+      ],
+      "evidence": { "certificationClass": "FOUNDATIONAL CONSTITUTION", "unanimousAssembly": true },
+      "validation": ["V-FR-01", "V-FR-07"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000001",
+      "alias": "FR-01",
+      "canonicalName": "Existence",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That something is.",
+      "derivationChain": [],
+      "dependencies": [],
+      "dependencyType": {},
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": { "irreducibilityProof": "Any attempted definition presupposes existence in its verb." },
+      "descriptors": ["being", "is", "that which is", "existent"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000002",
+      "alias": "FR-02",
+      "canonicalName": "Distinction",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That something can be told apart from something else.",
+      "derivationChain": [],
+      "dependencies": [],
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": { "irreducibilityProof": "Identity, type, and attribute are stabilised or named distinction; without it there is one undifferentiated thing." },
+      "descriptors": ["difference", "boundary", "telling apart", "discrimination"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000003",
+      "alias": "FR-03",
+      "canonicalName": "Relation",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That existents can be connected.",
+      "derivationChain": [],
+      "dependencies": [],
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": { "irreducibilityProof": "Structure is relation; without it there is a mere set and no composition is expressible." },
+      "descriptors": ["connection", "link", "structure", "edge"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000004",
+      "alias": "FR-04",
+      "canonicalName": "Change",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That existence and relation can differ across an ordering.",
+      "derivationChain": [],
+      "dependencies": [],
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": { "irreducibilityProof": "State, event, time, process, lifecycle, and evolution are change under different descriptions." },
+      "descriptors": ["becoming", "transition", "difference over an ordering", "process"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000005",
+      "alias": "FR-05",
+      "canonicalName": "Constraint",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That not all possibilities obtain.",
+      "derivationChain": [],
+      "dependencies": [],
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": { "irreducibilityProof": "Constraint is what makes must, cannot, and may meaningful; without it no normativity." },
+      "descriptors": ["necessity", "exclusion of possibility", "limit", "must"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000006",
+      "alias": "FR-06",
+      "canonicalName": "Apprehension",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That a system can represent and respond to existents.",
+      "derivationChain": [],
+      "dependencies": [],
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": {
+        "irreducibilityProof": "Minimal non-anthropocentric form of knowing: holding a structure whose states covary reliably with an existent and acting on that covariance. Requires no consciousness, which keeps the ontology usable for instruments and artificial agents."
+      },
+      "descriptors": ["representation", "observation", "sensing", "knowing-about", "modelling"]
+    },
+    {
+      "canonicalId": "UCOS-FR-PRIM-0000000007",
+      "alias": "FR-07",
+      "canonicalName": "Purpose",
+      "tier": 0,
+      "layer": "PRIMITIVE",
+      "canonicalStatement": "That a system is directed toward preferred states.",
+      "derivationChain": [],
+      "dependencies": [],
+      "governance": { "canonicalOwner": "Foundation Council", "ratifyingBody": "Constitutional Assembly", "certifyingBody": "Certification Body" },
+      "lifecycle": { "status": "CERTIFIED", "versions": ["1.0"] },
+      "relationships": [{ "type": "DERIVES-FROM", "target": "(none) — irreducible" }],
+      "evidence": {
+        "irreducibilityProof": "A preferred state is not derivable from existence or change; the universe described by the other six primitives is indifferent. Purpose is the smallest addition that introduces should.",
+        "consequences": ["Value is purpose-relative, not intrinsic", "Intelligence is not computation; it additionally requires purpose"]
+      },
+      "descriptors": ["directedness", "objective", "preference", "should", "goal"]
+    }
+  ],
+  "dependencyGraph": {
+    "note": "Hasse diagram of the strict partial order induced by UCI-014 (acyclicity). Tier is computed, not assigned: tier(A) = 1 + max(tier(B)) over A -> B.",
+    "edges": [
+      { "from": "UCOS-FR-PRIM-0000000002", "to": "UCOS-FR-PRIM-0000000001", "type": "CONSTITUTIVE" },
+      { "from": "UCOS-FR-PRIM-0000000003", "to": "UCOS-FR-PRIM-0000000001", "type": "CONSTITUTIVE" },
+      { "from": "UCOS-FR-PRIM-0000000004", "to": "UCOS-FR-PRIM-0000000001", "type": "CONSTITUTIVE" },
+      { "from": "UCOS-FR-PRIM-0000000007", "to": "UCOS-FR-PRIM-0000000001", "type": "CONSTITUTIVE" },
+      { "from": "UCOS-CPT-META-0000000001", "to": "UCOS-FR-PRIM-0000000001", "type": "SEMANTIC" },
+      { "from": "UCOS-CPT-META-0000000002", "to": "UCOS-FR-PRIM-0000000002", "type": "SEMANTIC" }
+    ],
+    "enforcement": "Acyclicity is proved at registration by topological sort of the declared closure; failure is a registration refusal (UCI-014)."
+  },
+  "evolutionGraph": {
+    "relations": ["SUPERSEDES", "DEPRECATES", "FORKS", "MERGES", "RETIRES"],
+    "invariants": [
+      "No deletion. Supersession archives; referential integrity (UCI-005) is permanent.",
+      "No silent relabelling. A change of meaning requires a new identity (a fork, not a revision).",
+      "Retirement requires zero live dependents, measured against the computed dependent set."
+    ],
+    "compatibilityClasses": ["COMPATIBLE-EXTENDING", "COMPATIBLE-NARROWING", "INCOMPATIBLE"]
+  },
+  "governanceGraph": {
+    "bodies": [
+      { "name": "Constitutional Assembly", "ratifies": ["Invariants", "Constitution", "Tier-0 change"], "mayCertify": false },
+      { "name": "Foundation Council", "ratifies": ["Tier-1/Tier-2 primitives and constructs"], "mayCertify": false },
+      { "name": "Domain Authorities", "ratifies": ["Universe content within envelope"], "mayCertify": false },
+      { "name": "Registry Office", "ratifies": [], "mayCertify": false, "role": "records identity, version, lineage" },
+      { "name": "Certification Body", "ratifies": [], "mayCertify": true, "role": "issues or withholds certification" }
+    ],
+    "separationInvariants": ["GI-1 ratifier shall not certify", "GI-2 certifier shall not author", "GI-3 recorder shall not ratify", "GI-4 no artifact is self-certifying", "GI-5 no body amends an invariant it did not ratify"]
+  },
+  "lifecycle": {
+    "states": ["DRAFT", "PROPOSED", "RATIFIED", "CERTIFIED", "ADMISSIBLE", "DEPRECATED", "RETIRED", "SUPERSEDED", "REJECTED"],
+    "transitionGuards": {
+      "DRAFT->PROPOSED": "derivation chain stated and terminating at Tier-0",
+      "PROPOSED->RATIFIED": "quorum of the competent body; no open dispute",
+      "RATIFIED->CERTIFIED": "evidence complete; acyclicity proved; no duplicate concept",
+      "any->DEPRECATED": "successor certified and resolvable",
+      "any->RETIRED": "zero live dependents (hard gate, checked against computed dependents)",
+      "any->REJECTED": "reason recorded as an audited Decision artifact"
+    }
+  },
+  "validationRules": ["V-FR-01", "V-FR-02", "V-FR-03", "V-FR-04", "V-FR-05", "V-FR-06", "V-FR-07", "V-FR-08", "V-FR-09", "V-FR-10"],
+  "evolutionRules": ["E-FR-01", "E-FR-02", "E-FR-03", "E-FR-04", "E-FR-05", "E-FR-06"],
+  "complianceRules": ["C-FR-01", "C-FR-02", "C-FR-03", "C-FR-04"],
+  "discoveryRules": ["D-FR-01", "D-FR-02", "D-FR-03", "D-FR-04", "D-FR-05"],
+  "certificationRules": ["X-FR-01", "X-FR-02", "X-FR-03", "X-FR-04", "X-FR-05"],
+  "security": {
+    "posture": "MAXIMAL, INTEGRITY-FIRST, PUBLIC",
+    "controls": [
+      "FR-SEC-01 integrity over confidentiality; aggressively published, tamper-evident",
+      "FR-SEC-02 append-only; every change is a new version",
+      "FR-SEC-03 tamper-evidence by hash-chained lineage",
+      "FR-SEC-04 write separation across ratify / record / certify",
+      "FR-SEC-05 no bulk delete, ever",
+      "FR-SEC-06 every read provable against the certification record",
+      "FR-SEC-07 federation is read-replication; a divergent copy refuses to resolve"
+    ]
+  },
+  "events": ["fr.artifact.admitted", "fr.artifact.rejected", "fr.artifact.superseded", "fr.artifact.deprecated", "fr.artifact.retired", "fr.dependency.violated", "fr.certification.revoked", "fr.registry.bootstrapped"],
+  "apis": ["REGISTER", "RESOLVE", "DEPENDENTS", "LINEAGE", "SUPERSEDE", "ATTEST", "SEARCH"],
+  "certification": {
+    "universe": "UCOS (root)",
+    "document": "UCOS-FR-DOC-001",
+    "type": "Foundation Registry Constitution",
+    "status": "APPROVED",
+    "coverage": "Foundation Hierarchy, Dependency, Evolution, Governance graphs",
+    "certificationClass": "FOUNDATIONAL CONSTITUTION"
+  }
+}

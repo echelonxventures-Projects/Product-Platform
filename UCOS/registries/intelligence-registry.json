@@ -1,0 +1,70 @@
+{
+  "registry": "INTELLIGENCE REGISTRY",
+  "registryId": "UCOS-REG-INT-0000000001",
+  "document": "UCOS-INT-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 3,
+  "entryModel": "IntelligenceCapability",
+  "positioningNote": "This is the last phase, and its position is not a scheduling choice. Intelligence (C-25) is the most derived construct in the meta model — Knowledge + Purpose + Action. An intelligence layer specified before the other twenty-one constructs is incoherent: there would be nothing to know, nothing to ground purposes in, and no governed action to take.",
+  "primitivesIntroduced": "NONE",
+  "constructsIntroduced": "NONE",
+  "alignmentByStructure": {
+    "invariants": ["UCI-006 every decision must possess an accountable authority", "UCI-020 every autonomous action has a registered purpose and an accountable authority", "UCI-013 no object may contradict its governing constitution"],
+    "statement": "An agent is a principal like any other: identity, authority, policy evaluation preceding action, permanent audit trail. Autonomy is a policy parameter, never a privilege.",
+    "structuralRule": "An intelligence that could modify the policy governing it would have escaped governance. The constitution forbids this structurally — the intelligence and its policy envelope have different owners (Phase 008 section 9), so the intelligence cannot ratify a change to its own envelope."
+  },
+  "engines": [
+    { "name": "Knowledge Engine", "composition": ["FR-06 Apprehension", "C-04 Relationship", "C-17 Context", "C-31 Evidence"], "outputs": "Canonical Knowledge Objects with confidence and lineage", "responsibilities": ["ingest", "justify", "reconcile", "refine", "refute"], "constraints": "authored once and referenced everywhere; refutation supersedes rather than erases (UCI-005 preserved)" },
+    { "name": "Reasoning Engine", "composition": ["C-22 Knowledge", "C-15 Rule", "C-14 Constraint", "C-24 Decision"], "outputs": "Inferences (as Knowledge, marked inferred), verdicts, explanations", "responsibilities": ["infer", "evaluate", "explain", "detect"], "constraints": "inferences never achieve asserted standing without confirmation (IN-P7); no inference may contradict an invariant" },
+    { "name": "Discovery Engine", "composition": ["C-22 Knowledge", "C-04 Relationship", "C-10 Classification", "C-17 Context"], "outputs": "Ranked candidate sets with provenance; resolutions", "responsibilities": ["resolve", "rank", "traverse", "honour"], "constraints": "discovery begins from registries (D-RG-01); traverses DERIVES-FROM to suggest more primitive alternatives — the platform's active resistance to unnecessary new artifacts" },
+    { "name": "Classification Engine", "composition": ["C-05 Attribute", "C-04 Relationship", "C-15 Rule", "C-17 Context"], "outputs": "Classification assertions with confidence", "responsibilities": ["evaluate", "rank", "assert", "infer", "cascade"], "constraints": "inferred classifications may not attach obligations without confirmation (TX-S-03); every new classification triggers the policy cascade — computed, never manually requested" },
+    { "name": "Recommendation Engine", "composition": ["C-20 Value", "C-17 Context", "C-04 Relationship", "FR-07 Purpose"], "outputs": "Recommendations as Value relationships — auditable, withdrawable", "responsibilities": ["value", "rank", "explain", "degrade"], "constraints": "no recommendation is objective (Value is purpose-relative); none may be presented as a fact" },
+    { "name": "Optimization Engine", "composition": ["C-14 Constraint", "C-20 Value", "C-21 Measurement", "FR-07 Purpose", "Model"], "outputs": "Decisions (C-24) with objectives, constraints, feasibility, uncertainty", "responsibilities": ["model", "constrain", "optimise", "quantify", "refuse"], "constraints": "objective is mandatory and must be ratified, never inferred by the engine; constraints are never dropped to obtain a solution; a forecast without uncertainty is not a forecast" },
+    { "name": "Autonomous Governance Engine", "composition": ["C-16 Policy", "C-24 Decision", "C-13 Action", "audit", "C-17 Context"], "outputs": "Actions, Decisions, escalations, audit records, amendment proposals", "responsibilities": ["monitor", "evaluate", "act", "escalate", "audit", "propose"], "constraints": ["IN-A1 may not amend its own policy envelope (UCI-013)", "IN-A2 may not ratify (GI-1)", "IN-A3 may not certify its own actions (GI-4)", "IN-A4 autonomy resolved per context; unresolved context is a hard stop", "IN-A5 every autonomous action has a registered purpose (UCI-020)", "IN-A6 may not act outside its declared envelope, even beneficially"] }
+  ],
+  "modelAuthorityBoundary": {
+    "model": "owned by the Intelligence or Mathematical universe",
+    "capability": "owned by the composition's authority",
+    "policyEnvelope": "owned by the governed scope's authority",
+    "audit": "owned by the Certification Body / audit function",
+    "consequence": "Four owners. Each accountable for a different artifact. No one party can both operate and govern the same capability. This is separation of powers applied to intelligence, and it is why 'autonomous' and 'ungoverned' are not synonyms in this platform."
+  },
+  "autonomyLevels": [
+    { "level": "advisory",              "mayDo": "propose; act only on human ratification", "requires": "registered purpose" },
+    { "level": "supervised",            "mayDo": "act, with post-hoc review and rollback", "requires": "purpose + review policy" },
+    { "level": "conditional-autonomous","mayDo": "act within a declared envelope", "requires": "purpose + envelope + alignment evidence" },
+    { "level": "autonomous",            "mayDo": "act within envelope, adapt within learning policy", "requires": "all of the above + continuous audit" },
+    { "level": "escalation-only",       "mayDo": "may not act at all; may only escalate", "requires": "purpose" }
+  ],
+  "autonomyIsContextRelative": "A capability's level is resolved per context (IN-P10): autonomous in one jurisdiction, advisory in another. The level is not a property of the agent; it is a property of the agent in a context.",
+  "aiSystemAsComposition": {
+    "statement": "An AI system is a certified composition over these clusters, not a special kind of object.",
+    "composition": ["Knowledge Engine", "Reasoning Engine", "Discovery Engine", "Classification Engine", "Recommendation Engine", "Optimization Engine", "Autonomous Governance", "policyEnvelope", "contextBounds", "audit"],
+    "consequences": [
+      "Everything that applies to compositions applies to agents: certification, supersession, context bounds, cascade on dependency change.",
+      "Multi-agent systems are compositions of compositions — recursion under CM-P7, terminating because the binding graph is acyclic.",
+      "Agent memory is Knowledge (C-22) in the Knowledge Registry — governed and auditable like any other knowledge.",
+      "Agent tools are Capabilities (C-12) bound through CapabilityContracts. There is no separate 'tool' construct and no uncontracted tool access.",
+      "An agent marketplace is a composition over the Commerce universe's capabilities with exchangeable entities whose facet F7 = participation. An economy of agents required NO new construct — it is the USPT (Phase 006) with different facet values."
+    ]
+  },
+  "purposeIsNotDerivable": [
+    "There is no 'optimal' without a stated objective. An optimization engine asked to optimise without a registered objective must refuse — a refusal, not a default to some implicit metric.",
+    "Recommendations are value assertions and are therefore auditable Value relationships (C-20) with a valuer, a purpose, and a context.",
+    "Governance purposes are ratified, never inferred. An autonomous governance engine may not discover its own objective."
+  ],
+  "lifecycle": {
+    "capability": ["Proposed", "Aligned", "Certified", "Operating", "Suspended"],
+    "note": "Alignment evidence is required before autonomy above advisory. Suspension requires recorded cause and blocks actions while the audit trail keeps writing."
+  },
+  "events": ["int.knowledge.asserted", "int.knowledge.refuted", "int.inference.certified", "int.inference.refuted", "int.discovery.resolved", "int.classification.effective", "int.recommendation.withdrawn", "int.optimization.refused-no-objective", "int.optimization.refused-infeasible", "int.decision.recorded", "int.action.executed", "int.action.suspended", "int.autonomy.escalated", "int.alignment.evidence.failed", "int.envelope.amendment.attempted", "int.learning.boundary.breached"],
+  "securityRelevantEvents": ["int.alignment.evidence.failed", "int.envelope.amendment.attempted", "int.learning.boundary.breached"],
+  "apis": ["ASSERT", "INFER", "DISCOVER", "CLASSIFY", "RECOMMEND", "OPTIMIZE", "GOVERN", "REQUEST-AUTONOMY"],
+  "validationRules": ["V-IN-01", "V-IN-02", "V-IN-03", "V-IN-04", "V-IN-05", "V-IN-06", "V-IN-07", "V-IN-08", "V-IN-09", "V-IN-10", "V-IN-11", "V-IN-12"],
+  "evolutionRules": ["E-IN-01", "E-IN-02", "E-IN-03", "E-IN-04", "E-IN-05"],
+  "complianceRules": ["C-IN-01", "C-IN-02", "C-IN-03", "C-IN-04"],
+  "discoveryRules": ["D-IN-01", "D-IN-02", "D-IN-03"],
+  "certificationRules": ["X-IN-01", "X-IN-02", "X-IN-03"],
+  "honestCost": "The charter asks for an Autonomous Governance Engine, and it is provided. But autonomy in this platform is autonomy INSIDE a constitution. The engine may apply ratified policy, escalate where authority is insufficient, and propose amendments. It may not ratify, may not certify its own actions, may not widen its own envelope, and may not infer its own objective. A team that wants an agent which can redefine its own governance has not asked for an agent — it has asked for a constitution with one citizen. This architecture declines to build that, and the refusal is structural rather than policy-based: the required ownership separation does not exist, so the required certification cannot be issued."
+}

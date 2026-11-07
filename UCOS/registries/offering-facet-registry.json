@@ -1,0 +1,91 @@
+{
+  "registry": "OFFERING FACET REGISTRY (USPT)",
+  "registryId": "UCOS-REG-OFR-0000000002",
+  "document": "UCOS-USPT-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 2,
+  "entryModel": "Facet",
+  "constitutionalNote": "Seven facets, one construct (Exchangeable Entity), four nodes. The ten charter nouns are REGISTERED ROLES (classifications) over these facets — not types. This phase introduces ZERO primitives and ZERO constructs.",
+  "construct": {
+    "name": "Exchangeable Entity",
+    "statement": "An entity capable of being the subject of an entitlement, in exchange for consideration, under a governing policy, within a context.",
+    "composedOf": ["C-01 Entity", "C-02 Identity", "C-12 Capability", "C-20 Value", "C-08/C-09 Ordering", "C-16 Policy", "C-17 Context"],
+    "criticalField": "entityRef — the exchangeable entity is ABOUT a thing; it is not the thing. One hotel room: one entity, many exchangeable entities. This prevents the classic collapse in which the product and the thing become indistinguishable and pricing becomes an attribute of the thing."
+  },
+  "facets": [
+    { "id": "F1", "name": "Materiality",   "domain": ["physical", "digital", "informational", "energetic"], "governs": "fulfilment modality, storage, tax treatment" },
+    { "id": "F2", "name": "Temporality",   "domain": ["instantaneous", "durable", "periodic", "windowed", "episodic"], "governs": "entitlement duration, renewal, expiry" },
+    { "id": "F3", "name": "Exclusivity",   "domain": ["rival", "shared", "non-rival", "bounded-rival"], "governs": "availability, concurrency, allocation policy" },
+    { "id": "F4", "name": "Transferability","domain": ["transferable", "leaseable", "non-transferable", "assignable-with-consent"], "governs": "secondary markets, gifting, returns" },
+    { "id": "F5", "name": "Fulfilment",    "domain": ["delivery", "access", "performance", "grant", "instantiation", "participation"], "governs": "capability selection in composition" },
+    { "id": "F6", "name": "Scarcity",      "domain": ["unbounded", "bounded", "unique", "time-bounded"], "governs": "allocation policy, price mechanism" },
+    { "id": "F7", "name": "Entitlement Form","domain": ["ownership", "license", "subscription", "membership", "rental", "booking", "option", "participation"], "governs": "rights granted, obligations, revocation" }
+  ],
+  "charterNounsAsFacetSignatures": {
+    "note": "Typical bindings used as admission rules for registered taxa — not a switch statement. A taxon's admission rule may be any registered Rule over any facets.",
+    "Product":      { "F1": "physical|digital", "F2": "durable",    "F3": "rival",   "F5": "delivery|instantiation", "F7": "ownership" },
+    "Service":      { "F1": "physical|digital", "F2": "instantaneous", "F3": "shared", "F5": "performance", "F7": "performance-itself" },
+    "Subscription": { "F2": "periodic",  "F3": "non-rival|bounded-rival", "F5": "access", "F7": "subscription" },
+    "Event":        { "F2": "windowed",  "F3": "bounded-rival", "F5": "instantiation", "F7": "participation" },
+    "Experience":   { "F2": "episodic",  "F3": "bounded-rival", "F5": "participation", "F7": "participation" },
+    "Asset":        { "F2": "durable",   "F3": "rival",  "F7": "ownership" },
+    "License":      { "F1": "informational", "F2": "durable|bounded", "F3": "non-rival", "F5": "grant", "F7": "license" },
+    "Booking":      { "F2": "windowed",  "F3": "rival-in-window", "F5": "access", "F7": "booking" },
+    "Offer":        { "role": "Proposal — a distinct role, not a facet binding" },
+    "Bundle":       { "composite": true, "structure": "PART-OF composition of >= 2 exchangeable entities + one Offer over the whole" }
+  },
+  "nounsNotInTheCharter": {
+    "note": "The platform's promise tested harder. Twelve further nouns, zero new primitives. The model is not configured to accept these; it is incapable of refusing them, because it defines none of them.",
+    "Rental": "F7=rental AND F2=windowed",
+    "Membership": "F7=membership AND F2=periodic",
+    "Auction": "Offer whose allocationPolicy is ascending-bid",
+    "Reservation": "Booking with contingent confirmation",
+    "Gift card": "Offer with consideration pre-paid by a third party",
+    "Loyalty point": "Value with a registered unit, non-rival, periodic issuance",
+    "NFT / token": "Exchangeable Entity, F6=unique, F1=digital, F4 per policy",
+    "Data product": "Exchangeable Entity, F1=informational, F3=non-rival",
+    "API call quota": "Entitlement, quantitative bounds, F3=bounded-rival",
+    "Airline seat": "Booking; F6=unique-in-window; F5=participation",
+    "SaaS seat": "Subscription; quantitative bounds on a non-rival capability",
+    "Consultancy retainer": "Subscription over a Service-typed exchangeable"
+  },
+  "commerceObjectModel": {
+    "nodes": ["Entity", "Exchangeable Entity", "Offer", "Entitlement"],
+    "edges": [
+      "Entity --described-as--> Exchangeable Entity",
+      "Exchangeable Entity --subject-of--> Offer",
+      "Offer --accepted (an Action, C-13)--> Entitlement",
+      "Exchangeable Entity --PART-OF--> Exchangeable Entity (bundles)"
+    ],
+    "statement": "Four nodes. Every commerce system that has ever existed is a composition over these four plus the Capability Registry."
+  },
+  "offer": {
+    "statement": "A proposal, issued by an authority, to create an entitlement in an Exchangeable Entity in exchange for consideration, valid in a context.",
+    "consideration": "a list of Value (C-20) relationships — never a number, never a field",
+    "consequences": [
+      "A price is context-dependent by construction, because Value is context-conditioned. Dynamic pricing is not a feature; it is the only behaviour the construct supports.",
+      "Multiple consideration forms are native: monetary, barter, attention, data, labour — each a Value with a different unit.",
+      "A price has an issuer and a purpose, so every price is auditable and explainable.",
+      "Currency is a unit, registered in the Unit Registry — never a hard-coded field. No Currency Lock-In is satisfied structurally."
+    ]
+  },
+  "entitlement": {
+    "statement": "The right created when an offer is accepted: a governed, context-bound, time-bounded permission to exercise a capability of an Exchangeable Entity.",
+    "note": "Subscriptions, licenses, memberships, and bookings ARE entitlements. They differ only in bounds and conditions — that is, in facet values, that is, in metadata."
+  },
+  "lifecycles": {
+    "exchangeable": ["Conceived", "Defined", "Classified", "Listed", "Tradable", "Deprecated", "Retired"],
+    "offer": ["Draft", "Eligible", "Published", "Active", "Exhausted | Withdrawn | Expired"],
+    "entitlement": ["Granted", "Active", "Suspended", "Renewed | Expired | Revoked | Transferred | Terminated"],
+    "note": "Superseding an offer does not revoke entitlements already granted. A room does not become a different room because today it is a booking rather than a product."
+  },
+  "events": ["us.exchangeable.classified", "us.exchangeable.reclassified", "us.offer.published", "us.offer.withdrawn", "us.offer.expired", "us.offer.exhausted", "us.offer.accepted", "us.entitlement.granted", "us.entitlement.renewed", "us.entitlement.expired", "us.entitlement.revoked", "us.entitlement.transferred", "us.entitlement.suspended", "us.bundle.member.added", "us.bundle.member.removed", "us.consideration.quoted", "us.consideration.superseded"],
+  "apis": ["DEFINE-EXCHANGEABLE", "CLASSIFY-ROLE", "QUOTE", "ACCEPT", "CHECK-ENTITLEMENT", "COMPOSE-BUNDLE", "TRANSFER-ENTITLEMENT"],
+  "validationRules": ["V-US-01", "V-US-02", "V-US-03", "V-US-04", "V-US-05", "V-US-06", "V-US-07", "V-US-08", "V-US-09"],
+  "evolutionRules": ["E-US-01", "E-US-02", "E-US-03", "E-US-04", "E-US-05"],
+  "complianceRules": ["C-US-01", "C-US-02", "C-US-03", "C-US-04"],
+  "discoveryRules": ["D-US-01", "D-US-02", "D-US-03", "D-US-04"],
+  "certificationRules": ["X-US-01", "X-US-02", "X-US-03", "X-US-04"],
+  "cost": "The platform has no opinion about commerce. It will not say what a product should cost, that a subscription must renew monthly, or that a bundle should be cheaper than its parts. Every such rule is a registered Policy owned by a commerce authority. No Industry Lock-In is possible precisely because no industry is preferred — not even the one that built the platform."
+}

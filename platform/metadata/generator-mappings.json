@@ -1,0 +1,438 @@
+{
+ "$comment": "Declared transformations for the registered generators (Phase 009 §5: typeMapping, relationshipMapping, constraintMapping, cardinalityMapping, lifecycleMapping). Keys are registered constructs; values are target-space vocabulary. A construct absent from a mapping is out of scope for that target only where listed in 'outOfScope' with a reason (V-GN-02). Variants are registered classifications of each target space (GN-P8). Every mapping is total over the seven primitives and thirty-one concepts (V-GN-02).",
+ "generators": {
+  "Database Schema": {
+   "version": "1.0.0",
+   "variants": [
+    "sqlite",
+    "postgresql"
+   ],
+   "typeMapping": {
+    "sqlite": {
+     "C-01": "TEXT",
+     "C-02": "TEXT",
+     "C-04": "TEXT",
+     "C-05": "TEXT",
+     "C-06": "TEXT",
+     "C-07": "TEXT",
+     "C-08": "TEXT",
+     "C-09": "TEXT",
+     "C-10": "TEXT",
+     "C-11": "TEXT",
+     "C-12": "TEXT",
+     "C-13": "TEXT",
+     "C-14": "TEXT",
+     "C-15": "TEXT",
+     "C-16": "TEXT",
+     "C-17": "TEXT",
+     "C-18": "TEXT",
+     "C-19": "TEXT",
+     "C-20": "TEXT",
+     "C-21": "REAL",
+     "C-22": "TEXT",
+     "C-23": "TEXT",
+     "C-24": "TEXT",
+     "C-25": "TEXT",
+     "C-26": "REAL",
+     "C-27": "TEXT",
+     "C-28": "TEXT",
+     "C-29": "TEXT",
+     "C-30": "TEXT",
+     "C-31": "TEXT",
+     "FR-05": "TEXT",
+     "FR-01": "TEXT",
+     "FR-02": "TEXT",
+     "FR-03": "TEXT",
+     "FR-04": "TEXT",
+     "FR-06": "TEXT",
+     "FR-07": "TEXT",
+     "C-03": "TEXT"
+    },
+    "postgresql": {
+     "C-01": "text",
+     "C-02": "text",
+     "C-04": "text",
+     "C-05": "text",
+     "C-06": "jsonb",
+     "C-07": "jsonb",
+     "C-08": "timestamptz",
+     "C-09": "jsonb",
+     "C-10": "text",
+     "C-11": "text",
+     "C-12": "text",
+     "C-13": "jsonb",
+     "C-14": "text",
+     "C-15": "text",
+     "C-16": "text",
+     "C-17": "jsonb",
+     "C-18": "text",
+     "C-19": "jsonb",
+     "C-20": "jsonb",
+     "C-21": "numeric",
+     "C-22": "text",
+     "C-23": "text",
+     "C-24": "jsonb",
+     "C-25": "jsonb",
+     "C-26": "numeric",
+     "C-27": "jsonb",
+     "C-28": "jsonb",
+     "C-29": "text",
+     "C-30": "jsonb",
+     "C-31": "jsonb",
+     "FR-05": "text",
+     "FR-01": "text",
+     "FR-02": "text",
+     "FR-03": "text",
+     "FR-04": "text",
+     "FR-06": "text",
+     "FR-07": "text",
+     "C-03": "text"
+    }
+   },
+   "relationshipMapping": {
+    "one": "foreign-key column referencing the target identity",
+    "many": "association table (source_id, target_id, relationship_type)"
+   },
+   "constraintMapping": {
+    "lifecycle": "CHECK (status IN registered states)",
+    "identity": "PRIMARY KEY",
+    "required": "NOT NULL",
+    "value": "Value (C-20) is never a column: rendered as a valuation association table"
+   },
+   "cardinalityMapping": {
+    "one": "column",
+    "many": "child table keyed by owner identity"
+   },
+   "lifecycleMapping": {
+    "state-column": "status column constrained to the registered lifecycle's states, default the initial state"
+   },
+   "relationshipTypedConstructs": [
+    "C-04",
+    "C-10",
+    "C-20",
+    "C-16",
+    "C-07"
+   ],
+   "outOfScope": {}
+  },
+  "API": {
+   "version": "1.0.0",
+   "variants": [
+    "openapi-3.1",
+    "json-rpc-2.0"
+   ],
+   "typeMapping": {
+    "openapi-3.1": {
+     "C-01": {
+      "type": "string",
+      "format": "ucos-id"
+     },
+     "C-02": {
+      "type": "string",
+      "format": "ucos-id"
+     },
+     "C-04": {
+      "type": "object"
+     },
+     "C-06": {
+      "type": "object"
+     },
+     "C-07": {
+      "type": "object"
+     },
+     "C-08": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "C-09": {
+      "type": "object"
+     },
+     "C-10": {
+      "type": "object"
+     },
+     "C-13": {
+      "type": "object"
+     },
+     "C-16": {
+      "type": "object"
+     },
+     "C-17": {
+      "type": "object"
+     },
+     "C-19": {
+      "type": "object"
+     },
+     "C-20": {
+      "type": "object",
+      "required": [
+       "magnitude",
+       "unit",
+       "valuer",
+       "purpose"
+      ]
+     },
+     "C-21": {
+      "type": "object",
+      "required": [
+       "magnitude",
+       "unit"
+      ]
+     },
+     "C-22": {
+      "type": "object"
+     },
+     "C-23": {
+      "type": "string"
+     },
+     "C-24": {
+      "type": "object"
+     },
+     "C-26": {
+      "type": "object"
+     },
+     "C-30": {
+      "type": "object"
+     },
+     "C-31": {
+      "type": "object"
+     },
+     "FR-01": {
+      "type": "string"
+     },
+     "FR-02": {
+      "type": "string"
+     },
+     "FR-03": {
+      "type": "string"
+     },
+     "FR-04": {
+      "type": "string"
+     },
+     "FR-05": {
+      "type": "string"
+     },
+     "FR-06": {
+      "type": "string"
+     },
+     "FR-07": {
+      "type": "string"
+     },
+     "C-03": {
+      "type": "object"
+     },
+     "C-05": {
+      "type": "string"
+     },
+     "C-11": {
+      "type": "string"
+     },
+     "C-12": {
+      "type": "string"
+     },
+     "C-14": {
+      "type": "string"
+     },
+     "C-15": {
+      "type": "string"
+     },
+     "C-18": {
+      "type": "string"
+     },
+     "C-25": {
+      "type": "object"
+     },
+     "C-27": {
+      "type": "object"
+     },
+     "C-28": {
+      "type": "object"
+     },
+     "C-29": {
+      "type": "string"
+     }
+    },
+    "json-rpc-2.0": {
+     "*": "params object typed by the registered construct"
+    }
+   },
+   "relationshipMapping": {
+    "*": "reference by canonical identity"
+   },
+   "constraintMapping": {
+    "policy": "x-ucos-policy-action on every operation (evaluated before execution, UCL-G01)",
+    "obligations": "x-ucos-obligations enforced, never advisory"
+   },
+   "cardinalityMapping": {
+    "one": "object",
+    "many": "array"
+   },
+   "lifecycleMapping": {
+    "*": "x-ucos-lifecycle on schemas whose model declares one"
+   },
+   "outOfScope": {}
+  },
+  "Event": {
+   "version": "1.0.0",
+   "variants": [
+    "json-schema-2020-12",
+    "asyncapi-3.0"
+   ],
+   "typeMapping": {
+    "*": {
+     "payload": "object typed by registered constructs"
+    }
+   },
+   "relationshipMapping": {
+    "causation": "causationId",
+    "correlation": "correlationId"
+   },
+   "constraintMapping": {
+    "temporal": "occurredAt required (UCI-007)",
+    "reality": "reality required; canonical only when 'actual' (Phase 007 §5.9)",
+    "actor": "actor and authority required (UCI-006)"
+   },
+   "cardinalityMapping": {
+    "*": "one event per transition"
+   },
+   "lifecycleMapping": {
+    "*": "event types grouped by the lifecycle transitions that announce them"
+   },
+   "outOfScope": {}
+  },
+  "UI": {
+   "version": "1.0.0",
+   "variants": [
+    "ucos-ui-definition"
+   ],
+   "typeMapping": {
+    "ucos-ui-definition": {
+     "C-21": "measurement-input",
+     "C-20": "valuation-panel",
+     "C-08": "datetime-input",
+     "C-09": "position-input",
+     "C-01": "reference-picker",
+     "C-02": "reference-picker",
+     "C-04": "relationship-list",
+     "C-10": "classification-chips",
+     "C-18": "lifecycle-badge",
+     "C-22": "text-area",
+     "C-23": "localized-text",
+     "C-16": "policy-summary",
+     "C-07": "event-timeline",
+     "*": "text-input"
+    }
+   },
+   "relationshipMapping": {
+    "*": "navigation link to the related artifact"
+   },
+   "constraintMapping": {
+    "policy": "unauthorised affordances are not generated (GN-S-04)",
+    "reality": "non-actual reality rendered visibly (GN-S-06)"
+   },
+   "cardinalityMapping": {
+    "one": "field",
+    "many": "list"
+   },
+   "lifecycleMapping": {
+    "*": "state badge with admissible transitions as actions"
+   },
+   "outOfScope": {}
+  },
+  "Documentation": {
+   "version": "1.0.0",
+   "variants": [
+    "markdown",
+    "html"
+   ],
+   "typeMapping": {
+    "*": "section quoting the canonical statement verbatim with its citation"
+   },
+   "relationshipMapping": {
+    "*": "cross-reference by canonical identity"
+   },
+   "constraintMapping": {
+    "definitions": "never paraphrased (UCI-003)",
+    "supersession": "superseded content marked"
+   },
+   "cardinalityMapping": {
+    "*": "one section per artifact"
+   },
+   "lifecycleMapping": {
+    "*": "status and version stated per artifact"
+   },
+   "outOfScope": {}
+  },
+  "Policy": {
+   "version": "1.0.0",
+   "variants": [
+    "ucos-policy-bundle",
+    "policy-text"
+   ],
+   "typeMapping": {
+    "*": "rule with modality, antecedent expression, action and obligations"
+   },
+   "relationshipMapping": {
+    "attachment": "policies attached through classification listed per taxon"
+   },
+   "constraintMapping": {
+    "precedence": "inputs (issuer authority rank, scope specificity, effective-from recency) exported; never flattened to an integer",
+    "context": "context conditions retained as expressions"
+   },
+   "cardinalityMapping": {
+    "*": "one bundle per subject"
+   },
+   "lifecycleMapping": {
+    "*": "effectiveFrom / effectiveTo retained"
+   },
+   "outOfScope": {}
+  },
+  "Workflow": {
+   "version": "1.0.0",
+   "variants": [
+    "state-language-json"
+   ],
+   "typeMapping": {
+    "*": "state per capability binding or lifecycle state"
+   },
+   "relationshipMapping": {
+    "binding": "transition from producer state to consumer state"
+   },
+   "constraintMapping": {
+    "guard": "transition guards remain registered rule expressions",
+    "envelope": "strictest-of-parts policy list attached to the machine"
+   },
+   "cardinalityMapping": {
+    "*": "one machine per composition or lifecycle"
+   },
+   "lifecycleMapping": {
+    "*": "states and guarded transitions of each registered lifecycle"
+   },
+   "outOfScope": {}
+  },
+  "Knowledge Graph": {
+   "version": "1.0.0",
+   "variants": [
+    "json-ld",
+    "n-triples",
+    "graphml"
+   ],
+   "typeMapping": {
+    "*": "node per registry entry; edge per registered relationship instance"
+   },
+   "relationshipMapping": {
+    "*": "typed edge using the registered relationship type"
+   },
+   "constraintMapping": {
+    "classification": "as edges, never as node properties",
+    "supersession": "superseded nodes flagged with successor edges"
+   },
+   "cardinalityMapping": {
+    "*": "multigraph"
+   },
+   "lifecycleMapping": {
+    "*": "status as node property"
+   },
+   "outOfScope": {}
+  }
+ }
+}

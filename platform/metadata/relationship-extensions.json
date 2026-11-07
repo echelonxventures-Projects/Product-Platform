@@ -1,0 +1,25 @@
+{
+  "$comment": "Extensions to the base relationship vocabulary (registries/registry-registry.json#baseRelationshipVocabulary). Phase 002 §6: every extension is registered and cites the base relationship it specialises. Inverses are readings, never stored (R-05). acyclic defaults to transitive when omitted.",
+  "baseSource": "registries/registry-registry.json#baseRelationshipVocabulary",
+  "extensions": [
+    { "type": "REGISTERS", "inverse": "REGISTERED-IN", "transitive": false, "specialises": "PART-OF", "notes": "Phase 001 §9: MFR registers FoundationArtifact" },
+    { "type": "NARROWER-THAN", "inverse": "BROADER-THAN", "transitive": true, "specialises": "IS-A", "notes": "Phase 005 §3.2 taxon refinement; multiple parents permitted, cycles prohibited" },
+    { "type": "RELATED-TO", "inverse": "RELATED-TO", "transitive": false, "acyclic": false, "specialises": "REFERENCES", "notes": "Phase 005 §3.2 associative taxon edge" },
+    { "type": "INSTANCE-OF", "inverse": "HAS-INSTANCE", "transitive": false, "specialises": "CLASSIFIED-AS", "notes": "Phase 005 §3.2" },
+    { "type": "MEMBER-OF", "inverse": "HAS-MEMBER", "transitive": false, "acyclic": true, "specialises": "PART-OF", "notes": "taxon within scheme; attribute within model; law within universe" },
+    { "type": "ABOUT", "inverse": "DESCRIBED-AS", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 006 §5.1 exchangeable entity is about an entity" },
+    { "type": "OFFERS", "inverse": "SUBJECT-OF", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 006 §5.1 an offer's subject" },
+    { "type": "GRANTED-UNDER", "inverse": "GRANTS", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 006 §4.6 entitlement created by acceptance of an offer" },
+    { "type": "HELD-BY", "inverse": "HOLDS", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 006 §4.6 entitlement holder" },
+    { "type": "RENDERS", "inverse": "RENDERED-AS", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 009 §5.2 generated artifact → canonical metadata source (derivative, never canonical)" },
+    { "type": "DISJOINT-WITH", "inverse": "DISJOINT-WITH", "transitive": false, "acyclic": false, "specialises": "REFERENCES", "notes": "ontological disjointness asserted by an invariant of the form 'X is not Y'; enforced by the Reasoning Engine" },
+    { "type": "ESCALATED-TO", "inverse": "RECEIVED-ESCALATION", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 010 §5.7 escalation to the authority owning the scope" },
+    { "type": "ALLOCATES", "inverse": "ALLOCATED-BY", "transitive": false, "specialises": "CONSUMES", "notes": "Phase 003 §16 allocation of a resource" },
+    { "type": "BINDS", "inverse": "BOUND-BY", "transitive": false, "specialises": "CONSUMES", "notes": "Phase 008 §5.1 composition binds capability through a contract" },
+    { "type": "PARTY-TO", "inverse": "HAS-PARTY", "transitive": false, "specialises": "REFERENCES", "notes": "C-30 contract parties" },
+    { "type": "RATES", "inverse": "RATED-BY", "transitive": false, "specialises": "MEASURES", "notes": "reputation rating of a participant" },
+    { "type": "SETTLES", "inverse": "SETTLED-BY", "transitive": false, "specialises": "REFERENCES", "notes": "settlement posting against an entitlement or offer" },
+    { "type": "DISPUTES", "inverse": "DISPUTED-BY", "transitive": false, "specialises": "REFERENCES", "notes": "dispute over a governing artifact" },
+    { "type": "INFERRED-FROM", "inverse": "SUPPORTS-INFERENCE", "transitive": false, "specialises": "REFERENCES", "notes": "Phase 010 §5.2 inference premises" }
+  ]
+}

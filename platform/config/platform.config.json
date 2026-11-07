@@ -1,0 +1,53 @@
+{
+  "platform": {
+    "name": "UCOS Ω∞",
+    "version": "1.0.0",
+    "defaultLocale": "en"
+  },
+  "paths": {
+    "constitutionRoot": "../UCOS",
+    "seedRegistries": "../UCOS/registries",
+    "masterIndex": "../UCOS/00-Master-Index.md",
+    "platformMetadata": "./metadata",
+    "database": "./var/ucos.db",
+    "credentials": "./var/credentials.json",
+    "generatedOutput": "./generated",
+    "uiRoot": "./src/ui"
+  },
+  "corpus": [
+    { "id": "A1", "path": "../Architecture1.txt", "title": "Architecture1 — UPIP Ω∞ and constitutional universes" },
+    { "id": "A2", "path": "../Architecture2.txt", "title": "Architecture2 — UMQSOCR Ω∞ constitutional documents" },
+    { "id": "N5", "path": "../new 5.txt", "title": "Architectural gap note — mathematics universe and Parts 81–90" },
+    { "id": "N6", "path": "../new 6.txt", "title": "Constitutional laws versus invariants" },
+    { "id": "UCOS", "path": "../UCOS", "title": "UCOS constitutional phase documents", "kind": "directory", "include": "\\.md$" }
+  ],
+  "corpusInterpretation": "./config/corpus-interpretation.json",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8787,
+    "maxBodyBytes": 4194304,
+    "eventStreamHeartbeatMs": 15000
+  },
+  "identity": {
+    "prefix": "UCOS",
+    "sequenceWidth": 10,
+    "separator": "-"
+  },
+  "security": {
+    "tokenBytes": 32,
+    "tokenHashAlgorithm": "sha256",
+    "contentHashAlgorithm": "sha256",
+    "tokenEnvPrefix": "UCOS_TOKEN_"
+  },
+  "discovery": {
+    "defaultLimit": 25,
+    "maxLimit": 200
+  },
+  "generation": {
+    "regenerationPolicy": "automatic"
+  },
+  "validation": {
+    "contextMergePropertyTrials": 200,
+    "randomSeed": 1618033
+  }
+}

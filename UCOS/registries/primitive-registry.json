@@ -1,0 +1,58 @@
+{
+  "registry": "PRIMITIVE REGISTRY",
+  "registryId": "UCOS-REG-PRM-0000000001",
+  "document": "UCOS-ONT-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "sizeNote": "This registry holds exactly SEVEN entries. If it ever holds eight, either a genuine irreducible was found (Constitutional Assembly ratification required) or a duplication has occurred (UCI-017 violation). The smallness of this file is a quality signal, not a limitation.",
+  "tier": 0,
+  "entryModel": "Primitive",
+  "governance": {
+    "canonicalOwner": "Foundation Council",
+    "ratifyingBody": "Constitutional Assembly",
+    "certifyingBody": "Certification Body"
+  },
+  "primitives": [
+    { "id": "UCOS-FR-PRIM-0000000001", "alias": "FR-01", "name": "Existence",      "statement": "That something is.",                                        "minimalStatement": "That something is." },
+    { "id": "UCOS-FR-PRIM-0000000002", "alias": "FR-02", "name": "Distinction",    "statement": "That something can be told apart from something else.",      "minimalStatement": "That something can be told apart." },
+    { "id": "UCOS-FR-PRIM-0000000003", "alias": "FR-03", "name": "Relation",       "statement": "That existents can be connected.",                           "minimalStatement": "That existents can be connected." },
+    { "id": "UCOS-FR-PRIM-0000000004", "alias": "FR-04", "name": "Change",         "statement": "That existence and relation can differ across an ordering.", "minimalStatement": "That things can differ across an ordering." },
+    { "id": "UCOS-FR-PRIM-0000000005", "alias": "FR-05", "name": "Constraint",     "statement": "That not all possibilities obtain.",                         "minimalStatement": "That not everything is possible." },
+    { "id": "UCOS-FR-PRIM-0000000006", "alias": "FR-06", "name": "Apprehension",   "statement": "That a system can represent and respond to existents.",      "minimalStatement": "That a system can represent and respond to existents." },
+    { "id": "UCOS-FR-PRIM-0000000007", "alias": "FR-07", "name": "Purpose",        "statement": "That a system is directed toward preferred states.",         "minimalStatement": "That a system is directed toward preferred states." }
+  ],
+  "rejectedCandidates": [
+    { "candidate": "Identity",       "rejection": "A distinction preserved across change. Derivable from FR-02 + FR-04." },
+    { "candidate": "Reality",        "rejection": "A distinction about apprehension (model-independence). Derivable from FR-02 + FR-06." },
+    { "candidate": "Space",          "rejection": "Ordering of co-existent distinction. Derivable from FR-02 + FR-04." },
+    { "candidate": "Time",          "rejection": "Ordering induced by change. Derivable from FR-04. Unified with Space under ORDERING." },
+    { "candidate": "State",         "rejection": "A cross-section of change. Derivable from C-05 + FR-04." },
+    { "candidate": "Event",         "rejection": "A transition between states. Derivable from FR-04 + C-06 + FR-06." },
+    { "candidate": "Relationship",  "rejection": "A reified, identifiable relation. Derivable from FR-03 + C-02." },
+    { "candidate": "Knowledge",     "rejection": "Apprehension plus justification plus context. Derivable from FR-06 + C-04 + C-17." },
+    { "candidate": "Meaning",       "rejection": "Representation-to-referent relation in a context. Derivable from FR-06 + C-04 + C-17." },
+    { "candidate": "Policy / Rule", "rejection": "Constraint plus conditional structure. Derivable from FR-05 + FR-04 (+ FR-07, C-17)." },
+    { "candidate": "Decision",      "rejection": "Selection among alternatives under purpose. Derivable from FR-07 + FR-05 + C-22." },
+    { "candidate": "Intelligence",  "rejection": "Purposeful application of knowledge to action. Derivable from C-22 + FR-07 + C-13." },
+    { "candidate": "Trust",         "rejection": "Constraint (expectation) plus evidence. Derivable from FR-05 + C-22." },
+    { "candidate": "Certification", "rejection": "Trust formalised as a registered verifiable claim. Derivable from C-26 + C-02 + C-29." },
+    { "candidate": "Evolution",     "rejection": "Change applied to the descriptive layer. Derivable from FR-04 + C-02 + C-04." }
+  ],
+  "admissibilityCriterion": "A concept is primitive iff removing it reduces expressive power (some true statement becomes inexpressible) AND it cannot be defined in terms of the remaining primitives without circularity.",
+  "metaOntology": {
+    "metaConcepts": ["Concept", "Classification", "Relationship", "Constraint", "Context", "Meaning", "Authority", "Lifecycle", "Evolution"],
+    "metaPrinciple": [
+      "If it exists, it must be describable.",
+      "If it is describable, it must be registrable.",
+      "If it is registrable, it must be discoverable.",
+      "If it is discoverable, it must be composable.",
+      "If it is composable, it must be governable.",
+      "If it is governable, it must be certifiable."
+    ],
+    "note": "This chain is the derivation of the phase order: describable -> ontology (002); registrable -> registry (004); discoverable -> discovery (004/010); composable -> composition (008); governable -> governance (002/004); certifiable -> certification (all phases)."
+  },
+  "validationRules": ["V-ON-01", "V-ON-02", "V-ON-03", "V-ON-04", "V-ON-05", "V-ON-06"],
+  "complianceRules": ["C-ON-01", "C-ON-02", "C-ON-03"],
+  "discoveryRules": ["D-ON-01", "D-ON-02", "D-ON-03"],
+  "certificationRules": ["X-ON-01", "X-ON-02", "X-ON-03"]
+}

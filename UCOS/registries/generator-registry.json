@@ -1,0 +1,79 @@
+{
+  "registry": "GENERATOR REGISTRY",
+  "registryId": "UCOS-REG-GEN-0000000001",
+  "document": "UCOS-GEN-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 3,
+  "entryModel": "Generator",
+  "constitutionalNote": "Nobody writes the schema. The schema is a derivative, and derivatives are generated. A generated artifact holds no truth, defines no identity, and may not be edited by hand (UCL-C04, UCL-C05).",
+  "truthAsymmetry": {
+    "metadata": "canonical — registered, owned, versioned, certified, audited",
+    "artifact": "derivative — material, disposable, reproducible",
+    "consequence": "There is no such thing as 'the schema'. There are renderings, one per target space, all downstream of the same metadata."
+  },
+  "lockInArgument": "Lock-in is not a contract problem; it is a canonicity problem. A platform is locked into a database when the database holds the truth, because then the truth speaks that database's dialect. Here the truth lives in metadata; the database holds a derivative. Replacing the database is replacing a generator and regenerating. The same applies to API styles, message brokers, UI frameworks, cloud providers, and languages — each is a target space with a generator; none is canonical.",
+  "principles": [
+    "GN-P1 every artifact is generated from registered, certified metadata",
+    "GN-P2 every generator is itself a registered, certified, replaceable artifact",
+    "GN-P3 generators preserve the six structural properties or are refused certification",
+    "GN-P4 reproducibility: same metadata + same generator version => identical artifact, bit-for-bit",
+    "GN-P5 hand-editing a generated artifact is a defect, detectable by the integrity checker",
+    "GN-P6 generation is policy-governed: who may request, for which targets, under which context",
+    "GN-P7 every generated artifact carries provenance: source metadata, generator identity, generator version, content attestation",
+    "GN-P8 multiple generators may target the same space; the choice is a deployment decision, never a property of the metadata"
+  ],
+  "preservationRequirements": [
+    { "property": "Identity",      "failure": "orphans; unauditable artifacts" },
+    { "property": "Type",          "failure": "silent type coercion; semantic drift" },
+    { "property": "Constraint",    "failure": "rules exist in metadata but not in the artifact" },
+    { "property": "Relationship",  "failure": "broken referential integrity" },
+    { "property": "Cardinality",   "failure": "data model drift from intent" },
+    { "property": "Lifecycle",     "failure": "runtime behaviour inconsistent with metadata" },
+    { "standard": "A generator preserving five of six is not mostly correct; it is uncertifiable, because the generated system would contradict its own description." }
+  ],
+  "generators": [
+    { "id": "UCOS-GEN-TRF-0000000001", "targetSpace": "Database Schema",  "reads": ["C-01 Entity", "C-05 Attribute", "C-04 Relationship", "C-14 Constraint", "C-18 Lifecycle", "C-11 Taxonomy"], "writes": "storage schemas in the registered dialect of a registered engine", "notes": "Storage engine is a generator parameter. The ontology has never heard of SQL, and therefore SQL cannot constrain what the platform may express." },
+    { "id": "UCOS-GEN-TRF-0000000002", "targetSpace": "API",              "reads": ["C-12 Capability", "CapabilityContract", "construct definitions", "C-07 Event", "C-16 Policy"], "writes": "interface contracts in the registered style of a registered protocol", "notes": "Protocol style (RPC / resource / graph / message) is a generator variant. The capability contract is canonical; the wire form is not." },
+    { "id": "UCOS-GEN-TRF-0000000003", "targetSpace": "Event",            "reads": ["C-07 Event", "C-18 Lifecycle", "C-13 Action", "context dimensions"], "writes": "event schemas, topic registrations, ordering guarantees", "notes": "Temporal context is a required field (UCI-007) and a simulated event is structurally distinguishable from a real one — the generator refuses to omit the Reality dimension." },
+    { "id": "UCOS-GEN-TRF-0000000004", "targetSpace": "UI",               "reads": ["constructs", "C-05 Attribute", "C-11 Taxonomy", "C-12 Capability", "context (esp. Linguistic)"], "writes": "interface definitions in the registered framework's vocabulary", "notes": "An unauthorised affordance is not rendered hidden — it is not generated at all. Hidden-but-present is the classic UI security defect. Locale is an input; a new language adds labels, not code." },
+    { "id": "UCOS-GEN-TRF-0000000005", "targetSpace": "Documentation",    "reads": ["every registry", "the Canonical Artifact Template"], "writes": "constitutional documents, API references, data dictionaries, compliance packs, audit packs", "notes": "Definitions are quoted verbatim — the generator may never paraphrase, because paraphrase is duplication (UCI-003). This document itself is a candidate for regeneration." },
+    { "id": "UCOS-GEN-TRF-0000000006", "targetSpace": "Policy",           "reads": ["C-16 Policy", "C-15 Rule", "C-14 Constraint", "C-17 Context", "governance bodies", "precedence scopes"], "writes": "enforceable policy bundles in the registered enforcement engine's form", "notes": "Precedence remains computed at evaluation, never flattened into an integer. Context conditions remain first-class, never compiled away." },
+    { "id": "UCOS-GEN-TRF-0000000007", "targetSpace": "Workflow",         "reads": ["Composition", "C-18 Lifecycle", "C-13 Action", "capability bindings", "failure policies"], "writes": "executable workflow definitions for the registered runtime", "notes": "Transition guards remain rule-evaluated, not inlined. Compensating actions are generated alongside their counterparts. The strictest-of-parts envelope (CM-P4) is enforced in the generated workflow." },
+    { "id": "UCOS-GEN-TRF-0000000008", "targetSpace": "Knowledge Graph",  "reads": ["all registries", "relationship vocabulary", "C-11 Taxonomy", "C-10 Classification"], "writes": "graph projections: nodes, typed edges, ontological schemas", "notes": "Every node is a registry entry; only registered relationship types appear; classification projects as edges, never as node properties. The knowledge graph cannot drift from the registries because it is generated from them." }
+  ],
+  "generatorDAG": [
+    "API Generator -> UI Generator (needs the generated contract surface)",
+    "Policy Generator -> Workflow Generator (needs enforceable rules)",
+    "Database Schema Generator -> Event Generator (needs projection shapes)",
+    "All -> Documentation Generator (needs every artifact's provenance)",
+    "Circular generator dependency is a cycle and is refused (UCI-014)."
+  ],
+  "pipeline": ["REQUEST", "AUTHORIZATION (policy in context)", "METADATA RESOLUTION (honouring supersession and scope)", "TRANSFORMATION", "PRESERVATION CHECK (six properties)", "ATTESTATION", "PUBLISH (marked DERIVATIVE)", "STALE PROPAGATION"],
+  "stalePropagation": "When source metadata changes, the artifact becomes STALE and regeneration is requested by policy — automatic or approval-gated. Without this, metadata and artifacts drift apart within a week. A deployment that refuses to regenerate is a visible, governed decision rather than an invisible decay.",
+  "lifecycle": {
+    "generator": ["PROPOSED", "CERTIFIED", "COMMISSIONED", "SUPERSEDED"],
+    "artifact": ["GENERATED", "DEPLOYED", "STALE", "REGENERATED", "RETIRED"],
+    "note": "Certification requires a preservation proof and a test vector suite: known metadata => expected artifact. Retired artifacts leave deployment but their provenance records are permanent (UCI-011)."
+  },
+  "events": ["gen.request.authorized", "gen.request.refused", "gen.artifact.generated", "gen.artifact.redeployed", "gen.artifact.stale", "gen.artifact.regenerated", "gen.artifact.tampered", "gen.generator.certified", "gen.generator.superseded", "gen.preservation.failed"],
+  "apis": ["GENERATE", "REGENERATE", "VERIFY", "REGISTER-GENERATOR", "LIST-TARGETS"],
+  "validationRules": ["V-GN-01", "V-GN-02", "V-GN-03", "V-GN-04", "V-GN-05", "V-GN-06", "V-GN-07"],
+  "evolutionRules": ["E-GN-01", "E-GN-02", "E-GN-03", "E-GN-04"],
+  "complianceRules": ["C-GN-01", "C-GN-02", "C-GN-03", "C-GN-04"],
+  "discoveryRules": ["D-GN-01", "D-GN-02", "D-GN-03"],
+  "certificationRules": ["X-GN-01", "X-GN-02", "X-GN-03"],
+  "security": [
+    "GN-S-01 a generator may only read registries within its certified scope",
+    "GN-S-02 attestations are issued by the Certification pipeline, not by the generator — it cannot forge its own provenance (GI-1, GI-4)",
+    "GN-S-03 secrets come from the deployment contract, never embedded in metadata or generated artifacts",
+    "GN-S-04 unauthorised affordances are absent at generation, not hidden at runtime",
+    "GN-S-05 integrity checking detects hand-edits; a hand-edited artifact is non-compliant",
+    "GN-S-06 a simulated reality context propagates visibly into every generated artifact"
+  ],
+  "answeringTheObjection": [
+    "It is often false. Hand-built schemas drift from intent precisely because nothing forces them to follow it. A generated schema is guaranteed to match its metadata; a hand-built one is guaranteed nothing.",
+    "Where it is true, the deficiency is in the metadata, not in the generation. Fixing the metadata improves every artifact at once — schema, API, UI, docs, policies, graph — which is strictly better than fixing one artifact and leaving five to drift.",
+    "Nothing here forbids hand-crafted artifacts. It forbids hand-edited generated artifacts. A bespoke artifact is a new registered capability or a new generator, admitted through the constitution with a preservation proof. The constraint is not 'no craft'; it is 'no unregistered truth'."
+  ]
+}

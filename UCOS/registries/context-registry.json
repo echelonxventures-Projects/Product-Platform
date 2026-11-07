@@ -1,0 +1,131 @@
+{
+  "registry": "CONTEXT REGISTRY (dimensions + schemes)",
+  "registryId": "UCOS-REG-CXT-0000000001",
+  "document": "UCOS-CTX-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 2,
+  "entryModel": "ContextDimension",
+  "constitutionalNote": "This registry holds dimension and scheme definitions. It does NOT hold contexts: contexts are ephemeral and resolved (CX-P7). The engine contains none of the dimensions below — they are registered, so a tenth dimension is a registration, not a release.",
+  "algebraicRequirements": {
+    "properties": ["deterministic", "commutative", "associative"],
+    "why": "Deterministic: behaviour is reproducible and audit is possible. Commutative: results do not depend on middleware execution order. Associative: partial pre-merges do not change results.",
+    "consequence": "Context merge is a commutative semilattice — which is why the engine can be distributed and still auditable.",
+    "unresolvedIsAHardStop": "An UNRESOLVED conflict is a refusal, never a default. An evaluation that silently picks a winner is one whose audit trail cannot be reproduced.",
+    "proofIsRequired": "X-CX-03 — the engine is certified against these algebraic properties by proof, not review."
+  },
+  "precedence": {
+    "rule": ["authorityRank", "specificity", "recency"],
+    "computedNotStored": "Precedence is computed at evaluation time (CX-P6). Storing a precedence number invites drift between the stored order and the constitutional order."
+  },
+  "dimensions": [
+    {
+      "id": "UCOS-CTX-DIM-0000000001", "name": "Identity", "owningUniverse": "Identity Universe",
+      "statement": "Who or what is acting, and what are they acting as.",
+      "holds": ["principal identity", "authentication strength", "asserted roles", "delegation chain", "acting-on-behalf-of", "session scope"],
+      "conditions": ["authorisation", "personalisation", "accountability", "entitlement scope"],
+      "note": "The acting principal and the beneficial principal may differ. Both are carried, separately, each accountable. Collapsing them into 'the user' is how delegation-based systems lose auditability."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000002", "name": "Temporal", "owningUniverse": "Temporal Universe",
+      "statement": "When the evaluation occurs, and the temporal validity of everything in scope.",
+      "holds": ["evaluation instant", "timezone", "calendar", "locale-of-time", "validity windows", "business-calendar", "recurrence position"],
+      "conditions": ["offer validity", "entitlement bounds", "policy effectiveness windows", "tax periods", "seasonality"],
+      "invariants": ["present (UCI-007)", "denominated in a registered calendar", "intervals half-open by declared convention (V-TM-02)"]
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000003", "name": "Spatial", "owningUniverse": "Spatial Universe",
+      "statement": "Where the evaluation is situated, physically and jurisdictionally.",
+      "holds": ["position", "region membership", "jurisdiction", "delivery reach", "origin", "transit path"],
+      "conditions": ["delivery eligibility", "jurisdiction", "tax situs", "licensing reach", "currency applicability"],
+      "note": "Jurisdiction is derived from geometry PLUS temporal validity — borders change, so jurisdiction is a contextual computation, never a stored attribute. This is where No Geography Lock-In is actually enforced."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000004", "name": "Regulatory", "owningUniverse": "Compliance Universe",
+      "statement": "Which obligations and permissions apply in this situation.",
+      "holds": ["applicable regimes", "required consents", "mandatory disclosures", "prohibited actions", "licensing prerequisites", "data-residency duties"],
+      "conditions": ["admissibility of an action", "required evidence", "prohibited terms", "residency of processing"],
+      "note": "Attached through classification (Phase 005 section 8). An entity classified under a regulated taxon receives the regime from the taxon's policies. Regulation arrives with the industry taxonomy, never as platform code."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000005", "name": "Security", "owningUniverse": "Security Universe",
+      "statement": "What the trust posture of this evaluation is.",
+      "holds": ["trust level", "assurance level", "channel posture", "device posture", "risk indicators", "consent state", "data classification in scope"],
+      "conditions": ["data access admissibility", "encryption requirements", "step-up authentication", "data-minimisation duties"],
+      "invariants": ["every protected object has a posture (UCI-009)", "policy evaluated before protected access (UCL-G02)", "trust never implicit (UCL-G01)"]
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000006", "name": "Economic", "owningUniverse": "Financial Universe",
+      "statement": "What the exchange conditions are.",
+      "holds": ["applicable currency", "price basis", "tax treatment", "tariff regime", "settlement expectations", "account standing", "credit posture"],
+      "conditions": ["consideration computation", "currency", "discount stacking", "payment-method eligibility"],
+      "note": "Currency is a registered unit, never a hard-coded field (V-MS-01). No Currency Lock-In is satisfied because the unit is metadata resolved per evaluation, not a column type."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000007", "name": "Governance", "owningUniverse": "Governance Universe",
+      "statement": "Which authorities and policies have jurisdiction over this evaluation.",
+      "holds": ["jurisdictional authority chain", "applicable policies", "precedence scope", "ratifying bodies", "open disputes", "delegation limits"],
+      "conditions": ["policy precedence", "authority to act", "escalation paths", "dispute suspension"],
+      "note": "An open dispute over a governing artifact may suspend its effect; this is registered on the dispute, not inferred at runtime."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000008", "name": "Linguistic", "owningUniverse": "Knowledge Universe",
+      "statement": "In what language and semantic frame the interaction is conducted.",
+      "holds": ["locale", "language", "script", "measurement system", "naming conventions", "semantic frame", "formats"],
+      "conditions": ["label resolution", "document generation", "unit presentation", "semantic disambiguation"],
+      "note": "No Language Lock-In is structural: every label is a per-locale map on a registered artifact, never a string constant. Adding a language adds labels, not code."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000009", "name": "Reality", "owningUniverse": "Existence Universe",
+      "statement": "In what mode of existence the evaluation is taking place.",
+      "holds": ["actual", "simulated", "hypothesised", "projected", "training", "test"],
+      "conditions": ["admissibility of consequences", "persistence of outcomes", "trust requirements", "whether emitted events are canonical"],
+      "note": "This dimension is what makes digital twins and simulation first-class without a parallel platform. A simulation runs in a Reality context of 'simulated'; its events are marked non-canonical; and no entitlement, price, or obligation created inside it is effective outside it. The transition is a context value, not a separate system."
+    },
+    {
+      "id": "UCOS-CTX-DIM-0000000010", "name": "Computational", "owningUniverse": "Execution Universe",
+      "statement": "What the execution fabric of this evaluation is.",
+      "holds": ["fabric", "region", "latency budget", "offline posture"],
+      "conditions": ["capability selection", "degradation policy"],
+      "note": "Registered, not privileged. Used by the Composition Engine. Nothing depends on it yet; it is listed here only because it exists in the registry."
+    }
+  ],
+  "resolutionPipeline": ["INTENT", "SITUATION GATHERING", "PURPOSE FILTER", "DIMENSION RESOLUTION", "CONFLICT RESOLUTION", "VALIDATION", "CONTEXT OBJECT (immutable, provenance-bearing)", "APPLICATION"],
+  "mergeSemantics": {
+    "if one value undefined": "the other",
+    "if values agree": "that value",
+    "if set-like": "union",
+    "if interval-like": "intersection (the situation common to both contributions)",
+    "otherwise": "conflict -> precedence (authorityRank, specificity, recency) -> tie and still conflicting -> UNRESOLVED -> evaluation refuses"
+  },
+  "bindingTable": {
+    "Policy (C-16)": "scoped by context — without it, a policy applies everywhere or nowhere",
+    "Rule (C-15)": "antecedent evaluated in context — without it, rules fire on irrelevant facts",
+    "Value (C-20)": "conditioned by context — without it, a single global price, i.e. wrong everywhere",
+    "Entitlement": "bounds include context — without it, rights valid in the wrong jurisdiction",
+    "Classification": "assertions are context-qualified — without it, stale classifications enforced forever",
+    "Event (C-07)": "occurs in context — without it, unauditable, unreplayable history",
+    "Action (C-13)": "executed in context — without it, unaccountable action",
+    "Offer": "validity is a window in context — without it, offers honoured where they were never made",
+    "Intelligence": "bounded by policy in context — without it, autonomous action outside its authority"
+  },
+  "lifecycle": {
+    "dimensionDefinitions": ["PROPOSED", "CERTIFIED", "SUPERSEDED"],
+    "contributions": ["asserted", "merged", "resolved (ephemeral)"],
+    "registeredContexts": ["DRAFT", "CERTIFIED", "SUPERSEDED"],
+    "note": "Durable contexts are rare and used only where a stable, repeatable situation must be governed."
+  },
+  "events": ["ctx.dimension.registered", "ctx.contribution.refused", "ctx.unresolved.conflict", "ctx.resolved", "ctx.registered.durable"],
+  "apis": ["CONTRIBUTE", "RESOLVE", "EVALUATE-IN", "REGISTER-CONTEXT", "DESCRIBE-DIMENSION"],
+  "validationRules": ["V-CX-01", "V-CX-02", "V-CX-03", "V-CX-04", "V-CX-05", "V-CX-06", "V-CX-07", "V-CX-08"],
+  "evolutionRules": ["E-CX-01", "E-CX-02", "E-CX-03", "E-CX-04"],
+  "complianceRules": ["C-CX-01", "C-CX-02", "C-CX-03"],
+  "discoveryRules": ["D-CX-01", "D-CX-02", "D-CX-03"],
+  "certificationRules": ["X-CX-01", "X-CX-02", "X-CX-03"],
+  "security": [
+    "CX-S-01 contributions are authored; spoofed contributions are refused",
+    "CX-S-02 security context participates in its own resolution — a low-trust contribution cannot elevate the security context it helped compose",
+    "CX-S-03 context records carry identity data, so their storage is governed by the regulatory dimension they describe (self-referential by nature)",
+    "CX-S-04 a simulated reality context may never be merged into an actual one to authorise a real action — the firewall between simulation and operation is a merge rule, not a separate subsystem"
+  ]
+}

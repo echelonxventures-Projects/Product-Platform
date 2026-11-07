@@ -1,0 +1,13 @@
+{
+  "$comment": "UCL-F09 / V-FR-04 / V-ON-02 / V-CB-04 / V-CM-09 / V-GN-06: no domain, industry, geography, currency, language, vendor or technology noun may appear in a primitive or concept definition, a capability purpose, a composition intent, or a generator mapping. The domain examples are the ones the constitution itself names (Master Index §11, Phase 002 §13); the other classes are representative registered vocabularies, extensible by registration.",
+  "appliesTo": ["Primitive", "Concept", "Capability", "Composition", "Generator"],
+  "classes": {
+    "domain": ["product", "order", "invoice", "patient", "course", "listing", "customer", "shipment", "hotel", "flight", "loan", "policyholder", "student", "employee", "restaurant", "vehicle"],
+    "technology": ["database", "sql", "nosql", "rest", "graphql", "grpc", "kubernetes", "docker", "queue", "kafka", "http", "json", "xml", "yaml", "javascript", "typescript", "python", "java", "blockchain", "microservice", "server"],
+    "vendor": ["aws", "azure", "gcp", "oracle", "salesforce", "sap", "microsoft", "amazon", "ibm", "stripe", "shopify"],
+    "geography": ["usa", "europe", "india", "china", "america", "africa", "asia", "london", "california"],
+    "currency": ["dollar", "euro", "rupee", "yen", "pound sterling", "usd", "eur", "inr", "gbp", "jpy"],
+    "language": ["english", "french", "spanish", "german", "hindi", "mandarin", "arabic"],
+    "industry": ["banking", "retail", "healthcare", "pharmaceutical", "automotive", "telecom", "hospitality", "insurance industry"]
+  }
+}

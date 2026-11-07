@@ -1,0 +1,1118 @@
+{
+  "$comment": "Registered lifecycles (C-18). States and transitions are quoted from the phase documents; each guard is the formal Rule-expression rendering of the prose guard stated there, evaluated over facts computed at transition time. Cycles are designated explicitly (V-LC-04): a transition flagged \"cycle\" closes a legitimate loop; with those removed the transition graph must be acyclic.",
+  "lifecycles": [
+    {
+      "id": "LC-FOUNDATION",
+      "name": "Foundation Artifact Lifecycle",
+      "source": "Phase 001 §10",
+      "states": [
+        "DRAFT",
+        "PROPOSED",
+        "RATIFIED",
+        "CERTIFIED",
+        "ADMISSIBLE",
+        "DEPRECATED",
+        "RETIRED",
+        "SUPERSEDED",
+        "REJECTED"
+      ],
+      "initial": "DRAFT",
+      "terminals": [
+        "RETIRED",
+        "SUPERSEDED",
+        "REJECTED"
+      ],
+      "transitions": [
+        {
+          "from": "DRAFT",
+          "to": "PROPOSED",
+          "guard": "derivationValid",
+          "guardRule": "UCL-D03",
+          "prose": "derivation chain stated and terminating at Tier-0"
+        },
+        {
+          "from": "PROPOSED",
+          "to": "RATIFIED",
+          "guard": "quorumMet AND NOT openDispute",
+          "guardRule": "UCL-G05",
+          "prose": "quorum of the competent body; no open dispute"
+        },
+        {
+          "from": "RATIFIED",
+          "to": "CERTIFIED",
+          "guard": "evidenceComplete AND acyclic AND NOT duplicate",
+          "guardRule": "X-FR-02",
+          "prose": "evidence complete; acyclicity proved; no duplicate concept"
+        },
+        {
+          "from": "CERTIFIED",
+          "to": "ADMISSIBLE"
+        },
+        {
+          "from": "CERTIFIED",
+          "to": "PROPOSED",
+          "guard": "revocation = true",
+          "guardRule": "X-FR-04",
+          "prose": "certification revoked; the artifact returns for re-ratification",
+          "cycle": true
+        },
+        {
+          "from": "ADMISSIBLE",
+          "to": "PROPOSED",
+          "guard": "revocation = true",
+          "guardRule": "X-FR-04",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "DEPRECATED",
+          "guard": "successorStatus IN ['CERTIFIED', 'ADMISSIBLE']",
+          "guardRule": "Phase001-§10",
+          "prose": "successor certified and resolvable"
+        },
+        {
+          "from": "*",
+          "to": "RETIRED",
+          "guard": "liveDependents = 0",
+          "guardRule": "V-FR-09",
+          "prose": "zero live dependents (hard gate)"
+        },
+        {
+          "from": "*",
+          "to": "SUPERSEDED",
+          "guard": "exists(successor)",
+          "guardRule": "V-FR-10"
+        },
+        {
+          "from": "DRAFT",
+          "to": "REJECTED",
+          "guard": "exists(reason)",
+          "guardRule": "Phase001-§10"
+        },
+        {
+          "from": "PROPOSED",
+          "to": "REJECTED",
+          "guard": "exists(reason)",
+          "guardRule": "Phase001-§10"
+        },
+        {
+          "from": "RATIFIED",
+          "to": "REJECTED",
+          "guard": "exists(reason)",
+          "guardRule": "Phase001-§10"
+        }
+      ]
+    },
+    {
+      "id": "LC-IDENTITY",
+      "name": "Principal Identity Lifecycle",
+      "source": "Phase 003 §2 (Minted → Bound → Reassigned → Retired)",
+      "states": [
+        "ACTIVE",
+        "SUSPENDED",
+        "REASSIGNED",
+        "RETIRED"
+      ],
+      "initial": "ACTIVE",
+      "terminals": [
+        "RETIRED"
+      ],
+      "transitions": [
+        {
+          "from": "ACTIVE",
+          "to": "SUSPENDED",
+          "guard": "exists(cause)",
+          "guardRule": "UCI-006"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "ACTIVE",
+          "guard": "exists(cause)",
+          "guardRule": "UCI-006",
+          "cycle": true
+        },
+        {
+          "from": "ACTIVE",
+          "to": "REASSIGNED",
+          "guard": "exists(decision)",
+          "guardRule": "V-ID-03"
+        },
+        {
+          "from": "REASSIGNED",
+          "to": "ACTIVE",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "RETIRED",
+          "guard": "exists(cause)",
+          "guardRule": "UCI-006"
+        }
+      ]
+    },
+    {
+      "id": "LC-RELATIONSHIP",
+      "name": "Relationship Lifecycle",
+      "source": "Phase 003 §6",
+      "states": [
+        "ASSERTED",
+        "VALIDATED",
+        "EFFECTIVE",
+        "SUSPENDED",
+        "REVOKED"
+      ],
+      "initial": "ASSERTED",
+      "terminals": [
+        "REVOKED"
+      ],
+      "transitions": [
+        {
+          "from": "ASSERTED",
+          "to": "VALIDATED"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "EFFECTIVE"
+        },
+        {
+          "from": "EFFECTIVE",
+          "to": "SUSPENDED"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "EFFECTIVE",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "REVOKED"
+        }
+      ]
+    },
+    {
+      "id": "LC-ENTITY",
+      "name": "Entity Lifecycle",
+      "source": "Phase 003 §1",
+      "states": [
+        "CREATED",
+        "ACTIVE",
+        "SUSPENDED",
+        "MERGED",
+        "SPLIT",
+        "ARCHIVED"
+      ],
+      "initial": "CREATED",
+      "terminals": [
+        "MERGED",
+        "SPLIT",
+        "ARCHIVED"
+      ],
+      "transitions": [
+        {
+          "from": "CREATED",
+          "to": "ACTIVE"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "SUSPENDED",
+          "guard": "exists(cause)",
+          "guardRule": "UCI-006"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "ACTIVE",
+          "cycle": true
+        },
+        {
+          "from": "ACTIVE",
+          "to": "MERGED",
+          "guard": "exists(successor)",
+          "guardRule": "UCI-005"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "SPLIT",
+          "guard": "count(successors) >= 2",
+          "guardRule": "UCI-005"
+        },
+        {
+          "from": "*",
+          "to": "ARCHIVED"
+        }
+      ]
+    },
+    {
+      "id": "LC-CLASSIFICATION",
+      "name": "Classification Assertion Lifecycle",
+      "source": "Phase 005 §9",
+      "states": [
+        "ASSERTED",
+        "VALIDATED",
+        "EFFECTIVE",
+        "WITHDRAWN",
+        "SUPERSEDED"
+      ],
+      "initial": "ASSERTED",
+      "terminals": [
+        "WITHDRAWN",
+        "SUPERSEDED"
+      ],
+      "transitions": [
+        {
+          "from": "ASSERTED",
+          "to": "VALIDATED",
+          "guard": "admitted = true",
+          "guardRule": "V-CL-02"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "EFFECTIVE",
+          "guard": "confirmed = true",
+          "guardRule": "TX-S-03",
+          "prose": "inferred classifications never become EFFECTIVE without ratified confirmation"
+        },
+        {
+          "from": "*",
+          "to": "WITHDRAWN",
+          "guard": "exists(reason)",
+          "guardRule": "TX-G3"
+        },
+        {
+          "from": "*",
+          "to": "SUPERSEDED",
+          "guard": "exists(successor)",
+          "guardRule": "Phase005-§9"
+        }
+      ]
+    },
+    {
+      "id": "LC-EXCHANGEABLE",
+      "name": "Exchangeable Entity Lifecycle",
+      "source": "Phase 006 §6",
+      "states": [
+        "CONCEIVED",
+        "DEFINED",
+        "CLASSIFIED",
+        "LISTED",
+        "TRADABLE",
+        "DEPRECATED",
+        "RETIRED"
+      ],
+      "initial": "CONCEIVED",
+      "terminals": [
+        "RETIRED"
+      ],
+      "transitions": [
+        {
+          "from": "CONCEIVED",
+          "to": "DEFINED",
+          "guard": "facetsBound",
+          "guardRule": "V-US-01"
+        },
+        {
+          "from": "DEFINED",
+          "to": "CLASSIFIED",
+          "guard": "count(roles) > 0",
+          "guardRule": "V-US-03"
+        },
+        {
+          "from": "CLASSIFIED",
+          "to": "LISTED"
+        },
+        {
+          "from": "LISTED",
+          "to": "TRADABLE",
+          "guard": "activeOffers > 0",
+          "guardRule": "Phase006-§6"
+        },
+        {
+          "from": "TRADABLE",
+          "to": "LISTED",
+          "guard": "activeOffers = 0",
+          "guardRule": "Phase006-§6",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "DEPRECATED"
+        },
+        {
+          "from": "DEPRECATED",
+          "to": "RETIRED",
+          "guard": "liveEntitlements = 0",
+          "guardRule": "V-FR-09"
+        }
+      ]
+    },
+    {
+      "id": "LC-OFFER",
+      "name": "Offer Lifecycle",
+      "source": "Phase 006 §6",
+      "states": [
+        "DRAFT",
+        "ELIGIBLE",
+        "PUBLISHED",
+        "ACTIVE",
+        "EXHAUSTED",
+        "WITHDRAWN",
+        "EXPIRED"
+      ],
+      "initial": "DRAFT",
+      "terminals": [
+        "EXHAUSTED",
+        "WITHDRAWN",
+        "EXPIRED"
+      ],
+      "transitions": [
+        {
+          "from": "DRAFT",
+          "to": "ELIGIBLE",
+          "guard": "considerationEvidenced AND contextResolvable",
+          "guardRule": "X-US-03"
+        },
+        {
+          "from": "ELIGIBLE",
+          "to": "PUBLISHED",
+          "guard": "policyPermits",
+          "guardRule": "UCL-G01"
+        },
+        {
+          "from": "PUBLISHED",
+          "to": "ACTIVE",
+          "guard": "validityOpen",
+          "guardRule": "V-US-06"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "EXHAUSTED",
+          "guard": "remaining <= 0",
+          "guardRule": "Phase006-§6"
+        },
+        {
+          "from": "*",
+          "to": "WITHDRAWN",
+          "guard": "exists(cause)",
+          "guardRule": "Phase006-§6"
+        },
+        {
+          "from": "*",
+          "to": "EXPIRED",
+          "guard": "validityClosed",
+          "guardRule": "V-US-06"
+        }
+      ]
+    },
+    {
+      "id": "LC-ENTITLEMENT",
+      "name": "Entitlement Lifecycle",
+      "source": "Phase 006 §6",
+      "states": [
+        "GRANTED",
+        "ACTIVE",
+        "SUSPENDED",
+        "RENEWED",
+        "EXPIRED",
+        "REVOKED",
+        "TRANSFERRED",
+        "TERMINATED"
+      ],
+      "initial": "GRANTED",
+      "terminals": [
+        "EXPIRED",
+        "REVOKED",
+        "TRANSFERRED",
+        "TERMINATED"
+      ],
+      "transitions": [
+        {
+          "from": "GRANTED",
+          "to": "ACTIVE",
+          "guard": "boundsStated",
+          "guardRule": "V-US-07"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "SUSPENDED",
+          "guard": "exists(cause)",
+          "guardRule": "US-S-04"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "ACTIVE",
+          "guard": "conditionsMet",
+          "guardRule": "Phase006-§6",
+          "cycle": true
+        },
+        {
+          "from": "ACTIVE",
+          "to": "RENEWED",
+          "guard": "renewable",
+          "guardRule": "Phase006-§6"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "RENEWED",
+          "guard": "renewable AND conditionsMet",
+          "guardRule": "Phase006-§6"
+        },
+        {
+          "from": "RENEWED",
+          "to": "ACTIVE",
+          "cycle": true
+        },
+        {
+          "from": "ACTIVE",
+          "to": "EXPIRED",
+          "guard": "boundsElapsed",
+          "guardRule": "V-US-07"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "EXPIRED",
+          "guard": "boundsElapsed",
+          "guardRule": "V-US-07"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "REVOKED",
+          "guard": "exists(decision)",
+          "guardRule": "US-S-04"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "REVOKED",
+          "guard": "exists(decision)",
+          "guardRule": "US-S-04"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "TRANSFERRED",
+          "guard": "transferAdmissible",
+          "guardRule": "US-S-03"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "TERMINATED",
+          "guard": "exists(cause)",
+          "guardRule": "Phase006-§6"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "TERMINATED",
+          "guard": "exists(cause)",
+          "guardRule": "Phase006-§6"
+        }
+      ]
+    },
+    {
+      "id": "LC-VALUE",
+      "name": "Valuation Lifecycle",
+      "source": "Phase 003 §17",
+      "states": [
+        "QUOTED",
+        "EFFECTIVE",
+        "SUPERSEDED",
+        "WITHDRAWN"
+      ],
+      "initial": "QUOTED",
+      "terminals": [
+        "SUPERSEDED",
+        "WITHDRAWN"
+      ],
+      "transitions": [
+        {
+          "from": "QUOTED",
+          "to": "EFFECTIVE"
+        },
+        {
+          "from": "*",
+          "to": "SUPERSEDED",
+          "guard": "exists(successor)",
+          "guardRule": "V-FR-10"
+        },
+        {
+          "from": "*",
+          "to": "WITHDRAWN",
+          "guard": "exists(reason)",
+          "guardRule": "Phase010-§5.5"
+        }
+      ]
+    },
+    {
+      "id": "LC-MEASUREMENT",
+      "name": "Measurement Lifecycle",
+      "source": "Phase 003 §18",
+      "states": [
+        "OBSERVED",
+        "VALIDATED",
+        "CERTIFIED",
+        "REJECTED"
+      ],
+      "initial": "OBSERVED",
+      "terminals": [
+        "CERTIFIED",
+        "REJECTED"
+      ],
+      "transitions": [
+        {
+          "from": "OBSERVED",
+          "to": "VALIDATED",
+          "guard": "unitRegistered AND methodRegistered",
+          "guardRule": "V-MS-01"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "CERTIFIED",
+          "guard": "evidenceComplete",
+          "guardRule": "X-MM-00"
+        },
+        {
+          "from": "OBSERVED",
+          "to": "REJECTED",
+          "guard": "exists(reason)",
+          "guardRule": "V-MS-04"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "REJECTED",
+          "guard": "exists(reason)",
+          "guardRule": "V-MS-04"
+        }
+      ]
+    },
+    {
+      "id": "LC-KNOWLEDGE",
+      "name": "Knowledge Lifecycle",
+      "source": "Phase 003 §21, Phase 010 §5.1",
+      "states": [
+        "ASSERTED",
+        "EVIDENCED",
+        "CERTIFIED",
+        "REFINED",
+        "REFUTED",
+        "ARCHIVED"
+      ],
+      "initial": "ASSERTED",
+      "terminals": [
+        "REFUTED",
+        "ARCHIVED"
+      ],
+      "transitions": [
+        {
+          "from": "ASSERTED",
+          "to": "EVIDENCED",
+          "guard": "justified",
+          "guardRule": "V-KW-01"
+        },
+        {
+          "from": "EVIDENCED",
+          "to": "CERTIFIED",
+          "guard": "evidenceComplete",
+          "guardRule": "X-MM-00"
+        },
+        {
+          "from": "CERTIFIED",
+          "to": "REFINED"
+        },
+        {
+          "from": "REFINED",
+          "to": "CERTIFIED",
+          "guard": "evidenceComplete",
+          "guardRule": "X-MM-00",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "REFUTED",
+          "guard": "exists(successor) OR exists(reason)",
+          "guardRule": "UCI-005"
+        },
+        {
+          "from": "*",
+          "to": "ARCHIVED"
+        }
+      ]
+    },
+    {
+      "id": "LC-DECISION",
+      "name": "Decision Lifecycle",
+      "source": "Phase 010 §5.6, §8",
+      "states": [
+        "PROPOSED",
+        "VALIDATED",
+        "CERTIFIED",
+        "EXECUTED",
+        "REFUSED",
+        "SUPERSEDED"
+      ],
+      "initial": "PROPOSED",
+      "terminals": [
+        "EXECUTED",
+        "REFUSED",
+        "SUPERSEDED"
+      ],
+      "transitions": [
+        {
+          "from": "PROPOSED",
+          "to": "VALIDATED"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "CERTIFIED"
+        },
+        {
+          "from": "CERTIFIED",
+          "to": "EXECUTED",
+          "guard": "policyPermits",
+          "guardRule": "UCL-G01"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "EXECUTED",
+          "guard": "policyPermits",
+          "guardRule": "UCL-G01"
+        },
+        {
+          "from": "*",
+          "to": "REFUSED",
+          "guard": "exists(reason)",
+          "guardRule": "UCL-G05"
+        },
+        {
+          "from": "*",
+          "to": "SUPERSEDED",
+          "guard": "exists(successor)",
+          "guardRule": "V-FR-10"
+        }
+      ]
+    },
+    {
+      "id": "LC-COMPOSITION",
+      "name": "Composition Lifecycle",
+      "source": "Phase 008 §8",
+      "states": [
+        "DRAFT",
+        "VALIDATED",
+        "CERTIFIED",
+        "INSTANTIATED",
+        "SUPERSEDED",
+        "DEPRECATED",
+        "SUSPENDED"
+      ],
+      "initial": "DRAFT",
+      "terminals": [
+        "SUPERSEDED"
+      ],
+      "transitions": [
+        {
+          "from": "DRAFT",
+          "to": "VALIDATED",
+          "guard": "compositionValid",
+          "guardRule": "V-CM-03",
+          "prose": "binding graph acyclic; no orphan ports; contracts compatible; envelope sound"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "CERTIFIED",
+          "guard": "evidenceComplete",
+          "guardRule": "X-CM-01"
+        },
+        {
+          "from": "CERTIFIED",
+          "to": "INSTANTIATED",
+          "guard": "exists(deploymentContract)",
+          "guardRule": "Phase008-§8"
+        },
+        {
+          "from": "INSTANTIATED",
+          "to": "INSTANTIATED",
+          "guard": "exists(deploymentContract)",
+          "guardRule": "Phase008-§8",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "SUSPENDED",
+          "guard": "exists(cause)",
+          "guardRule": "CM-S-05"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "CERTIFIED",
+          "guard": "exists(cause)",
+          "guardRule": "CM-S-05",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "DEPRECATED"
+        },
+        {
+          "from": "*",
+          "to": "SUPERSEDED",
+          "guard": "exists(successor)",
+          "guardRule": "E-CM-06"
+        },
+        {
+          "from": "VALIDATED",
+          "to": "DRAFT",
+          "guard": "revalidationRequired",
+          "guardRule": "E-CM-05",
+          "cycle": true
+        },
+        {
+          "from": "CERTIFIED",
+          "to": "DRAFT",
+          "guard": "revalidationRequired",
+          "guardRule": "X-CM-03",
+          "cycle": true
+        }
+      ]
+    },
+    {
+      "id": "LC-GENERATED",
+      "name": "Generated Artifact Lifecycle",
+      "source": "Phase 009 §8",
+      "states": [
+        "GENERATED",
+        "DEPLOYED",
+        "STALE",
+        "REGENERATED",
+        "RETIRED",
+        "TAMPERED"
+      ],
+      "initial": "GENERATED",
+      "terminals": [
+        "RETIRED"
+      ],
+      "transitions": [
+        {
+          "from": "GENERATED",
+          "to": "DEPLOYED",
+          "guard": "attested",
+          "guardRule": "C-GN-01"
+        },
+        {
+          "from": "REGENERATED",
+          "to": "DEPLOYED",
+          "guard": "attested",
+          "guardRule": "C-GN-01"
+        },
+        {
+          "from": "GENERATED",
+          "to": "STALE",
+          "guard": "sourceChanged",
+          "guardRule": "E-GN-02"
+        },
+        {
+          "from": "DEPLOYED",
+          "to": "STALE",
+          "guard": "sourceChanged",
+          "guardRule": "E-GN-02"
+        },
+        {
+          "from": "REGENERATED",
+          "to": "STALE",
+          "guard": "sourceChanged",
+          "guardRule": "E-GN-02"
+        },
+        {
+          "from": "STALE",
+          "to": "REGENERATED",
+          "guard": "attested",
+          "guardRule": "GN-P4",
+          "cycle": true
+        },
+        {
+          "from": "TAMPERED",
+          "to": "REGENERATED",
+          "guard": "attested",
+          "guardRule": "GN-S-05",
+          "cycle": true
+        },
+        {
+          "from": "GENERATED",
+          "to": "TAMPERED",
+          "guard": "tamperDetected",
+          "guardRule": "GN-S-05"
+        },
+        {
+          "from": "DEPLOYED",
+          "to": "TAMPERED",
+          "guard": "tamperDetected",
+          "guardRule": "GN-S-05"
+        },
+        {
+          "from": "REGENERATED",
+          "to": "TAMPERED",
+          "guard": "tamperDetected",
+          "guardRule": "GN-S-05"
+        },
+        {
+          "from": "*",
+          "to": "RETIRED"
+        }
+      ]
+    },
+    {
+      "id": "LC-ALLOCATION",
+      "name": "Resource Allocation Lifecycle",
+      "source": "Phase 003 §16",
+      "states": [
+        "ALLOCATED",
+        "COMMITTED",
+        "CONSUMED",
+        "RELEASED"
+      ],
+      "initial": "ALLOCATED",
+      "terminals": [
+        "CONSUMED",
+        "RELEASED"
+      ],
+      "transitions": [
+        {
+          "from": "ALLOCATED",
+          "to": "COMMITTED"
+        },
+        {
+          "from": "COMMITTED",
+          "to": "CONSUMED"
+        },
+        {
+          "from": "ALLOCATED",
+          "to": "RELEASED"
+        },
+        {
+          "from": "COMMITTED",
+          "to": "RELEASED"
+        }
+      ]
+    },
+    {
+      "id": "LC-OPERATION",
+      "name": "Intelligence Operating Lifecycle",
+      "source": "Phase 010 §8",
+      "states": [
+        "ALIGNED",
+        "OPERATING",
+        "SUSPENDED",
+        "DECOMMISSIONED"
+      ],
+      "initial": "ALIGNED",
+      "terminals": [
+        "DECOMMISSIONED"
+      ],
+      "transitions": [
+        {
+          "from": "ALIGNED",
+          "to": "OPERATING",
+          "guard": "alignmentVerified",
+          "guardRule": "IN-S-03"
+        },
+        {
+          "from": "OPERATING",
+          "to": "SUSPENDED",
+          "guard": "exists(cause)",
+          "guardRule": "Phase010-§8"
+        },
+        {
+          "from": "SUSPENDED",
+          "to": "OPERATING",
+          "guard": "alignmentVerified",
+          "guardRule": "IN-S-03",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "DECOMMISSIONED"
+        }
+      ]
+    },
+    {
+      "id": "LC-DISPUTE",
+      "name": "Dispute Lifecycle",
+      "source": "Phase 004 §8.3, Phase 007 §5.7",
+      "states": [
+        "OPENED",
+        "UNDER-REVIEW",
+        "ESCALATED",
+        "RESOLVED",
+        "DISMISSED"
+      ],
+      "initial": "OPENED",
+      "terminals": [
+        "RESOLVED",
+        "DISMISSED"
+      ],
+      "transitions": [
+        {
+          "from": "OPENED",
+          "to": "UNDER-REVIEW"
+        },
+        {
+          "from": "UNDER-REVIEW",
+          "to": "ESCALATED",
+          "guard": "exists(escalatedTo)",
+          "guardRule": "IN-S-07"
+        },
+        {
+          "from": "ESCALATED",
+          "to": "UNDER-REVIEW",
+          "cycle": true
+        },
+        {
+          "from": "UNDER-REVIEW",
+          "to": "RESOLVED",
+          "guard": "exists(decision)",
+          "guardRule": "UCL-G05"
+        },
+        {
+          "from": "ESCALATED",
+          "to": "RESOLVED",
+          "guard": "exists(decision)",
+          "guardRule": "UCL-G05"
+        },
+        {
+          "from": "*",
+          "to": "DISMISSED",
+          "guard": "exists(reason)",
+          "guardRule": "UCL-G05"
+        }
+      ]
+    },
+    {
+      "id": "LC-CONTRACT",
+      "name": "Contract Lifecycle",
+      "source": "Phase 008 §5.2 (termination conditions), C-30",
+      "states": [
+        "DRAFT",
+        "PROPOSED",
+        "ACTIVE",
+        "FULFILLED",
+        "BREACHED",
+        "TERMINATED"
+      ],
+      "initial": "DRAFT",
+      "terminals": [
+        "FULFILLED",
+        "TERMINATED"
+      ],
+      "transitions": [
+        {
+          "from": "DRAFT",
+          "to": "PROPOSED"
+        },
+        {
+          "from": "PROPOSED",
+          "to": "ACTIVE",
+          "guard": "allPartiesAccepted",
+          "guardRule": "C-30"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "FULFILLED",
+          "guard": "obligationsDischarged",
+          "guardRule": "C-30"
+        },
+        {
+          "from": "ACTIVE",
+          "to": "BREACHED",
+          "guard": "exists(evidence)",
+          "guardRule": "C-FR-01"
+        },
+        {
+          "from": "BREACHED",
+          "to": "ACTIVE",
+          "guard": "exists(remedy)",
+          "guardRule": "C-30",
+          "cycle": true
+        },
+        {
+          "from": "*",
+          "to": "TERMINATED",
+          "guard": "exists(cause)",
+          "guardRule": "C-30"
+        }
+      ]
+    },
+    {
+      "id": "LC-ACTION",
+      "name": "Action Lifecycle",
+      "source": "Phase 003 §14",
+      "states": [
+        "REQUESTED",
+        "AUTHORISED",
+        "EXECUTING",
+        "COMPLETED",
+        "COMPENSATED",
+        "FAILED"
+      ],
+      "initial": "REQUESTED",
+      "terminals": [
+        "COMPLETED",
+        "COMPENSATED",
+        "FAILED"
+      ],
+      "transitions": [
+        {
+          "from": "REQUESTED",
+          "to": "AUTHORISED",
+          "guard": "policyPermits",
+          "guardRule": "V-AC-01"
+        },
+        {
+          "from": "AUTHORISED",
+          "to": "EXECUTING"
+        },
+        {
+          "from": "EXECUTING",
+          "to": "EXECUTING",
+          "cycle": true
+        },
+        {
+          "from": "EXECUTING",
+          "to": "COMPLETED"
+        },
+        {
+          "from": "EXECUTING",
+          "to": "COMPENSATED",
+          "guard": "exists(cause)",
+          "guardRule": "Phase009-§6.7"
+        },
+        {
+          "from": "*",
+          "to": "FAILED",
+          "guard": "exists(cause)",
+          "guardRule": "V-AC-03"
+        }
+      ]
+    },
+    {
+      "id": "LC-LEDGER",
+      "name": "Ledger Record Lifecycle",
+      "source": "V-EV-05 (correction is a compensating record, never an edit)",
+      "states": [
+        "OPEN",
+        "POSTED",
+        "CLOSED"
+      ],
+      "initial": "OPEN",
+      "terminals": [
+        "POSTED",
+        "CLOSED"
+      ],
+      "transitions": [
+        {
+          "from": "OPEN",
+          "to": "POSTED"
+        },
+        {
+          "from": "OPEN",
+          "to": "CLOSED",
+          "guard": "balance = 0",
+          "guardRule": "C-FR-01"
+        }
+      ]
+    }
+  ]
+}

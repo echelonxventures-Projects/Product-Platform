@@ -1,0 +1,13 @@
+{
+  "$comment": "Temporal Registry and Spatial Registry seeds (Phase 003 §19–20). Calendars and reference frames are registered; recurrence schemes and regions are registered by domain authorities at runtime. Intervals are half-open [start, end) by declared convention (V-TM-02).",
+  "calendars": [
+    { "name": "gregorian", "statement": "The proleptic Gregorian calendar with instants in ISO-8601 UTC and half-open intervals.", "intervalConvention": "half-open [start, end)", "epoch": "1970-01-01T00:00:00.000Z" },
+    { "name": "iso-week", "statement": "The ISO-8601 week-numbering calendar over the Gregorian day count.", "intervalConvention": "half-open [start, end)", "epoch": "1970-01-01T00:00:00.000Z" }
+  ],
+  "recurrenceSchemes": [
+    { "name": "bounded-periodic", "statement": "A recurrence with a frequency, interval, optional weekday filter and mandatory count or until bound.", "fields": ["freq", "interval", "byWeekday", "count", "until", "duration", "exceptions"] }
+  ],
+  "frames": [
+    { "name": "WGS84", "statement": "The World Geodetic System 1984 ellipsoidal reference frame, positions as latitude and longitude in degrees.", "meanRadiusMetres": 6371008.8, "vocabulary": ["point", "ring", "polygon"] }
+  ]
+}

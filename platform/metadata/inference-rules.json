@@ -1,0 +1,33 @@
+{
+  "$comment": "Registered inference rules for the Reasoning Engine (Phase 010 §5.2). Each rule is a Horn clause over registered relationship types: when every premise edge holds, the conclusion edge is inferred with the stated confidence multiplied by the premises' confidences. Inferences never achieve asserted standing without confirmation (IN-P7). Transitive closure of every relationship type registered as transitive is applied in addition to these rules.",
+  "rules": [
+    {
+      "name": "classification-inheritance",
+      "statement": "An entity classified under a taxon is classified under every broader taxon of that taxon.",
+      "premises": [{ "type": "CLASSIFIED-AS", "from": "x", "to": "t" }, { "type": "NARROWER-THAN", "from": "t", "to": "u" }],
+      "conclusion": { "type": "CLASSIFIED-AS", "from": "x", "to": "u" },
+      "confidence": 1
+    },
+    {
+      "name": "containment-dependency",
+      "statement": "A whole depends on what its parts depend on.",
+      "premises": [{ "type": "PART-OF", "from": "p", "to": "w" }, { "type": "DEPENDS-ON", "from": "p", "to": "d" }],
+      "conclusion": { "type": "DEPENDS-ON", "from": "w", "to": "d" },
+      "confidence": 0.9
+    },
+    {
+      "name": "governance-through-containment",
+      "statement": "A part is governed by the policies that govern its whole.",
+      "premises": [{ "type": "PART-OF", "from": "p", "to": "w" }, { "type": "GOVERNED-BY", "from": "w", "to": "g" }],
+      "conclusion": { "type": "GOVERNED-BY", "from": "p", "to": "g" },
+      "confidence": 0.95
+    },
+    {
+      "name": "disjointness-propagation",
+      "statement": "Whatever is narrower than one of two disjoint concepts is disjoint with the other.",
+      "premises": [{ "type": "NARROWER-THAN", "from": "a", "to": "b" }, { "type": "DISJOINT-WITH", "from": "b", "to": "c" }],
+      "conclusion": { "type": "DISJOINT-WITH", "from": "a", "to": "c" },
+      "confidence": 1
+    }
+  ]
+}

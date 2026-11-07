@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UCOS Ω∞</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="omega">Ω∞</span> <span data-label="app.title"></span></div>
+  <form id="search" class="search"><input id="q" type="search" autocomplete="off"><button data-label="action.search"></button></form>
+  <div class="who"><span id="who"></span> <button id="token" class="ghost" data-label="action.credential"></button></div>
+</header>
+<nav id="nav" class="nav"></nav>
+<main id="view" class="view"></main>
+<dialog id="dlg"><form method="dialog"><h3 data-label="credential.title"></h3><p data-label="credential.help"></p><input id="tok" type="password" autocomplete="off"><menu><button value="cancel" data-label="action.cancel"></button><button id="saveTok" value="ok" data-label="action.save"></button></menu></form></dialog>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

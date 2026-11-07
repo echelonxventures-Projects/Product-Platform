@@ -1,0 +1,77 @@
+{
+  "registry": "COMPOSITION REGISTRY",
+  "registryId": "UCOS-REG-CMP-0000000001",
+  "document": "UCOS-CMP-DOC-001",
+  "version": "1.0",
+  "status": "CANONICAL FOUNDATION",
+  "tier": 3,
+  "entryModel": "Composition",
+  "constitutionalNote": "Each entry below is a LABEL OF A COMPOSITION — a registered, certified, versioned, auditable artifact — not a system type, and not software. No capability in this registry was created for any system named in it. Every one existed before the composition was registered. That is what Composition Over Implementation means in practice.",
+  "laws": [
+    "UCL-C01 no application logic shall be authored for a specific system; systems are compositions",
+    "UCL-C02 a composition is itself a registered, versioned, certifiable artifact",
+    "UCL-C03 generators are semantics-preserving functors from ontology to a target space",
+    "UCL-C04 generated artifacts are derivatives, not canonical",
+    "UCL-C05 no generated artifact may be edited by hand"
+  ],
+  "principles": [
+    "CM-P1 every system is a composition; every composition is registered",
+    "CM-P2 compositions reference only certified capabilities",
+    "CM-P3 composition is declarative: intent + constraints, never imperative code",
+    "CM-P4 the whole is governed at least as strictly as its parts — the governance-capture rule",
+    "CM-P5 capability wiring is a DAG (UCI-014)",
+    "CM-P6 contracts between capabilities are explicit, registered, versioned",
+    "CM-P7 compositions may compose compositions; recursion terminates on unique identities and acyclicity",
+    "CM-P8 no composition is certified until every capability it references is certified for its envelope and context"
+  ],
+  "recipes": [
+    { "label": "Marketplace",   "over": ["identity", "participant-registry", "catalog-classification", "discovery", "matching", "offer", "entitlement", "settlement", "trust", "reputation", "dispute-resolution"] },
+    { "label": "ERP",           "over": ["resource", "entitlement", "value-and-consideration", "measurement", "workflow", "policy-evaluation", "event-sourcing", "reporting", "audit"] },
+    { "label": "CRM",           "over": ["identity", "participant-registry", "relationship-graph", "interaction-event-history", "workflow", "notification", "segmentation", "reporting"] },
+    { "label": "Booking",       "over": ["resource", "temporal-ordering", "availability", "offer", "entitlement", "allocation-policy", "notification"] },
+    { "label": "Calendar",      "over": ["temporal-ordering", "recurrence", "availability", "allocation-policy", "event-sourcing", "notification"] },
+    { "label": "Offer Engine",  "over": ["offer", "value-and-consideration", "policy-evaluation", "allocation-policy", "contract"] },
+    { "label": "Subscription Engine", "over": ["entitlement", "policy-evaluation", "value-and-consideration", "workflow", "dunning-policy", "event-sourcing"] },
+    { "label": "Workflow Engine", "over": ["workflow", "policy-evaluation", "event-sourcing", "compensation", "escalation"] },
+    { "label": "AI System",     "over": ["knowledge", "model-registry", "inference-capability", "planning", "policy-evaluation", "audit", "alignment-evidence"] },
+    { "label": "CMS",           "over": ["knowledge", "catalog-classification", "relationship-graph", "localization", "rendering"] },
+    { "label": "Supply Chain",  "over": ["resource", "contract", "spatial-ordering", "event-sourcing", "policy-evaluation", "measurement"] },
+    { "label": "Financial System", "over": ["value-and-consideration", "measurement", "entitlement", "contract", "settlement", "risk-policy", "audit"] }
+  ],
+  "readingNotes": [
+    "Overlap between rows is correct and desirable. Booking and Calendar share temporal-ordering and allocation-policy. That is reuse, not duplication. Duplication would be each system having its own calendar capability with its own identity and its own bugs.",
+    "These rows are illustrative content, not architecture. Each is owned by a Domain Authority, replaceable by another arrangement, and certifiable or refused on its own merits. The platform does not contain a CRM.",
+    "New systems are new rows, registered, not built. Healthcare system, education platform, government service portal are further rows over the same capability set, costing no primitives."
+  ],
+  "recursion": {
+    "example": "Marketplace Composition contains Catalog Composition, Checkout Composition, and Trust Composition — each itself a composition over capabilities.",
+    "termination": "Every composition has a unique identity and the binding graph must be acyclic (CM-P5, UCI-014). A composition containing itself, directly or transitively, is refused at validation — and the refusal names the cycle."
+  },
+  "pipeline": ["INTENT", "INTENT RESOLUTION", "CAPABILITY DISCOVERY", "SELECTION", "BINDING", "POLICY ENVELOPE (strictest-of-parts)", "VALIDATION", "CERTIFICATION", "INSTANTIATION (generation, Phase 009)"],
+  "functorPreservationRequirements": ["semantic intent", "capability contracts", "policy envelopes", "context bounds"],
+  "lifecycle": {
+    "states": ["DRAFT", "VALIDATED", "CERTIFIED", "INSTANTIATED", "SUPERSEDED", "DEPRECATED", "SUSPENDED"],
+    "guards": {
+      "DRAFT->VALIDATED": "binding graph acyclic; no orphan ports; contracts compatible; envelope sound",
+      "VALIDATED->CERTIFIED": "Certification Body issues evidence",
+      "CERTIFIED->INSTANTIATED": "a deployment contract selected and a generation requested",
+      "any->SUSPENDED": "governance action; requires recorded cause",
+      "any->SUPERSEDED": "successor certified; existing instantiations continue under their certified state"
+    },
+    "note": "Supersession does not kill running systems; it ends admissibility for new ones."
+  },
+  "governance": {
+    "separation": "The composition is owned by the Domain Authority. The policy envelope is owned by the authority that owns the scope — a different party from the capability providers. No provider can relax the governance of a system it supplies a part of. Separation of powers applied to assembly."
+  },
+  "events": ["cmp.intent.resolved", "cmp.capability.selected", "cmp.binding.validated", "cmp.binding.rejected", "cmp.envelope.computed", "cmp.composition.certified", "cmp.composition.instantiated", "cmp.composition.suspended", "cmp.composition.superseded", "cmp.cycle.detected", "cmp.orphan.port.detected"],
+  "apis": ["COMPOSE", "VALIDATE", "CERTIFY", "INSTANTIATE", "SUSPEND", "DISCOVER-CAPABILITIES"],
+  "validationRules": ["V-CM-01", "V-CM-02", "V-CM-03", "V-CM-04", "V-CM-05", "V-CM-06", "V-CM-07", "V-CM-08", "V-CM-09", "V-CM-10"],
+  "evolutionRules": ["E-CM-01", "E-CM-02", "E-CM-03", "E-CM-04", "E-CM-05", "E-CM-06"],
+  "complianceRules": ["C-CM-01", "C-CM-02", "C-CM-03"],
+  "discoveryRules": ["D-CM-01", "D-CM-02", "D-CM-03"],
+  "certificationRules": ["X-CM-01", "X-CM-02", "X-CM-03"],
+  "escapeHatch": {
+    "claim": "To show a system cannot be a composition, one must show (a) a behaviour it needs, (b) that no registered capability provides it, (c) that it cannot be expressed as an arrangement of registered capabilities, (d) that it cannot be a new capability under an existing universe.",
+    "consequence": "If all four hold, the correct action is to register a new capability — a constitutional act requiring derivation proof and certification, not a licence to write application code. The escape hatch exists. It is just narrow, audited, and public."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$comment": "Governance bodies and founding principals. Body names, powers and the separation invariants are taken from foundation-registry.json governanceGraph (Knowledge Once); this file adds the operational parameters the seed does not state: quorum, authority rank (used by computed precedence, never stored on policies), and founding members.",
+  "sourceOfBodies": "registries/foundation-registry.json#governanceGraph.bodies",
+  "bodies": {
+    "Constitutional Assembly": { "alias": "GOV-ASSEMBLY", "quorum": 3, "authorityRank": 100, "role": "ratifies invariants, constitution and Tier-0 change" },
+    "Foundation Council": { "alias": "GOV-COUNCIL", "quorum": 2, "authorityRank": 80, "role": "ratifies Tier-1/Tier-2 primitives and constructs" },
+    "Domain Authorities": { "alias": "GOV-DOMAIN", "quorum": 1, "authorityRank": 60, "role": "ratifies universe content within envelope" },
+    "Registry Office": { "alias": "GOV-REGISTRY-OFFICE", "quorum": 1, "authorityRank": 40, "role": "records identity, version, lineage" },
+    "Certification Body": { "alias": "GOV-CERTIFICATION", "quorum": 1, "authorityRank": 90, "role": "issues or withholds certification" }
+  },
+  "ratificationByTier": {
+    "0": "Constitutional Assembly",
+    "1": "Foundation Council",
+    "2": "Foundation Council",
+    "default": "Domain Authorities"
+  },
+  "certifyingBody": "Certification Body",
+  "registryOffice": "Registry Office",
+  "universeDomainAuthority": {
+    "nameTemplate": "{code} Domain Authority",
+    "quorum": 1,
+    "authorityRank": 60,
+    "parentBody": "Domain Authorities"
+  },
+  "operationalDomainAuthority": {
+    "nameTemplate": "{code} Operating Authority",
+    "quorum": 1,
+    "authorityRank": 50,
+    "parentBody": "Domain Authorities"
+  },
+  "principals": [
+    { "alias": "assembly-delegate-1", "name": "Assembly Delegate 1", "principalKind": "human", "bodies": ["Constitutional Assembly"] },
+    { "alias": "assembly-delegate-2", "name": "Assembly Delegate 2", "principalKind": "human", "bodies": ["Constitutional Assembly"] },
+    { "alias": "assembly-delegate-3", "name": "Assembly Delegate 3", "principalKind": "human", "bodies": ["Constitutional Assembly"] },
+    { "alias": "council-member-1", "name": "Foundation Council Member 1", "principalKind": "human", "bodies": ["Foundation Council", "Domain Authorities"] },
+    { "alias": "council-member-2", "name": "Foundation Council Member 2", "principalKind": "human", "bodies": ["Foundation Council", "Domain Authorities"] },
+    { "alias": "domain-steward", "name": "Domain Steward", "principalKind": "human", "bodies": ["Domain Authorities"] },
+    { "alias": "registrar", "name": "Registrar", "principalKind": "system", "bodies": ["Registry Office"] },
+    { "alias": "certifier", "name": "Certification Officer", "principalKind": "human", "bodies": ["Certification Body"] },
+    { "alias": "governance-agent", "name": "Autonomous Governance Agent", "principalKind": "agent", "bodies": [] },
+    { "alias": "operator", "name": "Platform Operator", "principalKind": "human", "bodies": [] }
+  ],
+  "separationInvariants": ["GI-1", "GI-2", "GI-3", "GI-4", "GI-5"]
+}
